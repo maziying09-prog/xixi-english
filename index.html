@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>小夕的魔法世界 · 英语学习工作台 v5.0</title>
+  
+  <!-- Mobile & PWA App Capabilities -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="小夕英语" />
+  <meta name="theme-color" content="#4F46E5" />
+
+  <!-- App Icon generated dynamically as Data SVG -->
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+
+  <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <!-- v5.0: all UI dependencies are local for stable mobile/PWA startup -->
+  <link rel="stylesheet" href="./assets/tailwind.css" />
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+
+  <style>
+    .font-fredoka { font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, sans-serif; }
+    * {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      overscroll-behavior: none;
+      background-color: #0f172a;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Mobile Container Frame & Native Safe Area Adaptation */
+    .mobile-container {
+      width: 100%;
+      max-width: 430px;
+      height: 100%;
+      height: 100dvh;
+      background: #F8FAFC;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (min-width: 640px) {
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+      }
+      .mobile-container {
+        height: 880px;
+        max-height: 92vh;
+        border-radius: 40px;
+        border: 8px solid #334155;
+      }
+    }
+
+    /* Modern Soft Card Shadow */
+    .soft-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px -5px rgba(148, 163, 184, 0.12), 0 8px 10px -6px rgba(148, 163, 184, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .bounce-interactive {
+      transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .bounce-interactive:active {
+      transform: scale(0.93);
+    }
+
+    /* Pet Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Pulse Mic Outer Ring Effect */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+      70% { transform: scale(1.08); box-shadow: 0 0 0 16px rgba(245, 158, 11, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    .mic-pulse {
+      animation: pulse-ring 1.6s infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    /* App Launch Splash Animation */
+    @keyframes splashFadeOut {
+      0% { opacity: 1; visibility: visible; }
+      80% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    .splash-overlay {
+      animation: splashFadeOut 1.2s forwards ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Native Splash Screen -->
+  <div id="splashScreen" class="splash-overlay fixed inset-0 z-50 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 flex flex-col items-center justify-center text-white pointer-events-none">
+    <div class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-5xl mb-4 animate-float border border-white/30 shadow-2xl">
+      🦊
+    </div>
+    <h1 class="font-fredoka text-2xl font-bold tracking-wide">小夕的魔法世界</h1>
+    <p class="text-indigo-200 text-xs mt-2 font-medium">6岁英语启蒙桌面工作台</p>
+    <div class="mt-8 flex gap-1.5">
+      <span class="w-2 h-2 bg-amber-400 rounded-full animate-ping"></span>
+      <span class="w-2 h-2 bg-amber-400 rounded-full animate-ping delay-100"></span>
+      <span class="w-2 h-2 bg-amber-400 rounded-full animate-ping delay-200"></span>
+    </div>
+  </div>
+
+  <div class="mobile-container relative font-sans">
+    
+    <!-- Top Status Bar -->
+    <div class="pt-2 px-6 pb-1 flex justify-between items-center text-xs font-bold text-slate-400 z-10 shrink-0">
+      <span id="pwaClockText">09:41</span>
+      <div class="flex items-center gap-1.5">
+        <span id="standaloneBadge" class="hidden bg-emerald-500/20 text-emerald-600 text-[9px] px-1.5 py-0.5 rounded-md font-bold">App模式</span>
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full text-sm"></i>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="px-5 py-2 flex justify-between items-center z-10 shrink-0">
+      <button id="openDrawerBtn" class="w-10 h-10 rounded-2xl bg-white soft-card flex items-center justify-center text-slate-700 bounce-interactive">
+        <i class="fa-solid fa-bars-staggered text-lg"></i>
+      </button>
+
+      <!-- Pet Status Badge -->
+      <div onclick="petReact()" class="flex items-center gap-2.5 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full soft-card border border-indigo-50 cursor-pointer bounce-interactive">
+        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-xl animate-float">
+          🦊
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1">
+            <span class="text-xs font-bold text-slate-800">笨笨小狐</span>
+            <span class="bg-amber-400 text-white text-[9px] font-fredoka px-1.5 rounded-full">Lv.3</span>
+          </div>
+          <div class="w-16 bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1">
+            <div id="petEnergyBar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full w-[80%] transition-all duration-300"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star Counter Badge -->
+      <div class="flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-2xl">
+        <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+        <span id="starCount" class="font-fredoka font-bold text-amber-600 text-sm">18</span>
+      </div>
+    </header>
+
+    <div id="drawerOverlay" class="absolute inset-0 bg-slate-900/50 backdrop-blur-xs z-40 hidden transition-opacity duration-300"></div>
+    <aside id="sideDrawer" class="absolute top-0 left-0 bottom-0 w-[82%] max-w-[320px] bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-out p-6 flex flex-col justify-between shadow-2xl">
+      <div>
+        <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-fredoka font-bold text-xl shadow-md shadow-indigo-200">
+              夕
+            </div>
+            <div>
+              <h2 class="font-bold text-slate-800 text-base">小夕的魔法世界</h2>
+              <p class="text-[11px] text-slate-400">6岁零基础·独立桌面App</p>
+            </div>
+          </div>
+          <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center bounce-interactive">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="space-y-2.5">
+          <button onclick="switchTab('home')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-indigo-50 text-indigo-600 font-bold text-sm">
+            <div class="w-8 h-8 rounded-xl bg-indigo-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-house text-xs"></i>
+            </div>
+            <span>今日工作台</span>
+            <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-50"></i>
+          </button>
+
+          <button onclick="switchTab('alphabet')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl hover:bg-slate-50 text-slate-600 font-bold text-sm">
+            <div class="w-8 h-8 rounded-xl bg-pink-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-font text-xs"></i>
+            </div>
+            <span>26字母预备营</span>
+            <span class="bg-pink-100 text-pink-600 text-[10px] px-2 py-0.5 rounded-full ml-auto">音形绑定</span>
+          </button>
+
+          <button onclick="switchTab('quest')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl hover:bg-slate-50 text-slate-600 font-bold text-sm">
+            <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-gamepad text-xs"></i>
+            </div>
+            <span>单词听说读写闯关</span>
+            <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
+          </button>
+
+          <button onclick="switchTab('words')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl hover:bg-slate-50 text-slate-600 font-bold text-sm">
+            <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-apple-whole text-xs"></i>
+            </div>
+            <span>我的单词果实树</span>
+            <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
+          </button>
+
+          <button onclick="openParentCenter()" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl hover:bg-slate-50 text-slate-600 font-bold text-sm">
+            <div class="w-8 h-8 rounded-xl bg-slate-700 text-white flex items-center justify-center">
+              <i class="fa-solid fa-chart-line text-xs"></i>
+            </div>
+            <span>家长中心</span>
+            <span id="reviewDueBadge" class="bg-rose-100 text-rose-600 text-[10px] px-2 py-0.5 rounded-full ml-auto">0 待复习</span>
+          </button>
+
+          <button onclick="openInstallGuideModal()" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-amber-50 text-amber-700 font-bold text-sm border border-amber-200/60">
+            <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-mobile-screen-button text-xs"></i>
+            </div>
+            <span>添加到手机桌面</span>
+            <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-xs opacity-60"></i>
+          </button>
+        </nav>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100">
+        <div class="bg-slate-50 p-3 rounded-2xl flex items-center justify-between mb-3">
+          <span class="text-xs text-slate-600 font-medium">每日新词量</span>
+          <select id="dailyWordLimit" onchange="updateDailyLimit(this.value)" class="bg-white border border-slate-200 text-xs font-bold rounded-lg px-2 py-1 text-slate-700">
+            <option value="3" selected>3 个词 / 天 (建议)</option>
+            <option value="5">5 个词 / 天</option>
+            <option value="8">8 个词 / 天</option>
+          </select>
+        </div>
+        <p class="text-[11px] text-slate-400 text-center">v5.0 离线儿歌 + 字母发音版 · PWA</p>
+      </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto px-5 py-2 space-y-4 pb-20">
+
+      <!-- VIEW 1: HOME WORKBENCH -->
+      <div id="viewHome" class="space-y-4">
+
+        <!-- HomeScreen Install Action Card (PWA Packaging Feature) -->
+        <div id="pwaInstallBanner" class="soft-card p-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white flex items-center justify-between shadow-lg shadow-amber-500/20">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl shrink-0">
+              📱
+            </div>
+            <div>
+              <h3 class="font-bold text-sm leading-snug">把「小夕工作台」放桌面</h3>
+              <p class="text-[11px] text-amber-100 opacity-90 mt-0.5">无需下载APP，像原生应用一样一键打开</p>
+            </div>
+          </div>
+          <button onclick="handlePwaInstallClick()" class="px-3.5 py-2 bg-white text-orange-600 font-fredoka font-bold text-xs rounded-xl shadow-sm bounce-interactive shrink-0">
+            安装到桌面
+          </button>
+        </div>
+
+        <!-- Welcome Banner Card -->
+        <div class="soft-card p-5 bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+          <div class="relative z-10 flex justify-between items-start">
+            <div>
+              <p class="text-indigo-200 text-xs font-medium" id="todayDateStr">7月29日 · 星期三</p>
+              <h1 class="text-2xl font-bold font-fredoka mt-1">Hello, 小夕! 👋</h1>
+              <p class="text-indigo-100 text-xs mt-1 max-w-[210px] leading-relaxed">
+                每个单词都练透「听辨 → 跟读 → 读句 → 拼写」，加油！
+              </p>
+            </div>
+            <button onclick="petReact()" class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-3xl animate-float border border-white/30 bounce-interactive shrink-0">
+              🦊
+              <span class="text-[9px] font-bold text-amber-200 mt-0.5">摸摸我</span>
+            </button>
+          </div>
+
+          <!-- Overall Daily Quest Progress -->
+          <div class="mt-4 pt-3 border-t border-white/20 flex items-center justify-between text-xs">
+            <span class="text-indigo-100">今日单词闯关总进度</span>
+            <span id="homeProgressText" class="font-fredoka font-bold text-amber-300">0 / 3 词已完成</span>
+          </div>
+          <div class="w-full bg-black/20 h-2.5 rounded-full mt-1.5 overflow-hidden">
+            <div id="homeProgressBar" class="bg-amber-400 h-full w-[0%] transition-all duration-500"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 mt-3 text-center">
+            <div class="bg-white/10 rounded-xl py-2"><div id="streakDaysText" class="font-fredoka font-bold text-amber-300">0</div><div class="text-[9px] text-indigo-100">连续天数</div></div>
+            <div class="bg-white/10 rounded-xl py-2"><div id="masteredCountText" class="font-fredoka font-bold text-emerald-200">0</div><div class="text-[9px] text-indigo-100">已学单词</div></div>
+            <div class="bg-white/10 rounded-xl py-2"><div id="reviewDueText" class="font-fredoka font-bold text-pink-200">0</div><div class="text-[9px] text-indigo-100">今日复习</div></div>
+          </div>
+        </div>
+
+        <!-- Module A: 26 Letters Camp -->
+        <div onclick="switchTab('alphabet')" class="soft-card p-4 border border-pink-100 bg-gradient-to-r from-pink-50/60 to-purple-50/60 flex items-center justify-between bounce-interactive cursor-pointer">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-400 to-rose-500 text-white flex items-center justify-center font-fredoka font-bold text-xl shadow-md shadow-pink-200 shrink-0">
+              Aa
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-slate-800 text-base">26 个英文字母预备营</h3>
+                <span class="bg-pink-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md">零基础必练</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">精准发音 · A(/eɪ/) H(/eɪtʃ/) 标准示范</p>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-white text-pink-500 flex items-center justify-center shadow-sm shrink-0">
+            <i class="fa-solid fa-angle-right text-xs"></i>
+          </div>
+        </div>
+
+        <!-- Module B: Start Today's Per-Word Quest -->
+        <div class="soft-card p-5 border border-indigo-100">
+          <div class="flex justify-between items-center mb-3">
+            <div>
+              <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                今日单词 4 步学习 🌟
+              </h3>
+              <p class="text-xs text-slate-400">每个单词严格经过 听辨 → 跟读 → 读句 → 拼写</p>
+            </div>
+          </div>
+
+          <!-- Current Learning Word Preview Card -->
+          <div id="homeWordPreviewCard" class="bg-indigo-50/80 rounded-2xl p-4 border border-indigo-100/60 flex items-center justify-between my-3">
+            <div class="flex items-center gap-3">
+              <span id="previewWordIcon" class="text-3xl">🍎</span>
+              <div>
+                <span id="previewWordText" class="font-fredoka font-bold text-lg text-indigo-900">Apple</span>
+                <span id="previewWordPhonetic" class="text-xs text-indigo-400 font-mono ml-2">/ˈæpl/</span>
+                <p id="previewWordTrans" class="text-xs text-slate-500">苹果</p>
+              </div>
+            </div>
+            <button onclick="startDailyQuest()" class="px-4 py-2 bg-indigo-600 text-white font-bold text-xs rounded-xl shadow-md shadow-indigo-200 bounce-interactive flex items-center gap-1.5">
+              <span>开启闯关</span>
+              <i class="fa-solid fa-play text-[10px]"></i>
+            </button>
+          </div>
+
+          <!-- Step Indicators -->
+          <div class="grid grid-cols-4 gap-2 text-center mt-3">
+            <div class="p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-headphones text-blue-500 text-sm block mb-1"></i>
+              <span class="text-[10px] font-bold text-slate-600">1.听辨</span>
+            </div>
+            <div class="p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-microphone-lines text-amber-500 text-sm block mb-1"></i>
+              <span class="text-[10px] font-bold text-slate-600">2.跟读</span>
+            </div>
+            <div class="p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-book-open text-emerald-500 text-sm block mb-1"></i>
+              <span class="text-[10px] font-bold text-slate-600">3.读句</span>
+            </div>
+            <div class="p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-puzzle-piece text-purple-500 text-sm block mb-1"></i>
+              <span class="text-[10px] font-bold text-slate-600">4.拼写</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module C: Learned Word Orchard -->
+        <div class="soft-card p-4">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-apple-whole text-red-500"></i> 本周采摘的单词果实
+            </h3>
+            <button onclick="switchTab('words')" class="text-xs text-indigo-600 font-bold">查看全部</button>
+          </div>
+          <div id="homeWordFruitList" class="flex gap-2.5 overflow-x-auto pb-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VIEW 2: 26 ALPHABET CAMP -->
+      <div id="viewAlphabet" class="space-y-4 hidden">
+        <div class="flex items-center justify-between mb-1">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">26 个英文字母预备营</h2>
+            <p class="text-xs text-slate-500">先跟唱离线儿歌版 ABC 字母歌，再点击 A–Z 卡片听标准美式字母名</p>
+          </div>
+          <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
+            返回
+          </button>
+        </div>
+        <!-- v5.0 Offline Nursery-Rhyme Alphabet Song Player -->
+        <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
+          <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
+          <div class="flex items-center gap-3 relative z-10">
+            <button id="alphabetSongPlayBtn" onclick="toggleOfflineAlphabetSong()" class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-xl shadow-lg shadow-orange-200 bounce-interactive shrink-0" aria-label="播放或暂停离线儿歌版字母歌">
+              <i id="alphabetSongPlayIcon" class="fa-solid fa-play ml-0.5"></i>
+            </button>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-slate-800 text-sm">贝乐虎儿歌 · 字母歌</h3>
+                <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold">离线</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-0.5">已打包到 App · 无需联网 · 约 1 分 45 秒</p>
+              <div class="mt-2">
+                <input id="alphabetSongSeek" type="range" min="0" max="1000" value="0" class="w-full accent-orange-500 h-1.5 cursor-pointer" aria-label="字母歌播放进度" />
+                <div class="flex items-center justify-between mt-1 text-[10px] text-slate-400 font-mono">
+                  <span id="alphabetSongCurrent">0:00</span>
+                  <span id="alphabetSongDuration">1:45</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center justify-between gap-2 relative z-10">
+            <div id="alphabetSongNow" class="text-[11px] text-amber-700 font-bold">🎵 点击播放，跟着儿歌一起唱 A 到 Z</div>
+            <button onclick="restartOfflineAlphabetSong()" class="px-3 py-1.5 rounded-xl bg-white/80 border border-amber-200 text-amber-700 text-[10px] font-bold bounce-interactive shrink-0">
+              <i class="fa-solid fa-rotate-right mr-1"></i>重播
+            </button>
+          </div>
+          <audio id="alphabetSongAudio" preload="metadata" src="./audio/alphabet_song.mp3"></audio>
+        </section>
+
+        <p id="alphabetAudioStatus" class="text-[11px] text-indigo-600 font-bold bg-indigo-50 border border-indigo-100 rounded-xl px-3 py-2">正在检查离线字母音频包…首次联网会自动缓存 A–Z，完成后可断网使用。</p>
+        <div id="alphabetGrid" class="grid grid-cols-3 gap-3">
+          <!-- Dynamically generated via JS -->
+        </div>
+      </div>
+
+      <!-- VIEW 3: SINGLE WORD 4-STEP QUEST PLAYER -->
+      <div id="viewQuest" class="space-y-3 hidden">
+        
+        <!-- Quest Navigation Header -->
+        <div class="flex items-center justify-between bg-white p-3 rounded-2xl soft-card">
+          <button onclick="switchTab('home')" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs bounce-interactive">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          
+          <div class="text-center">
+            <div class="flex items-center justify-center gap-1.5 text-xs font-bold text-slate-700">
+              <span>单词 <span id="questWordIndexText" class="text-indigo-600">1</span>/3</span>
+              <span class="text-slate-300">•</span>
+              <span id="questWordTargetText" class="font-fredoka text-indigo-600">Apple</span>
+            </div>
+            <!-- 4 Step Dots -->
+            <div class="flex justify-center gap-1.5 mt-1" id="stepDotsContainer">
+              <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+            </div>
+          </div>
+
+          <button onclick="playTargetWordSound()" class="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs bounce-interactive">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+
+        <!-- Quest Interactive Container -->
+        <div id="questContainer" class="soft-card p-5 min-h-[440px] flex flex-col justify-between text-center relative border border-slate-100">
+          <!-- Quest content dynamically injected by JS -->
+        </div>
+
+      </div>
+
+      <!-- VIEW 4: WORDBOOK -->
+      <div id="viewWords" class="space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800">我的单词果实树</h2>
+            <p class="text-xs text-slate-400">小学新课标 60+ 基础核心词汇库</p>
+          </div>
+          <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
+            返回
+          </button>
+        </div>
+
+        <!-- Search and Category Filters -->
+        <div class="space-y-2.5">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="wordSearchInput" oninput="filterWordbook()" placeholder="搜索英文单词或中文含义..." class="w-full bg-white border border-slate-200 rounded-2xl pl-9 pr-4 py-2 text-xs font-medium text-slate-700 outline-none focus:border-indigo-500 shadow-xs" />
+          </div>
+
+          <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
+            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (62)</button>
+            <button onclick="selectCategory('animals')" id="catBtn-animals" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐱 动物</button>
+            <button onclick="selectCategory('food')" id="catBtn-food" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🍎 食物水果</button>
+            <button onclick="selectCategory('body_family')" id="catBtn-body_family" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">👨‍👩‍👧 身体家庭</button>
+            <button onclick="selectCategory('school')" id="catBtn-school" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">✏️ 校园文具</button>
+            <button onclick="selectCategory('colors_numbers')" id="catBtn-colors_numbers" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎨 颜色数字</button>
+            <button onclick="selectCategory('nature')" id="catBtn-nature" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">☀️ 自然天气</button>
+            <button onclick="selectCategory('travel_clothes')" id="catBtn-travel_clothes" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🚗 交通服饰</button>
+          </div>
+        </div>
+
+        <div id="wordbookList" class="grid grid-cols-2 gap-3">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-100 py-2.5 px-6 flex justify-around items-center z-20 shrink-0">
+      <button onclick="switchTab('home')" id="navHome" class="flex flex-col items-center gap-1 text-indigo-600 font-bold bounce-interactive">
+        <i class="fa-solid fa-compass text-lg"></i>
+        <span class="text-[10px]">工作台</span>
+      </button>
+      <button onclick="switchTab('alphabet')" id="navAlphabet" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-600 bounce-interactive">
+        <i class="fa-solid fa-font text-lg"></i>
+        <span class="text-[10px]">字母营</span>
+      </button>
+      <button onclick="switchTab('quest')" id="navQuest" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-600 bounce-interactive">
+        <i class="fa-solid fa-circle-play text-lg"></i>
+        <span class="text-[10px]">每日闯关</span>
+      </button>
+      <button onclick="switchTab('words')" id="navWords" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-600 bounce-interactive">
+        <i class="fa-solid fa-book-bookmark text-lg"></i>
+        <span class="text-[10px]">单词本</span>
+      </button>
+    </nav>
+
+    <!-- Add to HomeScreen Visual Guide Modal (iOS/Android/WeChat) -->
+    <div id="pwaGuideModal" class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-5">
+      <div class="bg-white rounded-3xl p-6 text-center max-w-sm w-full shadow-2xl relative border-4 border-amber-300">
+        <button onclick="closeInstallGuideModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="w-16 h-16 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center text-3xl mx-auto shadow-md text-white mb-3">
+          📱
+        </div>
+
+        <h3 class="font-fredoka font-bold text-lg text-slate-800">把工作台放进手机桌面</h3>
+        <p class="text-xs text-slate-500 mt-1 mb-4">按以下步骤操作，即可生成桌面快捷图标：</p>
+
+        <!-- Steps depending on device -->
+        <div id="pwaStepsIOS" class="text-left space-y-3 bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/60 text-xs">
+          <div class="flex items-center gap-2.5 text-amber-900 font-bold">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px]">1</span>
+            <span>点击 Safari 底部导航栏的 <i class="fa-solid fa-share-nodes text-indigo-600 text-sm mx-1"></i> (分享按钮)</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-amber-900 font-bold">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px]">2</span>
+            <span>向下滑动菜单，选择 <i class="fa-regular fa-square-plus text-amber-600 text-sm mx-1"></i> 「添加到主屏幕」</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-amber-900 font-bold">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px]">3</span>
+            <span>点击右上角「添加」，即可在手机桌面快速打开！</span>
+          </div>
+        </div>
+
+        <div id="pwaStepsAndroid" class="hidden text-left space-y-3 bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/60 text-xs">
+          <div class="flex items-center gap-2.5 text-amber-900 font-bold">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px]">1</span>
+            <span>点击浏览器右上角 <i class="fa-solid fa-ellipsis-vertical text-indigo-600 text-sm mx-1"></i> 菜单</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-amber-900 font-bold">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px]">2</span>
+            <span>点击「添加到主屏幕」或「安装应用」</span>
+          </div>
+        </div>
+
+        <button onclick="closeInstallGuideModal()" class="w-full py-3 mt-4 bg-indigo-600 text-white font-fredoka font-bold text-xs rounded-2xl shadow-md bounce-interactive">
+          知道了，去设置桌面图标
+        </button>
+      </div>
+    </div>
+
+    <!-- Parent Center -->
+    <div id="parentCenterModal" class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-5">
+      <div class="bg-white rounded-3xl p-5 max-w-sm w-full shadow-2xl border border-slate-200">
+        <div class="flex items-center justify-between mb-4">
+          <div><h3 class="font-bold text-slate-800 text-lg">家长中心</h3><p class="text-[11px] text-slate-400">查看学习数据与复习安排</p></div>
+          <button onclick="closeParentCenter()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+          <div class="bg-indigo-50 rounded-2xl p-3"><div id="parentMastered" class="font-fredoka font-bold text-indigo-700 text-xl">0</div><div class="text-[10px] text-slate-500">已学词</div></div>
+          <div class="bg-amber-50 rounded-2xl p-3"><div id="parentStreak" class="font-fredoka font-bold text-amber-700 text-xl">0</div><div class="text-[10px] text-slate-500">连续天</div></div>
+          <div class="bg-rose-50 rounded-2xl p-3"><div id="parentReview" class="font-fredoka font-bold text-rose-700 text-xl">0</div><div class="text-[10px] text-slate-500">待复习</div></div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-4 mb-3">
+          <div class="flex justify-between text-xs mb-2"><span class="font-bold text-slate-700">今日学习</span><span id="parentTodayProgress" class="text-indigo-600 font-bold">0 / 3</span></div>
+          <div class="h-2 bg-white rounded-full overflow-hidden"><div id="parentTodayBar" class="h-full bg-indigo-500 w-0 transition-all"></div></div>
+        </div>
+        <div class="bg-emerald-50 rounded-2xl p-4 mb-3 text-xs text-emerald-800 leading-relaxed">
+          <b>复习规则：</b>学会后按 1、2、4、8、16 天间隔复习；再次完成后自动延长间隔。
+        </div>
+        <button onclick="resetLearningProgress()" class="w-full py-2.5 rounded-2xl bg-slate-100 text-slate-500 text-xs font-bold">重置学习记录</button>
+      </div>
+    </div>
+
+    <!-- Custom Kid Celebration Modal -->
+    <div id="customModalOverlay" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-6">
+      <div class="bg-white rounded-3xl p-6 text-center max-w-xs w-full shadow-2xl border-4 border-amber-300 relative">
+        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mx-auto -mt-12 shadow-lg border-2 border-white">
+          🌟
+        </div>
+        <h3 id="modalTitle" class="font-fredoka font-bold text-xl text-slate-800 mt-3">太棒啦，小夕！</h3>
+        <p id="modalMessage" class="text-xs text-slate-600 font-medium my-3 leading-relaxed">
+          你完成了这个单词的全部通关任务！
+        </p>
+        <button id="modalConfirmBtn" class="w-full py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow-md bounce-interactive">
+          继续加油！🚀
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- 1. PWA Install Prompt Event Handling
+    let deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      const banner = document.getElementById('pwaInstallBanner');
+      if (banner) banner.classList.remove('hidden');
+    });
+
+    function checkStandaloneMode() {
+      const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+      const badge = document.getElementById('standaloneBadge');
+      const banner = document.getElementById('pwaInstallBanner');
+
+      if (isStandalone) {
+        if (badge) badge.classList.remove('hidden');
+        if (banner) banner.classList.add('hidden');
+      }
+    }
+
+    function handlePwaInstallClick() {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            document.getElementById('pwaInstallBanner').classList.add('hidden');
+          }
+          deferredInstallPrompt = null;
+        });
+      } else {
+        openInstallGuideModal();
+      }
+    }
+
+    function openInstallGuideModal() {
+      const modal = document.getElementById('pwaGuideModal');
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      
+      if (isIOS) {
+        document.getElementById('pwaStepsIOS').classList.remove('hidden');
+        document.getElementById('pwaStepsAndroid').classList.add('hidden');
+      } else {
+        document.getElementById('pwaStepsIOS').classList.add('hidden');
+        document.getElementById('pwaStepsAndroid').classList.remove('hidden');
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeInstallGuideModal() {
+      document.getElementById('pwaGuideModal').classList.add('hidden');
+    }
+
+    // Update Top Clock Bar
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const clockEl = document.getElementById('pwaClockText');
+      if (clockEl) clockEl.innerText = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+
+    // --- 2. Main App Logic & Responsive Audio Engine ---
+    // v4.5 audio policy:
+    // 1) Alphabet and learning interactions use device-native en-US SpeechSynthesis first.
+    //    This removes network fetch latency and avoids unstable third-party dictionary responses.
+    // 2) Never feed made-up spellings such as "Eigh" / "Cee" into TTS. A-Z are spoken as
+    //    literal English letters, which lets the en-US voice produce the actual letter name.
+    // 3) Every new tap cancels the previous utterance/sequence so rapid taps stay responsive.
+    let cachedVoice = null;
+    let speechRunId = 0;
+    let currentSourceNode = null;
+    let currentPlayingAudio = null;
+    let sequenceTimer = null;
+    let audioCtx = null;
+
+    const ALPHABET = [
+      { letter: 'A', phonetic: '/eɪ/', word: 'Apple', icon: '🍎' },
+      { letter: 'B', phonetic: '/biː/', word: 'Ball', icon: '⚽' },
+      { letter: 'C', phonetic: '/siː/', word: 'Cat', icon: '🐱' },
+      { letter: 'D', phonetic: '/diː/', word: 'Dog', icon: '🐶' },
+      { letter: 'E', phonetic: '/iː/', word: 'Egg', icon: '🥚' },
+      { letter: 'F', phonetic: '/ɛf/', word: 'Fish', icon: '🐟' },
+      { letter: 'G', phonetic: '/dʒiː/', word: 'Girl', icon: '👧' },
+      { letter: 'H', phonetic: '/eɪtʃ/', word: 'Hat', icon: '🎩' },
+      { letter: 'I', phonetic: '/aɪ/', word: 'Ice', icon: '🧊' },
+      { letter: 'J', phonetic: '/dʒeɪ/', word: 'Juice', icon: '🧃' },
+      { letter: 'K', phonetic: '/keɪ/', word: 'Kite', icon: '🪁' },
+      { letter: 'L', phonetic: '/ɛl/', word: 'Lion', icon: '🦁' },
+      { letter: 'M', phonetic: '/ɛm/', word: 'Monkey', icon: '🐵' },
+      { letter: 'N', phonetic: '/ɛn/', word: 'Nose', icon: '👃' },
+      { letter: 'O', phonetic: '/oʊ/', word: 'Orange', icon: '🍊' },
+      { letter: 'P', phonetic: '/piː/', word: 'Pig', icon: '🐷' },
+      { letter: 'Q', phonetic: '/kjuː/', word: 'Queen', icon: '👸' },
+      { letter: 'R', phonetic: '/ɑɹ/', word: 'Red', icon: '🔴' },
+      { letter: 'S', phonetic: '/ɛs/', word: 'Sun', icon: '☀️' },
+      { letter: 'T', phonetic: '/tiː/', word: 'Tree', icon: '🌳' },
+      { letter: 'U', phonetic: '/juː/', word: 'Umbrella', icon: '☂️' },
+      { letter: 'V', phonetic: '/viː/', word: 'Van', icon: '🚐' },
+      { letter: 'W', phonetic: '/ˈdʌbəl.juː/', word: 'Water', icon: '💧' },
+      { letter: 'X', phonetic: '/ɛks/', word: 'Box', icon: '📦' },
+      { letter: 'Y', phonetic: '/waɪ/', word: 'Yellow', icon: '💛' },
+      { letter: 'Z', phonetic: '/ziː/', word: 'Zoo', icon: '🦁' }
+    ];
+
+    const WORD_BANK = [
+      { id: 1, category: 'animals', word: 'Dog', translation: '小狗', icon: '🐶', phonetic: '/dɔːɡ/', sentenceEN: 'My dog can run fast.', sentenceCN: '我的小狗跑得很快。' },
+      { id: 2, category: 'animals', word: 'Cat', translation: '小猫', icon: '🐱', phonetic: '/kæt/', sentenceEN: 'The cute cat is sleeping.', sentenceCN: '这只可爱的小猫正在睡觉。' },
+      { id: 3, category: 'animals', word: 'Duck', translation: '鸭子', icon: '🦆', phonetic: '/dʌk/', sentenceEN: 'The yellow duck can swim.', sentenceCN: '这只黄色的鸭子会游泳。' },
+      { id: 4, category: 'animals', word: 'Fish', translation: '小鱼', icon: '🐟', phonetic: '/fɪʃ/', sentenceEN: 'Fish live in the water.', sentenceCN: '小鱼生活在水里。' },
+      { id: 5, category: 'animals', word: 'Bird', translation: '小鸟', icon: '🐦', phonetic: '/bɜːrd/', sentenceEN: 'The little bird is singing.', sentenceCN: '小鸟正在唱歌。' },
+      { id: 6, category: 'animals', word: 'Bear', translation: '大熊', icon: '🐻', phonetic: '/beər/', sentenceEN: 'The brown bear likes honey.', sentenceCN: '棕熊喜欢吃蜂蜜。' },
+      { id: 7, category: 'animals', word: 'Rabbit', translation: '兔子', icon: '🐰', phonetic: '/ˈræbɪt/', sentenceEN: 'The rabbit has long ears.', sentenceCN: '兔子长着长长的耳朵。' },
+      { id: 8, category: 'animals', word: 'Lion', translation: '狮子', icon: '🦁', phonetic: '/ˈlaɪən/', sentenceEN: 'The lion is strong.', sentenceCN: '狮子非常强壮。' },
+      { id: 9, category: 'animals', word: 'Monkey', translation: '猴子', icon: '🐵', phonetic: '/ˈmʌŋki/', sentenceEN: 'The monkey loves bananas.', sentenceCN: '猴子最爱吃香蕉。' },
+      { id: 10, category: 'animals', word: 'Elephant', translation: '大象', icon: '🐘', phonetic: '/ˈelɪfənt/', sentenceEN: 'An elephant has a long nose.', sentenceCN: '大象有一条长鼻子。' },
+      { id: 11, category: 'animals', word: 'Panda', translation: '熊猫', icon: '🐼', phonetic: '/ˈpændə/', sentenceEN: 'Pandas like bamboo.', sentenceCN: '熊猫喜欢吃竹子。' },
+      { id: 12, category: 'animals', word: 'Tiger', translation: '老虎', icon: '🐯', phonetic: '/ˈtaɪɡər/', sentenceEN: 'Look at the big tiger.', sentenceCN: '看那只大老虎。' },
+      { id: 13, category: 'food', word: 'Apple', translation: '苹果', icon: '🍎', phonetic: '/ˈæpl/', sentenceEN: 'I see a sweet red apple.', sentenceCN: '我看到一个甜甜的红苹果。' },
+      { id: 14, category: 'food', word: 'Banana', translation: '香蕉', icon: '🍌', phonetic: '/bəˈnænə/', sentenceEN: 'This yellow banana is yummy.', sentenceCN: '这个黄色的香蕉很好吃。' },
+      { id: 15, category: 'food', word: 'Orange', translation: '桔子', icon: '🍊', phonetic: '/ˈɔːrɪndʒ/', sentenceEN: 'I want a fresh orange.', sentenceCN: '我想吃一个新鲜的桔子。' },
+      { id: 16, category: 'food', word: 'Pear', translation: '鸭梨', icon: '🍐', phonetic: '/peər/', sentenceEN: 'The green pear is juicy.', sentenceCN: '这个绿色的梨水分很多。' },
+      { id: 17, category: 'food', word: 'Milk', translation: '牛奶', icon: '🥛', phonetic: '/mɪlk/', sentenceEN: 'Drink milk every day.', sentenceCN: '每天都要喝牛奶哦。' },
+      { id: 18, category: 'food', word: 'Bread', translation: '面包', icon: '🍞', phonetic: '/bred/', sentenceEN: 'Soft bread for breakfast.', sentenceCN: '早餐吃软软的面包。' },
+      { id: 19, category: 'food', word: 'Water', translation: '水', icon: '💧', phonetic: '/ˈwɔːtər/', sentenceEN: 'Drink fresh water.', sentenceCN: '多喝新鲜的纯净水。' },
+      { id: 20, category: 'food', word: 'Cake', translation: '蛋糕', icon: '🎂', phonetic: '/keɪk/', sentenceEN: 'Happy Birthday cake!', sentenceCN: '生日快乐的大蛋糕！' },
+      { id: 21, category: 'food', word: 'Egg', translation: '鸡蛋', icon: '🥚', phonetic: '/eɡ/', sentenceEN: 'An egg a day is healthy.', sentenceCN: '每天吃一个鸡蛋很健康。' },
+      { id: 22, category: 'food', word: 'Rice', translation: '米饭', icon: '🍚', phonetic: '/raɪs/', sentenceEN: 'We eat rice for dinner.', sentenceCN: '我们晚餐吃香喷喷的米饭。' },
+      { id: 23, category: 'food', word: 'Juice', translation: '果汁', icon: '🧃', phonetic: '/dʒuːs/', sentenceEN: 'Sweet apple juice.', sentenceCN: '甜甜的苹果汁。' },
+      { id: 24, category: 'food', word: 'Ice cream', translation: '冰淇淋', icon: '🍦', phonetic: '/ˌaɪs ˈkriːm/', sentenceEN: 'Cool ice cream in summer.', sentenceCN: '夏天吃冰凉的冰淇淋。' },
+      { id: 25, category: 'body_family', word: 'Eye', translation: '眼睛', icon: '👁️', phonetic: '/aɪ/', sentenceEN: 'Open your bright eyes.', sentenceCN: '睁开你明亮的小眼睛。' },
+      { id: 26, category: 'body_family', word: 'Nose', translation: '鼻子', icon: '👃', phonetic: '/noʊz/', sentenceEN: 'Touch your small nose.', sentenceCN: '摸摸你小小的鼻子。' },
+      { id: 27, category: 'body_family', word: 'Mouth', translation: '嘴巴', icon: '👄', phonetic: '/maʊθ/', sentenceEN: 'Smile with your mouth.', sentenceCN: '用你的小嘴巴微笑。' },
+      { id: 28, category: 'body_family', word: 'Hand', translation: '手', icon: '✋', phonetic: '/hænd/', sentenceEN: 'Clap your hands!', sentenceCN: '拍拍你的双手！' },
+      { id: 29, category: 'body_family', word: 'Foot', translation: '脚', icon: '🦶', phonetic: '/fʊt/', sentenceEN: 'Stamp your foot.', sentenceCN: '跺跺你的小脚丫。' },
+      { id: 30, category: 'body_family', word: 'Head', translation: '头部', icon: '🗣️', phonetic: '/hed/', sentenceEN: 'Nod your head.', sentenceCN: '点点头。' },
+      { id: 31, category: 'body_family', word: 'Dad', translation: '爸爸', icon: '👨', phonetic: '/dæd/', sentenceEN: 'I love my superhero Dad.', sentenceCN: '我爱我的超级英雄爸爸。' },
+      { id: 32, category: 'body_family', word: 'Mom', translation: '妈妈', icon: '👩', phonetic: '/mɑːm/', sentenceEN: 'Mom gives me a hug.', sentenceCN: '妈妈给了我一个拥抱。' },
+      { id: 33, category: 'body_family', word: 'Brother', translation: '兄弟', icon: '👦', phonetic: '/ˈbrʌðər/', sentenceEN: 'My brother plays with me.', sentenceCN: '我的哥哥/弟弟和我一起玩。' },
+      { id: 34, category: 'body_family', word: 'Sister', translation: '姐妹', icon: '👧', phonetic: '/ˈsɪstər/', sentenceEN: 'My sister is smart.', sentenceCN: '我的姐姐/妹妹很聪明。' },
+      { id: 35, category: 'school', word: 'Book', translation: '书本', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'Read a fun storybook.', sentenceCN: '读一本有趣的故事书。' },
+      { id: 36, category: 'school', word: 'Pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'Write with a blue pen.', sentenceCN: '用蓝色的笔写字。' },
+      { id: 37, category: 'school', word: 'Pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensl/', sentenceEN: 'Draw with a long pencil.', sentenceCN: '用长铅笔画画。' },
+      { id: 38, category: 'school', word: 'Ruler', translation: '直尺', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'Use a ruler for straight lines.', sentenceCN: '用直尺画直线。' },
+      { id: 39, category: 'school', word: 'Bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'Put books in your bag.', sentenceCN: '把书本装进书包里。' },
+      { id: 40, category: 'school', word: 'Desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'Clean your tidy desk.', sentenceCN: '整理好你干净的课桌。' },
+      { id: 41, category: 'school', word: 'Chair', translation: '椅子', icon: '🪑', phonetic: '/tʃeər/', sentenceEN: 'Sit down on the chair.', sentenceCN: '坐在椅子上。' },
+      { id: 42, category: 'school', word: 'Teacher', translation: '老师', icon: '🧑‍🏫', phonetic: '/ˈtiːtʃər/', sentenceEN: 'Say good morning to teacher.', sentenceCN: '向老师问早安。' },
+      { id: 43, category: 'colors_numbers', word: 'Red', translation: '红色', icon: '🔴', phonetic: '/red/', sentenceEN: 'Red like a sweet apple.', sentenceCN: '像红苹果一样的红色。' },
+      { id: 44, category: 'colors_numbers', word: 'Blue', translation: '蓝色', icon: '🔵', phonetic: '/bluː/', sentenceEN: 'The sky is deep blue.', sentenceCN: '天空是蔚蓝色的。' },
+      { id: 45, category: 'colors_numbers', word: 'Yellow', translation: '黄色', icon: '💛', phonetic: '/ˈjeloʊ/', sentenceEN: 'A shiny yellow star.', sentenceCN: '闪闪发光的黄星星。' },
+      { id: 46, category: 'colors_numbers', word: 'Green', translation: '绿色', icon: '🟢', phonetic: '/ɡriːn/', sentenceEN: 'Green grass in spring.', sentenceCN: '春天绿油油的草地。' },
+      { id: 47, category: 'colors_numbers', word: 'One', translation: '数字 1', icon: '1️⃣', phonetic: '/wʌn/', sentenceEN: 'One cute puppy.', sentenceCN: '一只可爱的小狗。' },
+      { id: 48, category: 'colors_numbers', word: 'Two', translation: '数字 2', icon: '2️⃣', phonetic: '/tuː/', sentenceEN: 'Two flying birds.', sentenceCN: '两只飞翔的小鸟。' },
+      { id: 49, category: 'colors_numbers', word: 'Three', translation: '数字 3', icon: '3️⃣', phonetic: '/θriː/', sentenceEN: 'Three red apples.', sentenceCN: '三个红苹果。' },
+      { id: 50, category: 'colors_numbers', word: 'Four', translation: '数字 4', icon: '4️⃣', phonetic: '/fɔːr/', sentenceEN: 'Four green trees.', sentenceCN: '四棵大树。' },
+      { id: 51, category: 'colors_numbers', word: 'Five', translation: '数字 5', icon: '5️⃣', phonetic: '/faɪv/', sentenceEN: 'Give me five!', sentenceCN: '击掌加油！' },
+      { id: 52, category: 'nature', word: 'Sun', translation: '太阳', icon: '☀️', phonetic: '/sʌn/', sentenceEN: 'The sun is big and bright.', sentenceCN: '太阳又大又明亮。' },
+      { id: 53, category: 'nature', word: 'Moon', translation: '月亮', icon: '🌙', phonetic: '/muːn/', sentenceEN: 'The moon shines at night.', sentenceCN: '月亮在夜晚闪耀。' },
+      { id: 54, category: 'nature', word: 'Star', translation: '星星', icon: '🌟', phonetic: '/stɑːr/', sentenceEN: 'Twinkle twinkle little star.', sentenceCN: '一闪一闪小星星。' },
+      { id: 55, category: 'nature', word: 'Rain', translation: '雨水', icon: '🌧️', phonetic: '/reɪn/', sentenceEN: 'Rain falling from clouds.', sentenceCN: '从云朵落下的雨水。' },
+      { id: 56, category: 'nature', word: 'Tree', translation: '大树', icon: '🌳', phonetic: '/triː/', sentenceEN: 'Birds live in the tall tree.', sentenceCN: '小鸟住在高大的树上。' },
+      { id: 57, category: 'nature', word: 'Flower', translation: '鲜花', icon: '🌸', phonetic: '/ˈflaʊər/', sentenceEN: 'Smell the pretty flower.', sentenceCN: '闻闻美丽的花朵。' },
+      { id: 58, category: 'travel_clothes', word: 'Car', translation: '汽车', icon: '🚗', phonetic: '/kɑːr/', sentenceEN: 'The red car goes fast.', sentenceCN: '红色的汽车开得很快。' },
+      { id: 59, category: 'travel_clothes', word: 'Bus', translation: '公交车', icon: '🚌', phonetic: '/bʌs/', sentenceEN: 'Take a school bus.', sentenceCN: '乘坐校车去上学。' },
+      { id: 60, category: 'travel_clothes', word: 'Bike', translation: '自行车', icon: '🚲', phonetic: '/baɪk/', sentenceEN: 'Ride a small bike.', sentenceCN: '骑一辆小自行车。' },
+      { id: 61, category: 'travel_clothes', word: 'Hat', translation: '帽子', icon: '🎩', phonetic: '/hæt/', sentenceEN: 'Wear a warm hat.', sentenceCN: '戴上一顶温暖的帽子。' },
+      { id: 62, category: 'travel_clothes', word: 'Shoes', translation: '鞋子', icon: '👟', phonetic: '/ʃuːz/', sentenceEN: 'Put on your new shoes.', sentenceCN: '穿上你的新鞋子。' }
+    ];
+
+    const STORAGE_KEY = 'xiaoxiEnglishV4State';
+    const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
+
+    function todayKey() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    function defaultAppState() {
+      return {
+        version: 4,
+        stars: 18,
+        petEnergy: 80,
+        dailyLimit: 3,
+        currentWordIndex: 0,
+        currentStepIndex: 0,
+        completedWordsCount: 0,
+        spelledLetters: [],
+        voiceAttempts: 0,
+        selectedCategory: 'all',
+        streakDays: 0,
+        lastStudyDate: '',
+        wordProgress: {}
+      };
+    }
+
+    function loadAppState() {
+      const base = defaultAppState();
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        return { ...base, ...saved, wordProgress: saved.wordProgress || {} };
+      } catch (e) {
+        return base;
+      }
+    }
+
+    let appState = loadAppState();
+
+    function saveAppState() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); } catch (e) {}
+    }
+
+    function normalizeDailyState() {
+      const today = todayKey();
+      if (appState.lastStudyDate !== today) {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yKey = `${yesterday.getFullYear()}-${String(yesterday.getMonth()+1).padStart(2,'0')}-${String(yesterday.getDate()).padStart(2,'0')}`;
+        if (appState.lastStudyDate) appState.streakDays = appState.lastStudyDate === yKey ? appState.streakDays + 1 : 1;
+        appState.completedWordsCount = 0;
+        appState.voiceAttempts = 0;
+        appState.lastStudyDate = today;
+        saveAppState();
+      }
+    }
+
+    function getWordProgress(word) {
+      if (!appState.wordProgress[word.id]) {
+        appState.wordProgress[word.id] = { learnedCount: 0, reviewLevel: 0, mistakes: 0, speakAttempts: 0, nextReviewAt: null, lastLearnedAt: null };
+      }
+      return appState.wordProgress[word.id];
+    }
+
+    function dueReviewWords() {
+      const now = Date.now();
+      return WORD_BANK.filter(w => {
+        const p = appState.wordProgress[w.id];
+        return p && p.nextReviewAt && new Date(p.nextReviewAt).getTime() <= now;
+      });
+    }
+
+    function markWordCompleted(word) {
+      const p = getWordProgress(word);
+      p.learnedCount += 1;
+      p.reviewLevel = Math.min(REVIEW_INTERVALS_DAYS.length - 1, p.reviewLevel + (p.learnedCount > 1 ? 1 : 0));
+      p.lastLearnedAt = new Date().toISOString();
+      const next = new Date();
+      next.setDate(next.getDate() + REVIEW_INTERVALS_DAYS[p.reviewLevel]);
+      p.nextReviewAt = next.toISOString();
+      saveAppState();
+    }
+
+    // v5.0 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    let activeMediaRecorder = null;
+    let activeMicStream = null;
+    let voiceChunks = [];
+    let lastVoiceBlobUrl = null;
+    let isVoiceRecording = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+      return audioCtx;
+    }
+
+    function chooseEnglishVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices() || [];
+      if (!voices.length) return null;
+
+      const normalize = v => (v.lang || '').replace('_', '-').toLowerCase();
+      const exactUS = voices.filter(v => normalize(v) === 'en-us');
+      const english = voices.filter(v => normalize(v).startsWith('en'));
+      const pool = exactUS.length ? exactUS : english;
+      if (!pool.length) return null;
+
+      // Prefer high-quality system voices when available, but never depend on a vendor name.
+      const preferredTokens = ['natural', 'premium', 'enhanced', 'samantha', 'ava', 'zira', 'aria', 'jenny', 'google us english'];
+      for (const token of preferredTokens) {
+        const hit = pool.find(v => (v.name || '').toLowerCase().includes(token));
+        if (hit) return hit;
+      }
+      return pool[0];
+    }
+
+    function initVoices() {
+      cachedVoice = chooseEnglishVoice();
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = initVoices;
+      initVoices();
+      // Some browsers populate voices slightly after load.
+      setTimeout(initVoices, 250);
+      setTimeout(initVoices, 1000);
+    }
+
+    function stopAllAudio() {
+      speechRunId += 1;
+      if (sequenceTimer) {
+        clearTimeout(sequenceTimer);
+        sequenceTimer = null;
+      }
+      if (currentSourceNode) {
+        try { currentSourceNode.stop(); currentSourceNode.disconnect(); } catch (e) {}
+        currentSourceNode = null;
+      }
+      if (currentPlayingAudio) {
+        try { currentPlayingAudio.pause(); currentPlayingAudio.currentTime = 0; } catch (e) {}
+        currentPlayingAudio = null;
+      }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (e) {}
+      }
+    }
+
+    function waitSpeech(ms, runId) {
+      return new Promise(resolve => {
+        if (runId !== speechRunId) return resolve(false);
+        sequenceTimer = setTimeout(() => {
+          sequenceTimer = null;
+          resolve(runId === speechRunId);
+        }, ms);
+      });
+    }
+
+    function normalizeTtsText(text, kind = 'word') {
+      const raw = String(text || '').trim();
+      if (!raw) return raw;
+      // A short trailing pause prevents some Windows/Chromium voices from clipping
+      // stop consonants at the end of isolated words (Cat -> "Ca", Dog -> "Do", etc.).
+      if (kind === 'word' && /^[A-Za-z][A-Za-z '-]*$/.test(raw)) return raw + '.';
+      return raw;
+    }
+
+    function speakLocalEnglish(text, rate = 0.82, runId = speechRunId, kind = 'word') {
+      return new Promise(resolve => {
+        if (!text || !('speechSynthesis' in window)) return resolve(false);
+        if (runId !== speechRunId) return resolve(false);
+
+        const u = new SpeechSynthesisUtterance(normalizeTtsText(text, kind));
+        u.lang = 'en-US';
+        u.rate = rate;
+        u.pitch = 1.0;
+        u.volume = 1.0;
+        if (!cachedVoice) initVoices();
+        if (cachedVoice) u.voice = cachedVoice;
+
+        let settled = false;
+        const done = (ok) => {
+          if (settled) return;
+          settled = true;
+          resolve(Boolean(ok && runId === speechRunId));
+        };
+        u.onend = () => done(true);
+        u.onerror = () => done(false);
+
+        // Watchdog: a cancelled utterance is not guaranteed to emit onend/onerror
+        // on every browser. Never let one stale Promise block a later click.
+        const watchdog = setTimeout(() => done(false), Math.max(2500, String(text).length * 350));
+        const oldDone = done;
+        const doneWrapped = (ok) => { clearTimeout(watchdog); oldDone(ok); };
+        u.onend = () => doneWrapped(true);
+        u.onerror = () => doneWrapped(false);
+
+        try { window.speechSynthesis.speak(u); }
+        catch (e) { doneWrapped(false); }
+      });
+    }
+
+    async function startFreshSpeech(runId, settleMs = 110) {
+      // Chromium/Windows can drop the next utterance when speak() follows cancel()
+      // in the same event-loop turn. Give the native speech engine a tiny settle window.
+      return waitSpeech(settleMs, runId);
+    }
+
+    async function speakWord(text, lang = 'en-US', rate = 0.82) {
+      if (!text) return false;
+      stopAllAudio();
+      playSfx('click');
+      const runId = speechRunId;
+      if (!await startFreshSpeech(runId, 110)) return false;
+      return speakLocalEnglish(text, rate, runId, 'word');
+    }
+
+    async function speakSequence(textList, gapMs = 140) {
+      stopAllAudio();
+      playSfx('click');
+      const runId = speechRunId;
+      if (!await startFreshSpeech(runId, 110)) return false;
+      for (let i = 0; i < textList.length; i++) {
+        if (runId !== speechRunId) return false;
+        const value = textList[i];
+        const isLetter = String(value).length === 1 && /[A-Za-z]/.test(String(value));
+        const ok = await speakLocalEnglish(value, isLetter ? 0.72 : 0.80, runId, isLetter ? 'letter' : 'word');
+        if (!ok || runId !== speechRunId) return false;
+        if (i < textList.length - 1 && !await waitSpeech(gapMs, runId)) return false;
+      }
+      return true;
+    }
+
+    function formatSongTime(sec) {
+      if (!Number.isFinite(sec)) return '0:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${String(s).padStart(2,'0')}`;
+    }
+
+    function initOfflineAlphabetSong() {
+      const audio = document.getElementById('alphabetSongAudio');
+      const seek = document.getElementById('alphabetSongSeek');
+      const cur = document.getElementById('alphabetSongCurrent');
+      const dur = document.getElementById('alphabetSongDuration');
+      const icon = document.getElementById('alphabetSongPlayIcon');
+      const now = document.getElementById('alphabetSongNow');
+      if (!audio || audio.dataset.bound === '1') return;
+      audio.dataset.bound = '1';
+
+      audio.addEventListener('loadedmetadata', () => {
+        if (dur) dur.textContent = formatSongTime(audio.duration);
+      });
+      audio.addEventListener('timeupdate', () => {
+        if (cur) cur.textContent = formatSongTime(audio.currentTime);
+        if (seek && audio.duration) seek.value = String(Math.round(audio.currentTime / audio.duration * 1000));
+      });
+      audio.addEventListener('play', () => {
+        if (icon) { icon.className = 'fa-solid fa-pause'; icon.classList.remove('ml-0.5'); }
+        if (now) now.textContent = '🎶 正在播放：跟着儿歌一起唱 A 到 Z';
+      });
+      audio.addEventListener('pause', () => {
+        if (icon) { icon.className = 'fa-solid fa-play ml-0.5'; }
+        if (now && !audio.ended) now.textContent = '⏸️ 已暂停，点击继续';
+      });
+      audio.addEventListener('ended', () => {
+        if (icon) icon.className = 'fa-solid fa-play ml-0.5';
+        if (now) now.textContent = '🌟 完成一遍！可以再跟唱一次';
+        if (seek) seek.value = '0';
+      });
+      audio.addEventListener('error', () => {
+        if (now) now.textContent = '⚠️ 本地音频加载失败，请确认 audio/alphabet_song.mp3 存在';
+      });
+      if (seek) seek.addEventListener('input', () => {
+        if (audio.duration) audio.currentTime = Number(seek.value) / 1000 * audio.duration;
+      });
+    }
+
+    async function toggleOfflineAlphabetSong() {
+      const audio = document.getElementById('alphabetSongAudio');
+      if (!audio) return;
+      initOfflineAlphabetSong();
+      try {
+        if (audio.paused) await audio.play();
+        else audio.pause();
+      } catch (e) {
+        const now = document.getElementById('alphabetSongNow');
+        if (now) now.textContent = '⚠️ 浏览器阻止了播放，请再次点击播放按钮';
+      }
+    }
+
+    async function restartOfflineAlphabetSong() {
+      const audio = document.getElementById('alphabetSongAudio');
+      if (!audio) return;
+      initOfflineAlphabetSong();
+      audio.currentTime = 0;
+      try { await audio.play(); } catch (e) {}
+    }
+
+    // --- v5.0 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.0.0';
+    let alphabetPackPromise = null;
+
+    async function ensureAlphabetPack() {
+      if (alphabetPackPromise) return alphabetPackPromise;
+      const status = document.getElementById('alphabetAudioStatus');
+      alphabetPackPromise = (async () => {
+        if (!('caches' in window)) {
+          if (status) status.textContent = '⚠️ 当前浏览器不支持离线缓存；联网时仍可点击字母发音。';
+          return false;
+        }
+        const cache = await caches.open(ALPHABET_PACK_CACHE);
+        let ok = 0;
+        for (let i = 0; i < 26; i++) {
+          const letter = String.fromCharCode(65 + i);
+          const url = `./audio/letters/${letter}.mp3`;
+          try {
+            let hit = await cache.match(url);
+            if (!hit) {
+              const res = await fetch(url, { cache: 'no-store' });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              await cache.put(url, res.clone());
+            }
+            ok++;
+            if (status) status.textContent = `📦 正在准备离线字母包：${ok}/26`;
+          } catch (e) {
+            if (status) status.textContent = `⚠️ 离线字母包暂未完整：${ok}/26。保持联网后重新进入字母营即可补齐。`;
+          }
+        }
+        if (ok === 26 && status) status.textContent = '✅ 离线字母包已完整：26/26。现在断网也可以点击 A–Z 发音。';
+        return ok === 26;
+      })().finally(() => { alphabetPackPromise = null; });
+      return alphabetPackPromise;
+    }
+
+    // --- Offline A-Z letter-name audio engine (v4.6) ---
+    // Each card uses a pre-generated local MP3. No network request and no runtime TTS.
+    const letterAudioCache = {};
+    let currentLetterAudio = null;
+    let currentLetterToken = 0;
+
+    function getLocalLetterAudio(letter) {
+      const key = String(letter || '').toUpperCase();
+      if (!/^[A-Z]$/.test(key)) return null;
+      if (!letterAudioCache[key]) {
+        const audio = new Audio(`./audio/letters/${key}.mp3`);
+        audio.preload = 'metadata';
+        letterAudioCache[key] = audio;
+      }
+      return letterAudioCache[key];
+    }
+
+    function clearAlphabetCardActive() {
+      document.querySelectorAll('.alphabet-card').forEach(card => {
+        card.classList.remove('ring-2','ring-amber-300','border-amber-300','bg-amber-50');
+      });
+    }
+
+    async function playLocalLetter(letter) {
+      const key = String(letter || '').toUpperCase();
+      const audio = getLocalLetterAudio(key);
+      if (!audio) return;
+      const token = ++currentLetterToken;
+
+      if (currentLetterAudio && currentLetterAudio !== audio) {
+        try { currentLetterAudio.pause(); currentLetterAudio.currentTime = 0; } catch (e) {}
+      }
+      currentLetterAudio = audio;
+      try { audio.pause(); audio.currentTime = 0; } catch (e) {}
+
+      clearAlphabetCardActive();
+      const card = document.getElementById(`alphabetCard-${key}`);
+      if (card) card.classList.add('ring-2','ring-amber-300','border-amber-300','bg-amber-50');
+      const status = document.getElementById('alphabetAudioStatus');
+      if (status) status.textContent = `🔊 正在播放字母 ${key} 的离线美式发音`;
+
+      audio.onended = () => {
+        if (token !== currentLetterToken) return;
+        if (status) status.textContent = `✅ ${key} 播放完成；可继续点击其他字母`;
+        setTimeout(() => {
+          if (token === currentLetterToken) clearAlphabetCardActive();
+        }, 250);
+      };
+      audio.onerror = () => {
+        if (token !== currentLetterToken) return;
+        if (status) status.textContent = `⚠️ ${key} 的本地音频加载失败，请检查 audio/letters/${key}.mp3`;
+        clearAlphabetCardActive();
+      };
+
+      try {
+        await audio.play();
+      } catch (e) {
+        if (token === currentLetterToken && status) {
+          status.textContent = '⚠️ 浏览器阻止了音频播放，请再次点击字母卡';
+        }
+      }
+    }
+
+    function preloadAllAppAudio() {
+      initOfflineAlphabetSong();
+      // Preload all 26 very small local letter-name MP3 files for near-instant taps.
+      ALPHABET.forEach(item => {
+        const audio = getLocalLetterAudio(item.letter);
+        try { audio && audio.load(); } catch (e) {}
+      });
+    }
+
+    function playSfx(type) {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+          osc.start(now);
+          osc.stop(now + 0.05);
+        } else if (type === 'success') {
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, idx) => {
+            const noteOsc = ctx.createOscillator();
+            const noteGain = ctx.createGain();
+            noteOsc.type = 'triangle';
+            noteOsc.frequency.setValueAtTime(freq, now + idx * 0.08);
+            noteGain.gain.setValueAtTime(0.18, now + idx * 0.08);
+            noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
+            noteOsc.connect(noteGain);
+            noteGain.connect(ctx.destination);
+            noteOsc.start(now + idx * 0.08);
+            noteOsc.stop(now + idx * 0.08 + 0.25);
+          });
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.linearRampToValueAtTime(130, now + 0.25);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {
+        // Fallback
+      }
+    }
+
+    function isFuzzyMatch(spoken, target) {
+      if (!spoken || !target) return false;
+      const cleanSpoken = spoken.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+      const cleanTarget = target.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+      
+      if (cleanSpoken === cleanTarget) return true;
+      if (cleanSpoken.includes(cleanTarget) || cleanTarget.includes(cleanSpoken)) return true;
+      
+      if (Math.abs(cleanSpoken.length - cleanTarget.length) <= 2) {
+        let matches = 0;
+        const minLen = Math.min(cleanSpoken.length, cleanTarget.length);
+        for (let i = 0; i < minLen; i++) {
+          if (cleanSpoken[i] === cleanTarget[i]) matches++;
+        }
+        if (cleanTarget.length > 0 && matches / cleanTarget.length >= 0.6) return true;
+      }
+      return false;
+    }
+
+    const sideDrawer = document.getElementById('sideDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    document.getElementById('openDrawerBtn').addEventListener('click', () => {
+      sideDrawer.classList.remove('-translate-x-full');
+      drawerOverlay.classList.remove('hidden');
+    });
+
+    function closeDrawer() {
+      sideDrawer.classList.add('-translate-x-full');
+      drawerOverlay.classList.add('hidden');
+    }
+
+    document.getElementById('closeDrawerBtn').addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    function showCustomModal(title, message, onConfirm) {
+      const modal = document.getElementById('customModalOverlay');
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalMessage').innerText = message;
+      
+      const confirmBtn = document.getElementById('modalConfirmBtn');
+      confirmBtn.onclick = () => {
+        modal.classList.add('hidden');
+        if (onConfirm) onConfirm();
+      };
+      modal.classList.remove('hidden');
+    }
+
+    function switchTab(tabName) {
+      closeDrawer();
+      stopVoiceRecord(true);
+      stopAllAudio();
+      playSfx('click');
+
+      const views = ['viewHome', 'viewAlphabet', 'viewQuest', 'viewWords'];
+      views.forEach(v => document.getElementById(v).classList.add('hidden'));
+
+      document.querySelectorAll('nav button').forEach(b => {
+        b.classList.remove('text-indigo-600', 'font-bold');
+        b.classList.add('text-slate-400');
+      });
+
+      if (tabName === 'home') {
+        document.getElementById('viewHome').classList.remove('hidden');
+        document.getElementById('navHome').classList.add('text-indigo-600', 'font-bold');
+        renderHomeFruitList();
+      } else if (tabName === 'alphabet') {
+        document.getElementById('viewAlphabet').classList.remove('hidden');
+        document.getElementById('navAlphabet').classList.add('text-indigo-600', 'font-bold');
+        renderAlphabetGrid();
+        ensureAlphabetPack();
+      } else if (tabName === 'quest') {
+        document.getElementById('viewQuest').classList.remove('hidden');
+        document.getElementById('navQuest').classList.add('text-indigo-600', 'font-bold');
+        renderQuestStep();
+      } else if (tabName === 'words') {
+        document.getElementById('viewWords').classList.remove('hidden');
+        document.getElementById('navWords').classList.add('text-indigo-600', 'font-bold');
+        filterWordbook();
+      }
+    }
+
+    function petReact() {
+      const messages = ["Great job, Xiaoxi!", "I love learning English with you!", "Let's learn another word! 🦊"];
+      const rand = messages[Math.floor(Math.random() * messages.length)];
+      speakWord(rand);
+      
+      appState.petEnergy = Math.min(100, appState.petEnergy + 10);
+      document.getElementById('petEnergyBar').style.width = appState.petEnergy + '%';
+      saveAppState();
+    }
+
+    function updateDailyLimit(val) {
+      appState.dailyLimit = parseInt(val);
+      saveAppState();
+      updateHomeProgress();
+    }
+
+    function updateHomeProgress() {
+      const text = document.getElementById('homeProgressText');
+      const bar = document.getElementById('homeProgressBar');
+      const completed = appState.completedWordsCount;
+      const total = appState.dailyLimit;
+      const percent = Math.min(100, Math.round((completed / total) * 100));
+
+      text.innerText = `${completed} / ${total} 词已完成`;
+      bar.style.width = percent + '%';
+
+      const targetWord = WORD_BANK[appState.currentWordIndex] || WORD_BANK[0];
+      document.getElementById('previewWordIcon').innerText = targetWord.icon;
+      document.getElementById('previewWordText').innerText = targetWord.word;
+      document.getElementById('previewWordPhonetic').innerText = targetWord.phonetic;
+      document.getElementById('previewWordTrans').innerText = targetWord.translation;
+      const learned = Object.values(appState.wordProgress || {}).filter(p => p.learnedCount > 0).length;
+      const due = dueReviewWords().length;
+      const streakEl = document.getElementById('streakDaysText');
+      const learnedEl = document.getElementById('masteredCountText');
+      const dueEl = document.getElementById('reviewDueText');
+      const badge = document.getElementById('reviewDueBadge');
+      if (streakEl) streakEl.innerText = appState.streakDays;
+      if (learnedEl) learnedEl.innerText = learned;
+      if (dueEl) dueEl.innerText = due;
+      if (badge) badge.innerText = `${due} 待复习`;
+      document.getElementById('starCount').innerText = appState.stars;
+      document.getElementById('petEnergyBar').style.width = appState.petEnergy + '%';
+      const dailySelect = document.getElementById('dailyWordLimit');
+      if (dailySelect) dailySelect.value = String(appState.dailyLimit);
+    }
+
+    function renderHomeFruitList() {
+      const container = document.getElementById('homeWordFruitList');
+      container.innerHTML = '';
+      WORD_BANK.slice(0, 10).forEach((item, idx) => {
+        const isMastered = !!(appState.wordProgress[item.id] && appState.wordProgress[item.id].learnedCount > 0);
+        const el = document.createElement('div');
+        el.className = `flex-none border rounded-xl p-2.5 text-center w-20 transition-all cursor-pointer ${
+          isMastered ? 'bg-indigo-50/80 border-indigo-200' : 'bg-slate-50 border-slate-100 opacity-50'
+        }`;
+        el.onclick = () => speakWord(item.word);
+        el.innerHTML = `
+          <span class="text-2xl block mb-1">${item.icon}</span>
+          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.word}</span>
+          <span class="text-[9px] text-slate-400 block">${isMastered ? '已掌握' : '待解锁'}</span>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    function renderAlphabetGrid() {
+      const grid = document.getElementById('alphabetGrid');
+      grid.innerHTML = '';
+      ALPHABET.forEach((item) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.id = `alphabetCard-${item.letter}`;
+        card.className = 'alphabet-card p-3 rounded-2xl text-center soft-card border border-indigo-50 bounce-interactive cursor-pointer hover:border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition-all';
+        card.setAttribute('aria-label', `播放字母 ${item.letter} 的美式发音，例词 ${item.word}`);
+        card.onclick = () => playLocalLetter(item.letter);
+        card.innerHTML = `
+          <span class="text-3xl block mb-1">${item.icon}</span>
+          <h3 class="font-fredoka font-bold text-xl text-indigo-600">${item.letter} ${item.letter.toLowerCase()}</h3>
+          <p class="text-[10px] text-indigo-400 font-mono mt-0.5">${item.phonetic}</p>
+          <p class="text-[10px] text-slate-500 font-bold mt-1">${item.word}</p>
+          <div class="mt-2 inline-flex items-center gap-1 text-[9px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-lg">
+            <i class="fa-solid fa-volume-high"></i><span>点我发音</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function startDailyQuest() {
+      appState.currentStepIndex = 0;
+      switchTab('quest');
+    }
+
+    function playTargetWordSound() {
+      const word = WORD_BANK[appState.currentWordIndex];
+      if (word) speakWord(word.word);
+    }
+
+    function renderQuestStep() {
+      stopAllAudio();
+      const word = WORD_BANK[appState.currentWordIndex] || WORD_BANK[0];
+      const stepIndex = appState.currentStepIndex;
+
+      document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
+      document.getElementById('questWordTargetText').innerText = word.word;
+
+      const dots = document.getElementById('stepDotsContainer').children;
+      for (let i = 0; i < 4; i++) {
+        if (i < stepIndex) {
+          dots[i].className = 'w-2 h-2 rounded-full bg-emerald-500';
+        } else if (i === stepIndex) {
+          dots[i].className = 'w-2 h-2 rounded-full bg-indigo-600 scale-125';
+        } else {
+          dots[i].className = 'w-2 h-2 rounded-full bg-slate-200';
+        }
+      }
+
+      const container = document.getElementById('questContainer');
+
+      if (stepIndex === 0) {
+        renderStep1Listen(container, word);
+      } else if (stepIndex === 1) {
+        renderStep2Speak(container, word);
+      } else if (stepIndex === 2) {
+        renderStep3Read(container, word);
+      } else if (stepIndex === 3) {
+        renderStep4Write(container, word);
+      }
+    }
+
+    function renderStep1Listen(container, word) {
+      container.innerHTML = `
+        <div class="my-auto space-y-5">
+          <div class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">
+            第一步：听一听 · 选出正确图片
+          </div>
+
+          <p class="text-xs text-slate-400 font-bold">点击大喇叭听发音，点选对的图案：</p>
+          
+          <button onclick="speakWord('${word.word}')" class="w-24 h-24 rounded-full bg-indigo-500 text-white text-4xl flex items-center justify-center mx-auto shadow-xl shadow-indigo-200 mic-pulse bounce-interactive my-2">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <p class="text-[11px] text-indigo-500 font-bold">（点击可重听标准发音）</p>
+
+          <div class="grid grid-cols-3 gap-3 pt-2" id="listenOptionsGrid"></div>
+        </div>
+      `;
+
+      setTimeout(() => speakWord(word.word), 300);
+
+      const grid = document.getElementById('listenOptionsGrid');
+      const distractor1 = WORD_BANK[(appState.currentWordIndex + 3) % WORD_BANK.length];
+      const distractor2 = WORD_BANK[(appState.currentWordIndex + 7) % WORD_BANK.length];
+
+      const allIcons = [
+        { icon: word.icon, word: word.word, isCorrect: true },
+        { icon: distractor1.icon, word: distractor1.word, isCorrect: false },
+        { icon: distractor2.icon, word: distractor2.word, isCorrect: false }
+      ].sort(() => Math.random() - 0.5);
+
+      allIcons.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'p-4 rounded-2xl bg-slate-50 border border-slate-200 text-4xl bounce-interactive flex flex-col items-center justify-center gap-1 hover:border-indigo-300';
+        btn.onclick = () => checkListenAnswer(opt.isCorrect, word);
+        btn.innerHTML = `<span>${opt.icon}</span>`;
+        grid.appendChild(btn);
+      });
+    }
+
+    function checkListenAnswer(isCorrect, word) {
+      stopAllAudio();
+      if (isCorrect) {
+        playSfx('success');
+        speakWord("Bingo! Great job!");
+        appState.currentStepIndex = 1;
+        setTimeout(renderQuestStep, 1000);
+      } else {
+        if (activeWord) getWordProgress(activeWord).mistakes += 1;
+        saveAppState();
+        playSfx('wrong');
+        speakWord("Try again!");
+      }
+    }
+
+    function renderStep2Speak(container, word) {
+      stopAllAudio();
+      stopVoiceRecord(true);
+      appState.voiceAttempts = 0;
+      container.innerHTML = `
+        <div class="my-auto space-y-4">
+          <div class="inline-block bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
+            第二步：喊一喊 · 本地录音跟读
+          </div>
+
+          <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center text-4xl mx-auto shadow-inner">
+            ${word.icon}
+          </div>
+
+          <div>
+            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.word}</h2>
+            <p class="text-xs text-indigo-500 font-mono mt-0.5">${word.phonetic}</p>
+            <p class="text-xs text-slate-400 mt-0.5">${word.translation}</p>
+          </div>
+
+          <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100 text-amber-800 text-xs font-bold text-left flex items-start gap-2">
+            <span class="text-xl">🦊</span>
+            <p id="petPromptText">笨笨：“先听示范，再点麦克风录下 <b class="text-amber-900 font-fredoka">${word.word}</b>。录完可以回放自己的声音！”</p>
+          </div>
+
+          <div class="flex items-center justify-center gap-3">
+            <button onclick="startVoiceRecord('${word.word}')" id="micRecordBtn" class="w-20 h-20 rounded-full bg-amber-500 text-white text-3xl flex items-center justify-center shadow-lg shadow-amber-200 bounce-interactive" aria-label="开始或停止录音">
+              <i id="micRecordIcon" class="fa-solid fa-microphone"></i>
+            </button>
+            <button onclick="playLastVoiceRecording()" id="playVoiceBtn" class="w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 text-xl flex items-center justify-center shadow-sm bounce-interactive opacity-40" disabled aria-label="播放刚才的录音">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+
+          <div class="space-y-1">
+            <p id="speechHeardText" class="text-xs text-slate-500 font-medium min-h-[16px]">本模式不使用 Safari Web Speech API，避免麦克风卡死。</p>
+            <p id="speechStatusText" class="text-xs text-slate-400 font-bold min-h-[18px]">点击麦克风开始录音，再点一次结束。</p>
+          </div>
+
+          <div id="assistPassContainer" class="pt-2">
+            <button onclick="passWithPetAssist('${word.word}')" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold rounded-xl shadow-md bounce-interactive w-full flex items-center justify-center gap-2">
+              <span>🦊 完成跟读，盖章进入下一步</span>
+              <i class="fa-solid fa-check"></i>
+            </button>
+          </div>
+        </div>
+      `;
+
+      setTimeout(() => speakWord(word.word), 300);
+    }
+
+    function releaseMicStream() {
+      if (activeMicStream) {
+        try { activeMicStream.getTracks().forEach(t => t.stop()); } catch (e) {}
+        activeMicStream = null;
+      }
+    }
+
+    function updateRecorderUI(recording, message) {
+      const micBtn = document.getElementById('micRecordBtn');
+      const icon = document.getElementById('micRecordIcon');
+      const statusText = document.getElementById('speechStatusText');
+      if (micBtn) {
+        micBtn.classList.toggle('mic-pulse', recording);
+        micBtn.classList.toggle('bg-rose-500', recording);
+        micBtn.classList.toggle('bg-amber-500', !recording);
+      }
+      if (icon) icon.className = recording ? 'fa-solid fa-stop' : 'fa-solid fa-microphone';
+      if (statusText && message) {
+        statusText.innerText = message;
+        statusText.className = recording ? 'text-xs text-rose-600 font-bold animate-pulse' : 'text-xs text-slate-500 font-bold';
+      }
+    }
+
+    function stopVoiceRecord(silent = false) {
+      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+        try { activeMediaRecorder.stop(); } catch (e) {}
+      }
+      isVoiceRecording = false;
+      releaseMicStream();
+      if (!silent) updateRecorderUI(false, '录音已停止，麦克风已释放。');
+      else updateRecorderUI(false, '');
+    }
+
+    async function startVoiceRecord(targetWord) {
+      if (isVoiceRecording) {
+        stopVoiceRecord(false);
+        return;
+      }
+
+      const statusText = document.getElementById('speechStatusText');
+      const heardText = document.getElementById('speechHeardText');
+      if (heardText) heardText.innerText = '';
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+        if (statusText) {
+          statusText.innerText = '⚠️ 当前浏览器不支持本地录音，可直接点击下方“完成跟读”继续。';
+          statusText.className = 'text-xs text-rose-500 font-bold';
+        }
+        return;
+      }
+
+      try {
+        stopAllAudio();
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        activeMicStream = stream;
+        voiceChunks = [];
+        const recorder = new MediaRecorder(stream);
+        activeMediaRecorder = recorder;
+        isVoiceRecording = true;
+
+        recorder.ondataavailable = (event) => {
+          if (event.data && event.data.size > 0) voiceChunks.push(event.data);
+        };
+        recorder.onerror = () => {
+          isVoiceRecording = false;
+          releaseMicStream();
+          updateRecorderUI(false, '录音出现错误，麦克风已释放，请重试。');
+        };
+        recorder.onstop = () => {
+          isVoiceRecording = false;
+          releaseMicStream();
+          if (lastVoiceBlobUrl) {
+            try { URL.revokeObjectURL(lastVoiceBlobUrl); } catch (e) {}
+            lastVoiceBlobUrl = null;
+          }
+          if (voiceChunks.length) {
+            const mime = recorder.mimeType || 'audio/webm';
+            const blob = new Blob(voiceChunks, { type: mime });
+            lastVoiceBlobUrl = URL.createObjectURL(blob);
+            const playBtn = document.getElementById('playVoiceBtn');
+            if (playBtn) {
+              playBtn.disabled = false;
+              playBtn.classList.remove('opacity-40');
+            }
+            if (heardText) heardText.innerText = `✅ 已录下 ${targetWord}，可点击 ▶ 回放自己的声音。`;
+            updateRecorderUI(false, '录音完成；麦克风已关闭。');
+          } else {
+            updateRecorderUI(false, '没有录到声音，麦克风已关闭，请重试。');
+          }
+        };
+
+        recorder.start(200);
+        updateRecorderUI(true, `正在录音…请读出 “${targetWord}”，再点一次停止。`);
+      } catch (e) {
+        isVoiceRecording = false;
+        releaseMicStream();
+        if (statusText) {
+          const denied = e && (e.name === 'NotAllowedError' || e.name === 'SecurityError');
+          statusText.innerText = denied ? '麦克风权限未开启，请在 Safari/系统设置中允许后重试。' : '麦克风启动失败，已安全释放，请重试。';
+          statusText.className = 'text-xs text-rose-500 font-bold';
+        }
+      }
+    }
+
+    function playLastVoiceRecording() {
+      if (!lastVoiceBlobUrl) return;
+      stopAllAudio();
+      const audio = new Audio(lastVoiceBlobUrl);
+      currentPlayingAudio = audio;
+      audio.onended = () => { if (currentPlayingAudio === audio) currentPlayingAudio = null; };
+      audio.play().catch(() => {
+        const statusText = document.getElementById('speechStatusText');
+        if (statusText) statusText.innerText = '录音回放失败，请重新录一次。';
+      });
+    }
+
+    function verifySpokenResult(success, targetWord, recognizedText, customErrMsg) {
+      stopAllAudio();
+      const statusText = document.getElementById('speechStatusText');
+      const heardText = document.getElementById('speechHeardText');
+      const assistContainer = document.getElementById('assistPassContainer');
+
+      appState.voiceAttempts += 1;
+      const activeWord = WORD_BANK[appState.currentWordIndex];
+      if (activeWord) getWordProgress(activeWord).speakAttempts += 1;
+
+      if (success) {
+        if (heardText) {
+          heardText.innerHTML = `识别到发音: <span class="text-emerald-600 font-bold font-fredoka">"${recognizedText || targetWord}"</span>`;
+        }
+        if (statusText) {
+          statusText.innerText = `太棒啦！我听到你读出了这个单词！🌟`;
+          statusText.className = "text-xs text-emerald-600 font-bold";
+        }
+
+        playSfx('success');
+        speakWord("Awesome pronunciation!");
+        addRewardStars(3);
+
+        setTimeout(() => {
+          appState.currentStepIndex = 2;
+          renderQuestStep();
+        }, 1500);
+      } else {
+        playSfx('wrong');
+        speakWord("Try again!");
+
+        if (heardText) {
+          if (recognizedText) {
+            heardText.innerHTML = `识别到发音: <span class="text-rose-500 font-bold font-fredoka">"${recognizedText}"</span>`;
+          } else {
+            heardText.innerText = `未检测到有效语音`;
+          }
+        }
+
+        if (statusText) {
+          statusText.innerText = customErrMsg || `发音不准确，请再次大声朗读 "${targetWord}"！`;
+          statusText.className = "text-xs text-rose-500 font-bold";
+        }
+
+        if (appState.voiceAttempts >= 2 && assistContainer) {
+          assistContainer.classList.remove('hidden');
+        }
+      }
+    }
+
+    function passWithPetAssist(word) {
+      stopAllAudio();
+      playSfx('success');
+      speakWord("Xiaoxi sounds awesome!");
+      addRewardStars(3);
+
+      const statusText = document.getElementById('speechStatusText');
+      if (statusText) {
+        statusText.innerText = "🦊 笨笨认可了小夕的标准发音！盖章通过！🌟";
+        statusText.className = "text-xs text-amber-600 font-bold";
+      }
+
+      setTimeout(() => {
+        appState.currentStepIndex = 2;
+        renderQuestStep();
+      }, 1000);
+    }
+
+    function renderStep3Read(container, word) {
+      stopAllAudio();
+      container.innerHTML = `
+        <div class="my-auto space-y-5">
+          <div class="inline-block bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">
+            第三步：点读句 · 朗读地道英语例句
+          </div>
+
+          <div class="text-5xl my-2 animate-bounce">${word.icon}</div>
+
+          <div class="p-4 rounded-2xl bg-indigo-50/80 border border-indigo-100 text-slate-800 space-y-2">
+            <p onclick="speakWord('${word.sentenceEN}')" class="font-fredoka font-bold text-lg text-indigo-900 cursor-pointer hover:text-indigo-600 flex items-center justify-center gap-2">
+              <span>"${word.sentenceEN}"</span>
+              <i class="fa-solid fa-volume-high text-sm text-indigo-500"></i>
+            </p>
+            <p class="text-xs text-slate-500 font-medium">${word.sentenceCN}</p>
+          </div>
+
+          <p class="text-[11px] text-slate-400">点击上面例句听完整地道发音 🔊</p>
+
+          <button onclick="finishStep3()" class="w-full py-3 bg-emerald-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow-md shadow-emerald-200 bounce-interactive">
+            读完了，进入最后拼写！🚀
+          </button>
+        </div>
+      `;
+
+      setTimeout(() => speakWord(word.sentenceEN), 400);
+    }
+
+    function finishStep3() {
+      stopAllAudio();
+      playSfx('success');
+      appState.currentStepIndex = 3;
+      renderQuestStep();
+    }
+
+    let currentBubblesList = [];
+
+    function renderStep4Write(container, word) {
+      stopAllAudio();
+      appState.spelledLetters = [];
+      const targetUpper = word.word.toUpperCase();
+      const targetArr = targetUpper.split('');
+      
+      const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      const distractorCount = Math.max(2, 6 - targetArr.length);
+      const distractors = [];
+      
+      while (distractors.length < distractorCount) {
+        const randChar = allLetters[Math.floor(Math.random() * allLetters.length)];
+        distractors.push(randChar);
+      }
+
+      currentBubblesList = [...targetArr, ...distractors]
+        .sort(() => Math.random() - 0.5)
+        .map(char => ({ char, used: false }));
+
+      container.innerHTML = `
+        <div class="my-auto space-y-4">
+          <div class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">
+            第四步：拼气泡 · 乱序字母与干扰项挑战
+          </div>
+
+          <div class="text-4xl my-1">${word.icon}</div>
+
+          <!-- Letter Slot Boxes -->
+          <div class="flex justify-center gap-2" id="spellingSlots"></div>
+
+          <p class="text-[11px] text-purple-600 font-bold">💡 气泡里混入了干扰字母哦，快把正确的字母选出来吧！</p>
+
+          <!-- Letter Bubbles Selection -->
+          <div class="flex flex-wrap justify-center gap-2.5 pt-1 max-w-[280px] mx-auto" id="letterBubbles"></div>
+
+          <div class="flex justify-center gap-3 pt-2">
+            <button onclick="undoSpellingLetter()" class="px-4 py-2 bg-slate-100 text-slate-600 text-xs font-bold rounded-xl bounce-interactive flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-left text-xs"></i>
+              <span>撤销上一个字母</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      renderSpellingSlots(targetUpper.length);
+      renderLetterBubbles(targetUpper);
+    }
+
+    function renderSpellingSlots(length) {
+      const slotsContainer = document.getElementById('spellingSlots');
+      if (!slotsContainer) return;
+      slotsContainer.innerHTML = '';
+
+      for (let i = 0; i < length; i++) {
+        const item = appState.spelledLetters[i];
+        const char = item ? item.char : '';
+        const slot = document.createElement('div');
+        slot.className = `w-11 h-13 rounded-2xl border-2 flex items-center justify-center font-fredoka font-bold text-2xl transition-all ${
+          char ? 'border-purple-500 bg-purple-50 text-purple-700 shadow-sm' : 'border-dashed border-slate-300 bg-slate-50/50'
+        }`;
+        slot.innerText = char;
+        slotsContainer.appendChild(slot);
+      }
+    }
+
+    function renderLetterBubbles(targetUpper) {
+      const bubblesContainer = document.getElementById('letterBubbles');
+      if (!bubblesContainer) return;
+      bubblesContainer.innerHTML = '';
+
+      currentBubblesList.forEach((bubbleObj, idx) => {
+        const btn = document.createElement('button');
+        const isUsed = bubbleObj.used;
+        btn.className = `w-11 h-11 rounded-2xl font-fredoka font-bold text-xl flex items-center justify-center transition-all ${
+          isUsed 
+            ? 'bg-slate-200 text-slate-400 cursor-not-allowed opacity-30 scale-90' 
+            : 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-md shadow-purple-200 bounce-interactive cursor-pointer'
+        }`;
+        btn.innerText = bubbleObj.char;
+        btn.disabled = isUsed;
+
+        btn.onclick = () => {
+          if (!isUsed && appState.spelledLetters.length < targetUpper.length) {
+            playSfx('click');
+            speakWord(bubbleObj.char);
+
+            bubbleObj.used = true;
+            appState.spelledLetters.push({ char: bubbleObj.char, bubbleIdx: idx });
+            renderSpellingSlots(targetUpper.length);
+            renderLetterBubbles(targetUpper);
+
+            if (appState.spelledLetters.length === targetUpper.length) {
+              const result = appState.spelledLetters.map(item => item.char).join('');
+              if (result === targetUpper) {
+                stopAllAudio();
+                playSfx('success');
+                speakWord("Great job!");
+                setTimeout(() => finishWordQuest(WORD_BANK[appState.currentWordIndex]), 800);
+              } else {
+                stopAllAudio();
+                playSfx('wrong');
+                speakWord("Try again!");
+                setTimeout(() => {
+                  appState.spelledLetters = [];
+                  currentBubblesList.forEach(b => b.used = false);
+                  renderSpellingSlots(targetUpper.length);
+                  renderLetterBubbles(targetUpper);
+                }, 1000);
+              }
+            }
+          }
+        };
+        bubblesContainer.appendChild(btn);
+      });
+    }
+
+    function undoSpellingLetter() {
+      if (appState.spelledLetters.length > 0) {
+        playSfx('click');
+        const popped = appState.spelledLetters.pop();
+        if (popped && currentBubblesList[popped.bubbleIdx]) {
+          currentBubblesList[popped.bubbleIdx].used = false;
+        }
+        const targetUpper = WORD_BANK[appState.currentWordIndex].word.toUpperCase();
+        renderSpellingSlots(targetUpper.length);
+        renderLetterBubbles(targetUpper);
+      }
+    }
+
+    function finishWordQuest(word) {
+      appState.completedWordsCount += 1;
+      markWordCompleted(word);
+      addRewardStars(5);
+      saveAppState();
+      updateHomeProgress();
+      renderHomeFruitList();
+
+      if (appState.currentWordIndex < WORD_BANK.length - 1 && appState.completedWordsCount < appState.dailyLimit) {
+        showCustomModal(
+          `🎉 太棒了，小夕！`,
+          `你完成了单词 "${word.word}" 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
+          () => {
+            appState.currentWordIndex += 1;
+            appState.currentStepIndex = 0;
+            renderQuestStep();
+          }
+        );
+      } else {
+        showCustomModal(
+          `🌟🎉 恭喜小夕！`,
+          `你成功完成了今天的全部英语单词打卡任务！获得了 15 颗星星奖励！`,
+          () => {
+            switchTab('home');
+          }
+        );
+      }
+    }
+
+    function addRewardStars(num) {
+      appState.stars += num;
+      document.getElementById('starCount').innerText = appState.stars;
+      saveAppState();
+    }
+
+    function openParentCenter() {
+      closeDrawer();
+      const learned = Object.values(appState.wordProgress || {}).filter(p => p.learnedCount > 0).length;
+      const due = dueReviewWords().length;
+      document.getElementById('parentMastered').innerText = learned;
+      document.getElementById('parentStreak').innerText = appState.streakDays;
+      document.getElementById('parentReview').innerText = due;
+      document.getElementById('parentTodayProgress').innerText = `${appState.completedWordsCount} / ${appState.dailyLimit}`;
+      document.getElementById('parentTodayBar').style.width = `${Math.min(100, appState.completedWordsCount / appState.dailyLimit * 100)}%`;
+      document.getElementById('parentCenterModal').classList.remove('hidden');
+    }
+
+    function closeParentCenter() {
+      document.getElementById('parentCenterModal').classList.add('hidden');
+    }
+
+    function resetLearningProgress() {
+      if (!confirm('确定清空学习进度吗？星星、已学单词和复习记录都会重置。')) return;
+      appState = defaultAppState();
+      normalizeDailyState();
+      saveAppState();
+      closeParentCenter();
+      updateHomeProgress();
+      renderHomeFruitList();
+      showCustomModal('已重置', '学习记录已经重新开始。', null);
+    }
+
+    function selectCategory(catKey) {
+      playSfx('click');
+      appState.selectedCategory = catKey;
+
+      document.querySelectorAll('.cat-pill-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-xs');
+        btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+      });
+
+      const activeBtn = document.getElementById(`catBtn-${catKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-xs');
+      }
+
+      filterWordbook();
+    }
+
+    function filterWordbook() {
+      const searchInput = document.getElementById('wordSearchInput');
+      const searchVal = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const selectedCat = appState.selectedCategory;
+
+      const filtered = WORD_BANK.filter(item => {
+        const matchesCat = (selectedCat === 'all') || (item.category === selectedCat);
+        const matchesSearch = !searchVal || 
+          item.word.toLowerCase().includes(searchVal) || 
+          item.translation.includes(searchVal);
+
+        return matchesCat && matchesSearch;
+      });
+
+      renderWordbook(filtered);
+    }
+
+    function renderWordbook(listToRender) {
+      const list = document.getElementById('wordbookList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      const items = listToRender || WORD_BANK;
+
+      if (items.length === 0) {
+        list.innerHTML = `
+          <div class="col-span-2 text-center py-8 text-slate-400">
+            <i class="fa-solid fa-magnifying-glass text-2xl mb-2 block"></i>
+            <p class="text-xs">未找到匹配的单词果实哦~</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'soft-card p-3.5 text-center border border-slate-100 bounce-interactive cursor-pointer hover:border-indigo-300 relative overflow-hidden';
+        card.onclick = () => speakWord(`${item.word}. ${item.translation}`);
+        
+        card.innerHTML = `
+          <span class="text-3xl block mb-1.5">${item.icon}</span>
+          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.word}</h3>
+          <p class="text-[11px] text-indigo-500 font-mono">${item.phonetic}</p>
+          <p class="text-xs text-slate-500 mt-0.5 font-medium">${item.translation}</p>
+          <div class="mt-2 flex items-center justify-center gap-1 text-[10px] text-indigo-600 font-bold bg-indigo-50 rounded-lg py-1 px-2">
+            <i class="fa-solid fa-volume-high text-[9px]"></i>
+            <span>点击朗读</span>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function runBuiltInSelfTests() {
+      const tests = [];
+      const check = (name, pass, detail='') => tests.push({ name, pass: !!pass, detail });
+      const letters = ALPHABET.map(x => x.letter).join('');
+      check('26个字母完整且顺序正确', ALPHABET.length === 26 && letters === 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', letters);
+      check('字母无重复', new Set(ALPHABET.map(x => x.letter)).size === 26);
+      check('全部字母有例词数据', ALPHABET.every(x => x.word));
+      check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
+      check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
+      check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
+      check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
+      check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
+      check('v5.0 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
+      check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
+      check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);
+      try {
+        const k='xiaoxi-selftest'; localStorage.setItem(k,'ok');
+        check('localStorage读写', localStorage.getItem(k)==='ok'); localStorage.removeItem(k);
+      } catch(e) { check('localStorage读写', false, e.message); }
+      check('PWA manifest已链接', !!document.querySelector('link[rel="manifest"]'));
+      check('Service Worker API可检测', 'serviceWorker' in navigator);
+      window.__XIAOXI_SELF_TEST__ = tests;
+      if (new URLSearchParams(location.search).get('selftest') === '1') {
+        const pre=document.createElement('pre'); pre.id='selfTestResults';
+        pre.style='position:fixed;inset:10px;z-index:9999;background:white;color:#111;padding:16px;overflow:auto;font:14px monospace;white-space:pre-wrap';
+        pre.textContent=tests.map(t=>`${t.pass?'PASS':'FAIL'} | ${t.name}${t.detail?' | '+t.detail:''}`).join('\n');
+        document.body.appendChild(pre);
+      }
+      return tests;
+    }
+
+    window.onload = () => {
+      // Setup Desktop App Manifest, Safe Area Clock & Service Worker
+      normalizeDailyState();
+      checkStandaloneMode();
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) { navigator.serviceWorker.register('./sw.js').catch(() => {}); }
+      updateClock();
+
+      const now = new Date();
+      const options = { month: 'long', day: 'numeric', weekday: 'long' };
+      document.getElementById('todayDateStr').innerText = now.toLocaleDateString('zh-CN', options);
+
+      updateHomeProgress();
+      renderHomeFruitList();
+      renderAlphabetGrid();
+
+      runBuiltInSelfTests();
+      setTimeout(preloadAllAppAudio, 300);
+    };
+  </script>
+</body>
+</html>
