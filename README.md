@@ -1,10 +1,20 @@
-# 小夕英语 v5.2
+# 小夕英语 v5.3
 
-本版修复两类问题：
+本版重点：
+- A–Z 26 个字母全部从用户提供的同一份真人连续录音 `English_alphabet.ogg` 切分。
+- 不再混用旧 TTS 或不同声线。
+- 每个字母按相邻字母中心点切分，保留自然前后静音，避免 F /f/、M /m/、N /n/ 等尾音被硬切。
+- 导出统一为 44.1 kHz、mono、128 kbps MP3。
+- 首页“安装到桌面”和“Hello，小夕”卡片增加元素级 inline 背景色/渐变，避免 Safari/PWA 样式链路异常。
+- Service Worker/字母音频版本升级到 v5.3.0，避免命中旧音频缓存。
 
-1. **26 个字母音频全部重做**：A-Z 全部使用同一固定 `en-us+f3` 声线、相同速度/音调/音量，按英文字母名称（letter name）发音，不混用男/女声，也不复用旧音频。
-2. **首页背景色硬修复**：两个关键首页卡片改成原生 sRGB `linear-gradient(...)` + solid color fallback，不再依赖 Tailwind 的 OKLab/OKLCH 渐变变量。
+## 部署
+请用本版完整目录覆盖 GitHub Pages 仓库中的：
+- `audio/`
+- `assets/`
+- `icons/`
+- `index.html`
+- `manifest.webmanifest`
+- `sw.js`
 
-部署到 GitHub Pages 时，请至少覆盖：`index.html`、`sw.js`、`assets/`、`audio/`、`icons/`、`manifest.webmanifest`。
-
-为了彻底绕过旧缓存，本版使用 v5.2 cache key；更新后建议删除旧桌面 PWA，再从 Safari/Chrome 重新打开并安装一次。
+部署后建议删除旧桌面 PWA，再用 Safari/Chrome 从网页重新添加到主屏幕。

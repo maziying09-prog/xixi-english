@@ -1,12 +1,23 @@
-# v5.2 QA 报告
+# v5.3 QA Report
 
-- PASS：A-Z 26 个字母 MP3 全部重新生成。
-- PASS：26 个音频 SHA-256 全部不同，没有误复制/串音文件。
-- PASS：全部使用同一个固定 `en-us+f3` 声线、相同速度/音调/音量。
-- PASS：直接以大写字母 A-Z 作为 TTS 输入，eSpeak 的字母名音素检查通过；重点核对 A/F/L/M/N/W/Z。
-- PASS：首页安装卡改为原生橙色 sRGB 渐变，并提供 #f97316 纯色 fallback。
-- PASS：首页主卡改为原生靛蓝→紫色 sRGB 渐变，并提供 #4f46e5 纯色 fallback。
-- PASS：页面与 Service Worker 均升级到 v5.2，避免命中 v5.1 旧缓存。
-- PASS：内联 JavaScript 与 Service Worker 语法检查通过。
+## Audio
+- Source: single uploaded file `English_alphabet.ogg`
+- Source duration: 24.242 s
+- 26/26 letter MP3 files regenerated from that one source
+- All 26 SHA-256 hashes unique: True
+- Export: MP3 128 kbps, 44.1 kHz, mono
+- Segmentation: midpoint between adjacent letter utterance centers; preserves natural tails/silence
+- F duration: 0.89 s
+- L duration: 0.941 s
+- M duration: 0.905 s
+- N duration: 0.914 s
+- X duration: 0.935 s
 
-限制：当前环境可以验证文件、音素映射、缓存版本和代码，但不能替代 iPhone/Android 真机扬声器的人耳听音。
+## UI
+- Critical home cards now have direct inline sRGB solid fallback + linear-gradient
+- Version strings/cache keys bumped to v5.3
+
+## Remaining manual checks
+- Listen on target iPhone/Android speaker for F/M and L/N distinction
+- Verify home card colors in Safari and installed PWA
+- Verify offline A–Z after cache reaches 26/26
