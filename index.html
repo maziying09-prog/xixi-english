@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>小夕的魔法世界 · 英语学习工作台 v5.1</title>
+  <title>小夕的魔法世界 · 英语学习工作台 v5.2</title>
   
   <!-- Mobile & PWA App Capabilities -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -18,16 +18,25 @@
 
   <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <!-- v5.1: all UI dependencies are local for stable mobile/PWA startup -->
+  <!-- v5.2: all UI dependencies are local for stable mobile/PWA startup -->
   <link rel="stylesheet" href="./assets/tailwind.css" />
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
-  <style id="safari-gradient-compat">
-    /* Safari/iOS compatibility: Tailwind v4 emits gradient interpolation
-       syntax such as "to right in oklab". Older Safari versions drop the
-       entire background-image declaration, leaving white cards with white text. */
-    .bg-gradient-to-r { --tw-gradient-position: to right !important; }
-    .bg-gradient-to-br { --tw-gradient-position: to bottom right !important; }
-    .bg-gradient-to-tr { --tw-gradient-position: to top right !important; }
+  <style id="mobile-color-compat">
+    /* v5.2: critical home cards no longer depend on Tailwind gradient variables.
+       Use plain sRGB CSS with a solid-color fallback for Safari/older WebViews. */
+    #pwaInstallBanner.home-install-banner {
+      background-color: #f97316 !important;
+      background-image: linear-gradient(90deg, #f59e0b 0%, #f97316 100%) !important;
+      color: #ffffff !important;
+    }
+    #homeHeroCard.home-hero-card {
+      background-color: #4f46e5 !important;
+      background-image: linear-gradient(135deg, #6366f1 0%, #4f46e5 52%, #9333ea 100%) !important;
+      color: #ffffff !important;
+    }
+    #pwaInstallBanner.home-install-banner *, #homeHeroCard.home-hero-card * {
+      text-shadow: none;
+    }
   </style>
 
   <style>
@@ -272,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.1 离线儿歌 + 字母发音版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.2 离线儿歌 + 字母发音版 · PWA</p>
       </div>
     </aside>
 
@@ -282,7 +291,7 @@
       <div id="viewHome" class="space-y-4">
 
         <!-- HomeScreen Install Action Card (PWA Packaging Feature) -->
-        <div id="pwaInstallBanner" class="soft-card p-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white flex items-center justify-between shadow-lg shadow-amber-500/20">
+        <div id="pwaInstallBanner" class="soft-card p-4 text-white flex items-center justify-between shadow-lg shadow-amber-500/20 home-install-banner">
           <div class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl shrink-0">
               📱
@@ -298,7 +307,7 @@
         </div>
 
         <!-- Welcome Banner Card -->
-        <div class="soft-card p-5 bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+        <div id="homeHeroCard" class="soft-card p-5 text-white relative overflow-hidden home-hero-card">
           <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
           <div class="relative z-10 flex justify-between items-start">
             <div>
@@ -422,7 +431,7 @@
             返回
           </button>
         </div>
-        <!-- v5.1 Offline Nursery-Rhyme Alphabet Song Player -->
+        <!-- v5.2 Offline Nursery-Rhyme Alphabet Song Player -->
         <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
           <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
           <div class="flex items-center gap-3 relative z-10">
@@ -895,7 +904,7 @@
       saveAppState();
     }
 
-    // v5.1 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    // v5.2 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
     let activeMediaRecorder = null;
     let activeMicStream = null;
     let voiceChunks = [];
@@ -1113,9 +1122,9 @@
       try { await audio.play(); } catch (e) {}
     }
 
-    // --- v5.1 verified offline alphabet pack ---
-    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.1.0';
-    const LETTER_AUDIO_VERSION = 'v5.1.0';
+    // --- v5.2 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.2.0';
+    const LETTER_AUDIO_VERSION = 'v5.2.0';
     let alphabetPackPromise = null;
 
     async function ensureAlphabetPack() {
@@ -2083,7 +2092,7 @@
       check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.1 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.2 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);
