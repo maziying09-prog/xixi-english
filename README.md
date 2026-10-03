@@ -1,35 +1,22 @@
-# 小夕英语 v5.0 移动端稳定版
+# 小夕英语 v5.1 · GitHub Pages / iOS 修复版
 
-本版针对 iPhone Safari / 主屏幕 PWA 的实际问题重构：
+本版在 v5.0 基础上修复两类真机问题：
 
-- 核心 UI 资源全部本地化：不再依赖 Tailwind CDN、FontAwesome CDN、Google Fonts。
-- Service Worker 安装只缓存轻量 App Shell，音频不会阻塞首次安装。
-- A–Z 音频在进入“字母营”后逐个校验并缓存，页面显示 0/26 → 26/26 状态。
-- 字母歌和其他音频采用运行时缓存，第一次成功播放后即可离线复用。
-- 跟读不再调用 `webkitSpeechRecognition` / Web Speech Recognition。
-- 跟读改用 `getUserMedia + MediaRecorder`：点击开始，再点一次停止；停止时立即释放麦克风轨道，可回放自己的录音。
-- 页面跳转时会主动停止录音并释放麦克风。
-- HTML 导航采用 network-first，避免发布新版后长期卡在旧 Service Worker 页面。
+- iOS Safari 部分版本不支持 Tailwind v4 的 `in oklab` 渐变插值语法，导致首页渐变背景丢失；v5.1 加入传统渐变方向兼容层。
+- v5.0 的字母离线包缓存与实际播放缓存不是同一个缓存，可能出现 26/26 显示正常但播放旧/错误字母音频；v5.1 已统一缓存，并给字母音频 URL 加版本号。
+- F / L / N 已重新生成明确的 `eff / el / en` 本地音频。
 
-## 本地测试
+## GitHub Pages 更新方法
 
-```powershell
-cd "你的\xiaoxi_english_v5_0"
-python -m http.server 8083
-```
+把本目录中的所有文件和文件夹上传覆盖仓库根目录，尤其不要漏掉：
 
-打开：`http://localhost:8083/`
+- `assets/`
+- `audio/`
+- `icons/`
+- `index.html`
+- `sw.js`
+- `manifest.webmanifest`
 
-## iPhone 测试顺序
+提交后等待 GitHub Pages 完成部署，再在 iPhone Safari 中打开网站。
 
-1. Safari 正常打开网页。
-2. 进入“字母营”，等待提示变成“26/26”。
-3. 随机点 A / E / H / R / W / Z，确认都能发音。
-4. 关闭网络，再次点上述字母确认离线播放。
-5. 进入每日闯关的跟读步骤，允许麦克风。
-6. 点麦克风开始录音，再点一次结束；确认 iOS 顶部麦克风指示很快熄灭。
-7. 点 ▶ 回放录音，再切换页面，确认不会残留录音状态。
-
-## 发布注意
-
-当前包中 `audio/alphabet_song.mp3` 是你提供的商业音乐文件。若部署到公开互联网，请先确认你拥有公开传播/分发授权；仅家庭私用则可保留本地版本。
+如果手机仍显示旧版，先删除旧桌面 PWA，然后 Safari → 设置/网站数据中清理该站点数据，再重新访问并添加到主屏幕。

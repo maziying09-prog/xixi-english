@@ -1,6 +1,6 @@
-const APP_CACHE = 'xiaoxi-app-v5.0.0';
-const AUDIO_CACHE = 'xiaoxi-audio-runtime-v5.0.0';
-const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.0.0';
+const APP_CACHE = 'xiaoxi-app-v5.1.0';
+const AUDIO_CACHE = 'xiaoxi-audio-runtime-v5.1.0';
+const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.1.0';
 
 const APP_SHELL = [
   './',
@@ -18,8 +18,6 @@ const APP_SHELL = [
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(APP_CACHE);
-    // Keep installation atomic for the small UI shell only. Audio is not allowed
-    // to block Service Worker installation on a slow mobile connection.
     await cache.addAll(APP_SHELL);
     await self.skipWaiting();
   })());
@@ -51,7 +49,7 @@ async function cacheFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
   if (cached) return cached;
-  const response = await fetch(request);
+  const response = await fetch(request, { cache: 'no-store' });
   if (response && response.ok) await cache.put(request, response.clone());
   return response;
 }
@@ -64,6 +62,14 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate' || url.pathname.endsWith('/index.html')) {
     event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // Letter cards and the verified 26/26 pack MUST use the same cache.
+  // v5.0 populated ALPHABET_PACK_CACHE but playback was routed to AUDIO_CACHE,
+  // which allowed stale/mismatched letter files to survive.
+  if (/\/audio\/letters\/[A-Z]\.mp3$/i.test(url.pathname)) {
+    event.respondWith(cacheFirst(request, ALPHABET_PACK_CACHE));
     return;
   }
 

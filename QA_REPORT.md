@@ -1,34 +1,34 @@
-# v5.0 QA 报告
+# 小夕英语 v5.1 QA 报告
 
-## 已完成的静态/资源检查
+## 本轮修复
 
-- PASS：页面标题为 `v5.0`。
-- PASS：`index.html` 中没有 `http://` / `https://` 外部资源依赖。
-- PASS：Tailwind CSS 已编译为本地 `assets/tailwind.css`。
-- PASS：FontAwesome CSS / webfonts 已本地化。
-- PASS：A–Z 共 26 个本地 MP3 文件均存在，并通过 ffprobe 解码检查。
-- PASS：字母歌 MP3 存在并通过 ffprobe 解码检查。
-- PASS：`webkitSpeechRecognition` / `SpeechRecognition` API 已从实际代码中移除。
-- PASS：跟读使用 `getUserMedia + MediaRecorder`，停止录音后显式 `track.stop()` 释放麦克风。
-- PASS：页面切换会调用 `stopVoiceRecord(true)`，避免麦克风残留。
-- PASS：进入字母营会执行 `ensureAlphabetPack()`，逐个校验/缓存 A–Z，并显示 0/26 → 26/26。
-- PASS：Service Worker 的安装列表不再包含字母歌和 26 个字母 MP3，避免慢网络下音频阻塞 SW 安装。
-- PASS：HTML 导航采用 network-first，降低新版发布后仍长期显示旧页面的概率。
-- PASS：主内联 JavaScript 通过 `node --check`。
+1. **Safari 首页渐变背景丢失**
+   - 根因：本地 Tailwind v4 CSS 的渐变方向包含 `in oklab` 色彩插值语法；部分 iOS Safari 会直接丢弃整条 `background-image`，因此紫色/橙色渐变卡片变成白底，而 `text-white` 仍生效，看起来像“颜色丢失”。
+   - 修复：在 Tailwind CSS 之后加入 Safari 兼容覆盖，把渐变方向退回传统 `to right / to bottom right / to top right` 写法。
+
+2. **F / L / N 播放成 M / 字母音频缓存错配**
+   - v5.0 中“26/26 离线包”写入 `xiaoxi-alphabet-pack-v5.0.0`，但真正 `<audio>` 播放请求被 Service Worker 路由到另一个 `xiaoxi-audio-runtime-v5.0.0` 缓存，两套缓存并不一致，旧音频可能继续被播放。
+   - v5.1 让 `/audio/letters/*.mp3` 的缓存检查和实际播放统一使用同一个 Alphabet Pack Cache。
+   - 字母 URL 增加 `?v5.1.0`，强制绕过旧版本 URL 缓存。
+   - F / L / N 三个文件已重新生成，使用明确字母名：`eff / el / en`，避免与 M 的 `em` 混淆。
+
+3. **缓存版本升级**
+   - App / Audio / Alphabet Pack 均升级为 v5.1.0。
+   - 激活新 Service Worker 时清理旧 `xiaoxi-*` 缓存。
+
+## 自动检查
+
+- PASS：26 个 `A.mp3`–`Z.mp3` 均存在。
+- PASS：F / L / M / N 四个音频文件 SHA-256 均不同。
+- PASS：`manifest.webmanifest` 可正常解析。
+- PASS：`index.html` 内联 JavaScript 通过 `node --check`。
 - PASS：`sw.js` 通过 `node --check`。
-- PASS：manifest JSON 可解析。
-- PASS：本地 HTTP 服务下 `/`、SW、manifest、CSS、A/Z 音频和字母歌均返回 HTTP 200。
+- PASS：GitHub Pages 子路径仍使用 `./...` 相对路径。
 
-## 本环境不能替代的真机测试
+## 真机需要复验
 
-本环境没有可用的 iPhone/iPad 真机，因此以下项目必须在你的 iPhone 上人工确认：
+由于当前环境无法听到 iPhone 扬声器，也无法运行你实际的 iOS Safari 版本，以下项目需要真机确认：
 
-1. Safari 首次授权麦克风后，录音开始/停止是否正常。
-2. 停止录音后 iOS 顶部麦克风指示是否及时熄灭。
-3. “添加到主屏幕”后的 standalone PWA 是否仍能正常录音/释放。
-4. 字母营等待到 `26/26` 后断网，随机点击 A/E/H/R/W/Z 是否全部发音。
-5. 公开部署入口在你的常用网络环境下是否可达；该问题与网页资源本地化是两件事。
-
-## 重要版权提示
-
-`audio/alphabet_song.mp3` 来自你提供的商业歌曲文件。若将本项目部署为公开网站，请先确认你拥有公开传播/分发授权；家庭私用版可保留。
+- F / L / N / M 是否分别听成 **eff / el / en / em**。
+- 首页紫色、橙色、粉色渐变卡片是否恢复。
+- PWA 更新后是否显示 v5.1，而不是旧 v5.0。
