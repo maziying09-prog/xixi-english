@@ -1,35 +1,25 @@
-# v5.6 Unit 1 QA Report
+# v5.7 Unit 1 QA Report
 
-## Automated checks
+## 自动检查
+- PASS：Unit 1 词表 16 个
+- PASS：`audio/words/` 16/16 个词本体 MP3 存在并可由 ffprobe 解析
+- PASS：`audio/phrases/` 16/16 个 a/an 短语 MP3 存在并可由 ffprobe 解析
+- PASS：word 与 phrase 使用独立目录和独立播放路径
+- PASS：单词本点击调用 `speakWord(item.word)`，不会拼接中文或 a/an
+- PASS：每日闯关包含 word + phrase 两层显示及两个独立播放按钮
+- PASS：`an eraser` 单独处理
+- PASS：主 JavaScript `node --check` 通过
+- PASS：Service Worker `node --check` 通过
+- PASS：manifest JSON 可解析
+- PASS：保留 Android Range/206 音频处理
+- PASS：缓存版本升级为 v5.7.0
 
-- Unit 1 word count: **16**
-- Local word MP3 count: **16**
-- Source mapping: CD1 Track 08 = first 8 school-supply words; CD1 Track 14 = second 8 classroom-object words.
-- Wordbook click handler now calls `speakWord(item.word)` rather than mixing English + Chinese.
-- New storage namespace prevents stale 62-word state from affecting Unit 1.
-- Service Worker/cache version bumped to v5.6.0.
+## 需要真人复听
+word 音频由 Oxford `a/an + noun` 原始片段按波形边界去掉冠词。请重点复听：
+- pencil / a pencil
+- ruler / a ruler
+- eraser / an eraser
+- marker / a marker
+- wastebasket / a wastebasket
 
-## Extracted audio files
-
-- `bag.mp3` — 1.097s, mp3, 44100 Hz, 1 ch
-- `board.mp3` — 0.914s, mp3, 44100 Hz, 1 ch
-- `book.mp3` — 0.862s, mp3, 44100 Hz, 1 ch
-- `chair.mp3` — 0.967s, mp3, 44100 Hz, 1 ch
-- `crayon.mp3` — 1.306s, mp3, 44100 Hz, 1 ch
-- `desk.mp3` — 1.123s, mp3, 44100 Hz, 1 ch
-- `eraser.mp3` — 1.097s, mp3, 44100 Hz, 1 ch
-- `globe.mp3` — 0.993s, mp3, 44100 Hz, 1 ch
-- `map.mp3` — 0.836s, mp3, 44100 Hz, 1 ch
-- `marker.mp3` — 1.123s, mp3, 44100 Hz, 1 ch
-- `pen.mp3` — 0.940s, mp3, 44100 Hz, 1 ch
-- `pencil.mp3` — 1.176s, mp3, 44100 Hz, 1 ch
-- `poster.mp3` — 1.097s, mp3, 44100 Hz, 1 ch
-- `ruler.mp3` — 1.071s, mp3, 44100 Hz, 1 ch
-- `table.mp3` — 1.123s, mp3, 44100 Hz, 1 ch
-- `wastebasket.mp3` — 1.541s, mp3, 44100 Hz, 1 ch
-
-## Manual checks still required
-
-- Listen to all 16 clips on a real phone and confirm each cut starts/ends naturally.
-- Verify Android Chrome and installed PWA both play every word.
-- Verify Wordbook and Daily Challenge play the same local clip for each word.
+确认 word 版没有残留明显 a/an，同时没有切掉名词首辅音。

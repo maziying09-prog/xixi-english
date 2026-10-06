@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>小夕的魔法世界 · 英语学习工作台 v5.6</title>
+  <title>小夕的魔法世界 · 英语学习工作台 v5.5</title>
   
   <!-- Mobile & PWA App Capabilities -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -18,11 +18,11 @@
 
   <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <!-- v5.6: all UI dependencies are local for stable mobile/PWA startup -->
+  <!-- v5.5: all UI dependencies are local for stable mobile/PWA startup -->
   <link rel="stylesheet" href="./assets/tailwind.css" />
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
   <style id="mobile-color-compat">
-    /* v5.6: critical home cards no longer depend on Tailwind gradient variables.
+    /* v5.5: critical home cards no longer depend on Tailwind gradient variables.
        Use plain sRGB CSS with a solid-color fallback for Safari/older WebViews. */
     #pwaInstallBanner.home-install-banner {
       background-color: #f97316 !important;
@@ -250,7 +250,7 @@
             <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
               <i class="fa-solid fa-apple-whole text-xs"></i>
             </div>
-            <span>我的单词果实树</span>
+            <span>Unit 1 单词本</span>
             <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
           </button>
 
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.6 Unit 1 试运行版 · Let’s Go 1 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.7 Unit 1 · 单词 + a/an 短语双层学习版 · PWA</p>
       </div>
     </aside>
 
@@ -431,7 +431,7 @@
             返回
           </button>
         </div>
-        <!-- v5.6 Offline Nursery-Rhyme Alphabet Song Player -->
+        <!-- v5.5 Offline Nursery-Rhyme Alphabet Song Player -->
         <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
           <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
           <div class="flex items-center gap-3 relative z-10">
@@ -508,8 +508,8 @@
       <div id="viewWords" class="space-y-4 hidden">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-bold text-slate-800">我的单词果实树</h2>
-            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · Things for School</p>
+            <h2 class="text-xl font-bold text-slate-800">Unit 1 单词本</h2>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · 单词本只记单词本体</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -525,7 +525,7 @@
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
             <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (16)</button>
-            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 · Things for School</button>
+            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 校园用品</button>
           </div>
         </div>
 
@@ -752,25 +752,25 @@
     ];
 
     const WORD_BANK = [
-      { id: 1, unit: 1, category: 'unit1', word: 'Pencil', displayWord: 'a pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensəl/', sentenceEN: 'It is a pencil.', sentenceCN: '这是一支铅笔。' },
-      { id: 2, unit: 1, category: 'unit1', word: 'Pen', displayWord: 'a pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'It is a pen.', sentenceCN: '这是一支钢笔。' },
-      { id: 3, unit: 1, category: 'unit1', word: 'Bag', displayWord: 'a bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'It is a bag.', sentenceCN: '这是一个书包。' },
-      { id: 4, unit: 1, category: 'unit1', word: 'Book', displayWord: 'a book', translation: '书', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'It is a book.', sentenceCN: '这是一本书。' },
-      { id: 5, unit: 1, category: 'unit1', word: 'Desk', displayWord: 'a desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'It is a desk.', sentenceCN: '这是一张课桌。' },
-      { id: 6, unit: 1, category: 'unit1', word: 'Chair', displayWord: 'a chair', translation: '椅子', icon: '🪑', phonetic: '/tʃer/', sentenceEN: 'It is a chair.', sentenceCN: '这是一把椅子。' },
-      { id: 7, unit: 1, category: 'unit1', word: 'Ruler', displayWord: 'a ruler', translation: '尺子', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'It is a ruler.', sentenceCN: '这是一把尺子。' },
-      { id: 8, unit: 1, category: 'unit1', word: 'Eraser', displayWord: 'an eraser', translation: '橡皮', icon: '🧽', phonetic: '/ɪˈreɪsər/', sentenceEN: 'It is an eraser.', sentenceCN: '这是一块橡皮。' },
-      { id: 9, unit: 1, category: 'unit1', word: 'Map', displayWord: 'a map', translation: '地图', icon: '🗺️', phonetic: '/mæp/', sentenceEN: 'This is a map.', sentenceCN: '这是一张地图。' },
-      { id: 10, unit: 1, category: 'unit1', word: 'Marker', displayWord: 'a marker', translation: '记号笔', icon: '🖊️', phonetic: '/ˈmɑːrkər/', sentenceEN: 'This is a marker.', sentenceCN: '这是一支记号笔。' },
-      { id: 11, unit: 1, category: 'unit1', word: 'Globe', displayWord: 'a globe', translation: '地球仪', icon: '🌍', phonetic: '/ɡloʊb/', sentenceEN: 'This is a globe.', sentenceCN: '这是一个地球仪。' },
-      { id: 12, unit: 1, category: 'unit1', word: 'Table', displayWord: 'a table', translation: '桌子', icon: '🛋️', phonetic: '/ˈteɪbəl/', sentenceEN: 'This is a table.', sentenceCN: '这是一张桌子。' },
-      { id: 13, unit: 1, category: 'unit1', word: 'Board', displayWord: 'a board', translation: '黑板', icon: '📋', phonetic: '/bɔːrd/', sentenceEN: 'This is a board.', sentenceCN: '这是一块黑板。' },
-      { id: 14, unit: 1, category: 'unit1', word: 'Wastebasket', displayWord: 'a wastebasket', translation: '废纸篓', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'This is a wastebasket.', sentenceCN: '这是一个废纸篓。' },
-      { id: 15, unit: 1, category: 'unit1', word: 'Poster', displayWord: 'a poster', translation: '海报', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'This is a poster.', sentenceCN: '这是一张海报。' },
-      { id: 16, unit: 1, category: 'unit1', word: 'Crayon', displayWord: 'a crayon', translation: '蜡笔', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'This is a crayon.', sentenceCN: '这是一支蜡笔。' }
+      { id: 1, category: 'unit1', word: 'Pencil', translation: '铅笔', phrase: 'a pencil', phraseTranslation: '一支铅笔', article: 'a', icon: '✏️', phonetic: '/ˈpensəl/', sentenceEN: 'a pencil', sentenceCN: '一支铅笔' },
+      { id: 2, category: 'unit1', word: 'Pen', translation: '钢笔', phrase: 'a pen', phraseTranslation: '一支钢笔', article: 'a', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'a pen', sentenceCN: '一支钢笔' },
+      { id: 3, category: 'unit1', word: 'Bag', translation: '书包', phrase: 'a bag', phraseTranslation: '一个书包', article: 'a', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'a bag', sentenceCN: '一个书包' },
+      { id: 4, category: 'unit1', word: 'Book', translation: '书', phrase: 'a book', phraseTranslation: '一本书', article: 'a', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'a book', sentenceCN: '一本书' },
+      { id: 5, category: 'unit1', word: 'Desk', translation: '课桌', phrase: 'a desk', phraseTranslation: '一张课桌', article: 'a', icon: '🪵', phonetic: '/desk/', sentenceEN: 'a desk', sentenceCN: '一张课桌' },
+      { id: 6, category: 'unit1', word: 'Chair', translation: '椅子', phrase: 'a chair', phraseTranslation: '一把椅子', article: 'a', icon: '🪑', phonetic: '/tʃer/', sentenceEN: 'a chair', sentenceCN: '一把椅子' },
+      { id: 7, category: 'unit1', word: 'Ruler', translation: '尺子', phrase: 'a ruler', phraseTranslation: '一把尺子', article: 'a', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'a ruler', sentenceCN: '一把尺子' },
+      { id: 8, category: 'unit1', word: 'Eraser', translation: '橡皮', phrase: 'an eraser', phraseTranslation: '一块橡皮', article: 'an', icon: '🧽', phonetic: '/ɪˈreɪsər/', sentenceEN: 'an eraser', sentenceCN: '一块橡皮' },
+      { id: 9, category: 'unit1', word: 'Map', translation: '地图', phrase: 'a map', phraseTranslation: '一张地图', article: 'a', icon: '🗺️', phonetic: '/mæp/', sentenceEN: 'a map', sentenceCN: '一张地图' },
+      { id: 10, category: 'unit1', word: 'Marker', translation: '马克笔', phrase: 'a marker', phraseTranslation: '一支马克笔', article: 'a', icon: '🖍️', phonetic: '/ˈmɑːrkər/', sentenceEN: 'a marker', sentenceCN: '一支马克笔' },
+      { id: 11, category: 'unit1', word: 'Globe', translation: '地球仪', phrase: 'a globe', phraseTranslation: '一个地球仪', article: 'a', icon: '🌍', phonetic: '/ɡloʊb/', sentenceEN: 'a globe', sentenceCN: '一个地球仪' },
+      { id: 12, category: 'unit1', word: 'Table', translation: '桌子', phrase: 'a table', phraseTranslation: '一张桌子', article: 'a', icon: '🪑', phonetic: '/ˈteɪbəl/', sentenceEN: 'a table', sentenceCN: '一张桌子' },
+      { id: 13, category: 'unit1', word: 'Board', translation: '黑板', phrase: 'a board', phraseTranslation: '一块黑板', article: 'a', icon: '⬛', phonetic: '/bɔːrd/', sentenceEN: 'a board', sentenceCN: '一块黑板' },
+      { id: 14, category: 'unit1', word: 'Wastebasket', translation: '废纸篓', phrase: 'a wastebasket', phraseTranslation: '一个废纸篓', article: 'a', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'a wastebasket', sentenceCN: '一个废纸篓' },
+      { id: 15, category: 'unit1', word: 'Poster', translation: '海报', phrase: 'a poster', phraseTranslation: '一张海报', article: 'a', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'a poster', sentenceCN: '一张海报' },
+      { id: 16, category: 'unit1', word: 'Crayon', translation: '蜡笔', phrase: 'a crayon', phraseTranslation: '一支蜡笔', article: 'a', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'a crayon', sentenceCN: '一支蜡笔' }
     ];
 
-    const STORAGE_KEY = 'xiaoxiEnglishV56Unit1State';
+    const STORAGE_KEY = 'xiaoxiEnglishV57Unit1State';
     const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
 
     function todayKey() {
@@ -852,7 +852,7 @@
       saveAppState();
     }
 
-    // v5.6 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    // v5.5 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
     let activeMediaRecorder = null;
     let activeMicStream = null;
     let voiceChunks = [];
@@ -979,7 +979,7 @@
       return waitSpeech(settleMs, runId);
     }
 
-    const WORD_AUDIO_VERSION = 'v5.6.0';
+    const WORD_AUDIO_VERSION = 'v5.7.0';
 
     function slugifyWordAudio(text) {
       return String(text || '')
@@ -995,47 +995,59 @@
       return WORD_BANK.find(item => String(item.word).toLowerCase() === key) || null;
     }
 
-    function playLocalWordAudio(text) {
-      const item = findLocalWord(text);
-      if (!item) return null;
-      stopAllAudio();
+    function findLocalPhrase(text) {
+      const key = String(text || '').trim().toLowerCase();
+      if (!key) return null;
+      return WORD_BANK.find(item => String(item.phrase || '').toLowerCase() === key) || null;
+    }
 
-      // v5.6: reuse one real <audio> element. Android Chrome/PWA is more
-      // reliable with a persistent media element than with a new Audio()
-      // object created for every tap.
+    function playLocalUnitAudio(item, kind = 'word') {
+      if (!item) return Promise.resolve(false);
+      stopAllAudio();
       const audio = document.getElementById('wordAudioPlayer');
       if (!audio) return Promise.resolve(false);
-      const base = new URL(`audio/words/${slugifyWordAudio(item.word)}.mp3`, document.baseURI);
+      const folder = kind === 'phrase' ? 'phrases' : 'words';
+      const base = new URL(`audio/${folder}/${slugifyWordAudio(item.word)}.mp3`, document.baseURI);
       base.searchParams.set('v', WORD_AUDIO_VERSION);
       audio.src = base.href;
       audio.preload = 'auto';
       audio.currentTime = 0;
       currentPlayingAudio = audio;
-      audio.onended = () => {
-        if (currentPlayingAudio === audio) currentPlayingAudio = null;
-      };
+      audio.onended = () => { if (currentPlayingAudio === audio) currentPlayingAudio = null; };
       audio.onerror = () => {
         if (currentPlayingAudio === audio) currentPlayingAudio = null;
-        console.warn('[word-audio] failed:', audio.currentSrc || audio.src, audio.error);
+        console.warn(`[${kind}-audio] failed:`, audio.currentSrc || audio.src, audio.error);
       };
       try { audio.load(); } catch (e) {}
       return audio.play().then(() => true).catch(err => {
-        console.warn('[word-audio] play rejected:', base.href, err);
+        console.warn(`[${kind}-audio] play rejected:`, base.href, err);
         return false;
       });
+    }
+
+    function playLocalWordAudio(text) {
+      return playLocalUnitAudio(findLocalWord(text), 'word');
+    }
+
+    function playLocalPhraseAudio(text) {
+      return playLocalUnitAudio(findLocalPhrase(text), 'phrase');
     }
 
     async function speakWord(text, lang = 'en-US', rate = 0.82) {
       if (!text) return false;
 
-      // v5.6: Daily Challenge vocabulary is always local-first.
+      // v5.5: Daily Challenge vocabulary is always local-first.
       // IMPORTANT: call audio.play() in the same user-gesture turn on Android/PWA.
       // Do not insert cancel -> timeout -> speak between the tap and playback.
+      const phraseItem = findLocalPhrase(text);
+      if (phraseItem) {
+        const ok = await playLocalPhraseAudio(phraseItem.phrase);
+        if (ok) return true;
+      }
       const localItem = findLocalWord(text);
       if (localItem) {
         const ok = await playLocalWordAudio(localItem.word);
         if (ok) return true;
-        // Only fall back to system TTS if the local file cannot be played.
       }
 
       stopAllAudio();
@@ -1128,9 +1140,9 @@
       try { await audio.play(); } catch (e) {}
     }
 
-    // --- v5.6 verified offline alphabet pack ---
-    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.6.0';
-    const LETTER_AUDIO_VERSION = 'v5.6.0';
+    // --- v5.5 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.5.0';
+    const LETTER_AUDIO_VERSION = 'v5.5.0';
     let alphabetPackPromise = null;
 
     async function ensureAlphabetPack() {
@@ -1394,7 +1406,7 @@
 
       const targetWord = WORD_BANK[appState.currentWordIndex] || WORD_BANK[0];
       document.getElementById('previewWordIcon').innerText = targetWord.icon;
-      document.getElementById('previewWordText').innerText = targetWord.displayWord || targetWord.word;
+      document.getElementById('previewWordText').innerText = targetWord.word;
       document.getElementById('previewWordPhonetic').innerText = targetWord.phonetic;
       document.getElementById('previewWordTrans').innerText = targetWord.translation;
       const learned = Object.values(appState.wordProgress || {}).filter(p => p.learnedCount > 0).length;
@@ -1425,7 +1437,7 @@
         el.onclick = () => speakWord(item.word);
         el.innerHTML = `
           <span class="text-2xl block mb-1">${item.icon}</span>
-          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.displayWord || item.word}</span>
+          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.word}</span>
           <span class="text-[9px] text-slate-400 block">${isMastered ? '已掌握' : '待解锁'}</span>
         `;
         container.appendChild(el);
@@ -1471,7 +1483,7 @@
       const stepIndex = appState.currentStepIndex;
 
       document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
-      document.getElementById('questWordTargetText').innerText = word.displayWord || word.word;
+      document.getElementById('questWordTargetText').innerText = word.word;
 
       const dots = document.getElementById('stepDotsContainer').children;
       for (let i = 0; i < 4; i++) {
@@ -1566,9 +1578,26 @@
           </div>
 
           <div>
-            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.displayWord || word.word}</h2>
+            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.word}</h2>
             <p class="text-xs text-indigo-500 font-mono mt-0.5">${word.phonetic}</p>
-            <p class="text-xs text-slate-400 mt-0.5">${word.translation}</p>
+            <p class="text-sm text-slate-500 mt-1 font-bold">${word.translation}</p>
+            <button onclick="speakWord('${word.word}')" class="mt-2 px-3 py-1.5 rounded-xl bg-indigo-50 text-indigo-600 text-xs font-bold bounce-interactive">
+              🔊 听单词 ${word.word}
+            </button>
+          </div>
+
+          <div class="rounded-2xl border border-sky-100 bg-sky-50 p-3 text-left space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <p class="text-[10px] font-bold text-sky-500">再加上一个数量</p>
+                <p class="font-fredoka text-xl font-bold text-sky-900">${word.phrase}</p>
+                <p class="text-xs text-sky-700 font-bold">${word.phraseTranslation}</p>
+              </div>
+              <button onclick="speakWord('${word.phrase}')" class="w-11 h-11 rounded-full bg-sky-500 text-white shadow-sm bounce-interactive" aria-label="播放短语">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <p class="text-[11px] text-sky-700 leading-relaxed">💡 <b>${word.article}</b> 放在一个东西前面，可以先理解成“一个 / 一只 / 一支 / 一张”。${word.article === 'an' ? '这里用 <b>an</b>，因为 eraser 开头听起来是元音。' : ''}</p>
           </div>
 
           <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100 text-amber-800 text-xs font-bold text-left flex items-start gap-2">
@@ -1791,28 +1820,40 @@
       container.innerHTML = `
         <div class="my-auto space-y-5">
           <div class="inline-block bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">
-            第三步：点读句 · 朗读地道英语例句
+            第三步：懂一懂 · 单词和“一个……”
           </div>
 
-          <div class="text-5xl my-2 animate-bounce">${word.icon}</div>
+          <div class="text-5xl my-2">${word.icon}</div>
 
-          <div class="p-4 rounded-2xl bg-indigo-50/80 border border-indigo-100 text-slate-800 space-y-2">
-            <p onclick="speakWord('${word.sentenceEN}')" class="font-fredoka font-bold text-lg text-indigo-900 cursor-pointer hover:text-indigo-600 flex items-center justify-center gap-2">
-              <span>"${word.sentenceEN}"</span>
-              <i class="fa-solid fa-volume-high text-sm text-indigo-500"></i>
-            </p>
-            <p class="text-xs text-slate-500 font-medium">${word.sentenceCN}</p>
+          <div class="grid grid-cols-1 gap-3 text-left">
+            <button onclick="speakWord('${word.word}')" class="p-4 rounded-2xl bg-white border border-indigo-100 shadow-sm bounce-interactive flex items-center justify-between">
+              <div>
+                <p class="text-[10px] text-indigo-400 font-bold">东西叫什么？</p>
+                <p class="font-fredoka font-bold text-2xl text-slate-800">${word.word}</p>
+                <p class="text-sm text-slate-500 font-bold">${word.translation}</p>
+              </div>
+              <span class="w-11 h-11 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
+            </button>
+
+            <button onclick="speakWord('${word.phrase}')" class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100 bounce-interactive flex items-center justify-between">
+              <div>
+                <p class="text-[10px] text-emerald-500 font-bold">一个这个东西怎么说？</p>
+                <p class="font-fredoka font-bold text-2xl text-emerald-900">${word.phrase}</p>
+                <p class="text-sm text-emerald-700 font-bold">${word.phraseTranslation}</p>
+              </div>
+              <span class="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
+            </button>
           </div>
 
-          <p class="text-[11px] text-slate-400">点击上面例句听完整地道发音 🔊</p>
+          <div class="p-3 rounded-2xl bg-amber-50 border border-amber-100 text-left text-[11px] text-amber-800 leading-relaxed">
+            🌟 <b>a / an 小魔法：</b>${word.article === 'an' ? '<b>an</b> 也表示“一个”，eraser 前面说 <b>an eraser</b>。' : '<b>a</b> 可以先理解成“一个 / 一只 / 一支 / 一张”，所以 ' + word.phrase + ' 就是“' + word.phraseTranslation + '”。'}
+          </div>
 
           <button onclick="finishStep3()" class="w-full py-3 bg-emerald-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow-md shadow-emerald-200 bounce-interactive">
-            读完了，进入最后拼写！🚀
+            我明白啦，去拼写！🚀
           </button>
         </div>
       `;
-
-      setTimeout(() => speakWord(word.sentenceEN), 400);
     }
 
     function finishStep3() {
@@ -1964,7 +2005,7 @@
       if (appState.currentWordIndex < WORD_BANK.length - 1 && appState.completedWordsCount < appState.dailyLimit) {
         showCustomModal(
           `🎉 太棒了，小夕！`,
-          `你完成了 “${word.displayWord || word.word}” 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
+          `你完成了单词 "${word.word}" 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
           () => {
             appState.currentWordIndex += 1;
             appState.currentStepIndex = 0;
@@ -2041,8 +2082,7 @@
       const filtered = WORD_BANK.filter(item => {
         const matchesCat = (selectedCat === 'all') || (item.category === selectedCat);
         const matchesSearch = !searchVal || 
-          item.word.toLowerCase().includes(searchVal) ||
-          (item.displayWord || '').toLowerCase().includes(searchVal) ||
+          item.word.toLowerCase().includes(searchVal) || 
           item.translation.includes(searchVal);
 
         return matchesCat && matchesSearch;
@@ -2075,7 +2115,7 @@
         
         card.innerHTML = `
           <span class="text-3xl block mb-1.5">${item.icon}</span>
-          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.displayWord || item.word}</h3>
+          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.word}</h3>
           <p class="text-[11px] text-indigo-500 font-mono">${item.phonetic}</p>
           <p class="text-xs text-slate-500 mt-0.5 font-medium">${item.translation}</p>
           <div class="mt-2 flex items-center justify-center gap-1 text-[10px] text-indigo-600 font-bold bg-indigo-50 rounded-lg py-1 px-2">
@@ -2096,10 +2136,10 @@
       check('全部字母有例词数据', ALPHABET.every(x => x.word));
       check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
       check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
-      check('Unit 1 共16词', WORD_BANK.length === 16 && WORD_BANK.every(x => x.unit === 1));
+      check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.6 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.7 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);

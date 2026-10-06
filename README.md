@@ -1,20 +1,21 @@
-# 小夕英语 v5.6 · Let’s Go 1 Unit 1 试运行版
+# 小夕英语 v5.7 Unit 1
 
-本版只替换 Unit 1，便于先验证课程结构和音频链路，再决定是否继续加入其他 Unit。
+本版本把 Let’s Go 1 Unit 1 拆成“单词本体”和“a/an 数量短语”两层学习。
 
 ## Unit 1 词表
+pencil, pen, bag, book, desk, chair, ruler, eraser, map, marker, globe, table, board, wastebasket, poster, crayon
 
-共 16 个：a pencil, a pen, a bag, a book, a desk, a chair, a ruler, an eraser, a map, a marker, a globe, a table, a board, a wastebasket, a poster, a crayon。
+## 两套音频
+- `audio/words/`：词本体，用于单词本、听词、跟读、拼写，例如 `pencil`
+- `audio/phrases/`：Oxford 原始名词短语，用于 a/an 教学，例如 `a pencil` / `an eraser`
 
-## 本版变化
+短语音频来自用户提供的 Let’s Go 1 CD1 Track 08 / Track 14；word 音频在同一原始片段上重新裁切，去掉开头冠词，并保留短前后静音。
 
-- 每日闯关只使用 Unit 1 的 16 个词。
-- 单词本同步更新为 Unit 1 的 16 个词。
-- 修复单词本点击朗读：只把英文目标词传给本地音频播放器。
-- 16 个词的音频由用户提供的 Let’s Go 1 Audio CD1 中 Track 08 / Track 14 切分。
-- Android 继续沿用 v5.5 已验证有效的 Range-aware Service Worker 和持久化 audio 元素。
-- 使用新的 localStorage key，避免旧 62 词学习进度污染 Unit 1 试运行。
+## 学习逻辑
+- 单词本：只显示 `pencil / 铅笔`，点击只播放 `pencil`
+- 每日闯关：先学 `pencil / 铅笔`，再学 `a pencil / 一支铅笔`
+- `a/an` 用儿童化解释：可先理解成“一个 / 一只 / 一支 / 一张 / 一块”，不要求孩子记“不定冠词”术语
+- `eraser` 使用 `an eraser`
 
-## 版权提醒
-
-这些 Oxford 音频来自用户提供的教材音频。建议仅用于你自己的家庭学习/私人部署。若将包含这些音频的版本公开发布到 GitHub Pages，需要自行确认你拥有相应的网络再分发权。
+## 部署
+保持项目根目录结构，整包覆盖 GitHub Pages 仓库后重新部署。Service Worker 缓存版本已升级到 v5.7.0。

@@ -1,7 +1,7 @@
 {
   "name": "小夕的英语魔法工作台",
-  "short_name": "小夕英语",
-  "description": "小夕英语 v5.2：本地资源、离线字母包、稳定录音跟读的儿童英语 PWA",
+  "short_name": "小夕英语 Unit 1",
+  "description": "小夕英语 Unit 1 v5.2：本地资源、离线字母包、稳定录音跟读的儿童英语 PWA",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
