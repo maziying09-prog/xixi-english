@@ -1,0 +1,112 @@
+{
+  "cat": {
+    "track": "CD2 Track 57",
+    "phrase_start": 8.397,
+    "phrase_end": 9.276,
+    "word_cut_offset": 0.2
+  },
+  "dog": {
+    "track": "CD2 Track 57",
+    "phrase_start": 13.372,
+    "phrase_end": 14.246,
+    "word_cut_offset": 0.2
+  },
+  "bird": {
+    "track": "CD2 Track 57",
+    "phrase_start": 18.253,
+    "phrase_end": 19.104,
+    "word_cut_offset": 0.19
+  },
+  "rabbit": {
+    "track": "CD2 Track 57",
+    "phrase_start": 22.844,
+    "phrase_end": 23.853,
+    "word_cut_offset": 0.2
+  },
+  "frog": {
+    "track": "CD2 Track 57",
+    "phrase_start": 27.989,
+    "phrase_end": 29.018,
+    "word_cut_offset": 0.2
+  },
+  "cats": {
+    "track": "CD2 Track 57",
+    "start": 32.77,
+    "end": 33.675
+  },
+  "dogs": {
+    "track": "CD2 Track 57",
+    "start": 37.377,
+    "end": 38.27
+  },
+  "birds": {
+    "track": "CD2 Track 57",
+    "start": 41.957,
+    "end": 42.859
+  },
+  "rabbits": {
+    "track": "CD2 Track 57",
+    "start": 46.527,
+    "end": 47.546
+  },
+  "frogs": {
+    "track": "CD2 Track 57",
+    "start": 51.583,
+    "end": 52.591
+  },
+  "monkey": {
+    "track": "CD2 Track 63",
+    "phrase_start": 8.504,
+    "phrase_end": 9.577,
+    "word_cut_offset": 0.2
+  },
+  "lion": {
+    "track": "CD2 Track 63",
+    "phrase_start": 13.159,
+    "phrase_end": 14.148,
+    "word_cut_offset": 0.2
+  },
+  "bear": {
+    "track": "CD2 Track 63",
+    "phrase_start": 17.758,
+    "phrase_end": 18.873,
+    "word_cut_offset": 0.19
+  },
+  "giraffe": {
+    "track": "CD2 Track 63",
+    "phrase_start": 22.807,
+    "phrase_end": 23.846,
+    "word_cut_offset": 0.2
+  },
+  "elephant": {
+    "track": "CD2 Track 63",
+    "phrase_start": 28.168,
+    "phrase_end": 29.629,
+    "word_cut_offset": 0.3
+  },
+  "monkeys": {
+    "track": "CD2 Track 63",
+    "start": 33.119,
+    "end": 34.145
+  },
+  "lions": {
+    "track": "CD2 Track 63",
+    "start": 37.909,
+    "end": 39.113
+  },
+  "bears": {
+    "track": "CD2 Track 63",
+    "start": 42.168,
+    "end": 43.103
+  },
+  "giraffes": {
+    "track": "CD2 Track 63",
+    "start": 46.29,
+    "end": 47.314
+  },
+  "elephants": {
+    "track": "CD2 Track 63",
+    "start": 50.724,
+    "end": 51.729
+  }
+}

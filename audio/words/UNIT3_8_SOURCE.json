@@ -1,0 +1,445 @@
+{
+  "yellow": {
+    "track": "u3_colors",
+    "start": 8.393,
+    "end": 9.421
+  },
+  "blue": {
+    "track": "u3_colors",
+    "start": 13.106,
+    "end": 13.912
+  },
+  "red": {
+    "track": "u3_colors",
+    "start": 17.152,
+    "end": 17.847
+  },
+  "green": {
+    "track": "u3_colors",
+    "start": 21.237,
+    "end": 22.139
+  },
+  "purple": {
+    "track": "u3_colors",
+    "start": 25.904,
+    "end": 26.671
+  },
+  "orange": {
+    "track": "u4_count",
+    "phrase_start": 40.474,
+    "phrase_end": 41.716,
+    "word_cut_offset": 0.3
+  },
+  "brown": {
+    "track": "u3_colors",
+    "start": 34.458,
+    "end": 35.294
+  },
+  "pink": {
+    "track": "u3_colors",
+    "start": 38.599,
+    "end": 39.261
+  },
+  "black": {
+    "track": "u3_colors",
+    "start": 42.744,
+    "end": 43.654
+  },
+  "white": {
+    "track": "u3_colors",
+    "start": 47.039,
+    "end": 47.864
+  },
+  "triangle": {
+    "track": "u3_shapes",
+    "phrase_start": 8.887,
+    "phrase_end": 10.134,
+    "word_cut_offset": 0.2
+  },
+  "square": {
+    "track": "u3_shapes",
+    "phrase_start": 13.247,
+    "phrase_end": 14.418,
+    "word_cut_offset": 0.2
+  },
+  "circle": {
+    "track": "u3_shapes",
+    "phrase_start": 17.767,
+    "phrase_end": 18.799,
+    "word_cut_offset": 0.2
+  },
+  "star": {
+    "track": "u3_shapes",
+    "phrase_start": 22.299,
+    "phrase_end": 23.38,
+    "word_cut_offset": 0.2
+  },
+  "diamond": {
+    "track": "u3_shapes",
+    "phrase_start": 27.137,
+    "phrase_end": 28.336,
+    "word_cut_offset": 0.2
+  },
+  "heart": {
+    "track": "u3_shapes",
+    "phrase_start": 31.961,
+    "phrase_end": 32.899,
+    "word_cut_offset": 0.2
+  },
+  "oval": {
+    "track": "u3_shapes",
+    "phrase_start": 36.699,
+    "phrase_end": 37.752,
+    "word_cut_offset": 0.3
+  },
+  "rectangle": {
+    "track": "u3_shapes",
+    "phrase_start": 40.928,
+    "phrase_end": 42.291,
+    "word_cut_offset": 0.2
+  },
+  "banana": {
+    "track": "u4_count",
+    "phrase_start": 7.838,
+    "phrase_end": 8.799,
+    "word_cut_offset": 0.2
+  },
+  "soda": {
+    "track": "u4_count",
+    "phrase_start": 12.357,
+    "phrase_end": 13.442,
+    "word_cut_offset": 0.2
+  },
+  "milkshake": {
+    "track": "u4_count",
+    "phrase_start": 17.124,
+    "phrase_end": 18.136,
+    "word_cut_offset": 0.2
+  },
+  "cookie": {
+    "track": "u4_count",
+    "phrase_start": 21.924,
+    "phrase_end": 22.908,
+    "word_cut_offset": 0.2
+  },
+  "sandwich": {
+    "track": "u4_count",
+    "phrase_start": 26.351,
+    "phrase_end": 27.532,
+    "word_cut_offset": 0.2
+  },
+  "salad": {
+    "track": "u4_count",
+    "phrase_start": 31.183,
+    "phrase_end": 32.174,
+    "word_cut_offset": 0.2
+  },
+  "egg": {
+    "track": "u4_count",
+    "phrase_start": 35.957,
+    "phrase_end": 36.917,
+    "word_cut_offset": 0.3
+  },
+  "chicken": {
+    "track": "u4_mass",
+    "start": 8.421,
+    "end": 9.188
+  },
+  "fish": {
+    "track": "u4_mass",
+    "start": 12.367,
+    "end": 13.187
+  },
+  "pizza": {
+    "track": "u4_mass",
+    "start": 16.561,
+    "end": 17.383
+  },
+  "bread": {
+    "track": "u4_mass",
+    "start": 20.62,
+    "end": 21.299
+  },
+  "rice": {
+    "track": "u4_mass",
+    "start": 24.99,
+    "end": 25.778
+  },
+  "milk": {
+    "track": "u4_mass",
+    "start": 29.338,
+    "end": 30.097
+  },
+  "cake": {
+    "track": "u4_mass",
+    "start": 34.129,
+    "end": 34.773
+  },
+  "ice_cream": {
+    "track": "u4_mass",
+    "start": 38.644,
+    "end": 39.696
+  },
+  "yo_yo": {
+    "track": "u5_toys",
+    "phrase_start": 8.853,
+    "phrase_end": 10.036,
+    "word_cut_offset": 0.2
+  },
+  "baseball": {
+    "track": "u5_toys",
+    "phrase_start": 13.222,
+    "phrase_end": 14.32,
+    "word_cut_offset": 0.2
+  },
+  "kite": {
+    "track": "u5_toys",
+    "phrase_start": 17.729,
+    "phrase_end": 18.745,
+    "word_cut_offset": 0.2
+  },
+  "doll": {
+    "track": "u5_toys",
+    "phrase_start": 22.187,
+    "phrase_end": 23.121,
+    "word_cut_offset": 0.2
+  },
+  "car": {
+    "track": "u5_toys",
+    "phrase_start": 26.281,
+    "phrase_end": 27.295,
+    "word_cut_offset": 0.2
+  },
+  "robot": {
+    "track": "u5_toys",
+    "phrase_start": 30.725,
+    "phrase_end": 31.765,
+    "word_cut_offset": 0.2
+  },
+  "bicycle": {
+    "track": "u5_toys",
+    "phrase_start": 35.487,
+    "phrase_end": 36.649,
+    "word_cut_offset": 0.2
+  },
+  "jump_rope": {
+    "track": "u5_toys",
+    "phrase_start": 39.854,
+    "phrase_end": 40.967,
+    "word_cut_offset": 0.2
+  },
+  "puzzle": {
+    "track": "u5_toys",
+    "phrase_start": 44.361,
+    "phrase_end": 45.38,
+    "word_cut_offset": 0.2
+  },
+  "bat": {
+    "track": "u5_toys",
+    "phrase_start": 49.048,
+    "phrase_end": 49.891,
+    "word_cut_offset": 0.2
+  },
+  "big": {
+    "track": "u5_desc",
+    "start": 8.469,
+    "end": 9.289
+  },
+  "little": {
+    "track": "u5_desc",
+    "start": 12.53,
+    "end": 13.206
+  },
+  "new": {
+    "track": "u5_desc",
+    "start": 16.244,
+    "end": 17.126
+  },
+  "old": {
+    "track": "u5_desc",
+    "start": 20.271,
+    "end": 21.013
+  },
+  "long": {
+    "track": "u5_desc",
+    "start": 24.215,
+    "end": 25.123
+  },
+  "short": {
+    "track": "u5_desc",
+    "start": 28.321,
+    "end": 29.287
+  },
+  "round": {
+    "track": "u5_desc",
+    "start": 32.253,
+    "end": 33.38
+  },
+  "square_desc": {
+    "track": "u5_desc",
+    "start": 36.501,
+    "end": 37.471
+  },
+  "flower": {
+    "track": "u6_nature",
+    "phrase_start": 8.464,
+    "phrase_end": 9.457,
+    "word_cut_offset": 0.2
+  },
+  "tree": {
+    "track": "u6_nature",
+    "phrase_start": 13.473,
+    "phrase_end": 14.502,
+    "word_cut_offset": 0.2
+  },
+  "cloud": {
+    "track": "u6_nature",
+    "phrase_start": 18.395,
+    "phrase_end": 19.449,
+    "word_cut_offset": 0.2
+  },
+  "puddle": {
+    "track": "u6_nature",
+    "phrase_start": 23.148,
+    "phrase_end": 24.194,
+    "word_cut_offset": 0.2
+  },
+  "in": {
+    "track": "u6_prep",
+    "start": 8.229,
+    "end": 8.906
+  },
+  "on": {
+    "track": "u6_prep",
+    "start": 12.542,
+    "end": 13.301
+  },
+  "under": {
+    "track": "u6_prep",
+    "start": 17.14,
+    "end": 17.896
+  },
+  "by": {
+    "track": "u6_prep",
+    "start": 21.735,
+    "end": 22.48
+  },
+  "store_crayon": {
+    "track": "u7_write",
+    "phrase_start": 8.5,
+    "phrase_end": 9.757,
+    "word_cut_offset": 0.2
+  },
+  "store_marker": {
+    "track": "u7_write",
+    "phrase_start": 13.58,
+    "phrase_end": 14.657,
+    "word_cut_offset": 0.2
+  },
+  "store_notebook": {
+    "track": "u7_write",
+    "phrase_start": 18.326,
+    "phrase_end": 19.438,
+    "word_cut_offset": 0.2
+  },
+  "store_pencil_case": {
+    "track": "u7_write",
+    "phrase_start": 22.443,
+    "phrase_end": 23.913,
+    "word_cut_offset": 0.2
+  },
+  "cd": {
+    "track": "u7_elec",
+    "phrase_start": 8.585,
+    "phrase_end": 9.67,
+    "word_cut_offset": 0.2
+  },
+  "video_game": {
+    "track": "u7_elec",
+    "phrase_start": 13.077,
+    "phrase_end": 14.349,
+    "word_cut_offset": 0.2
+  },
+  "cell_phone": {
+    "track": "u7_elec",
+    "phrase_start": 17.772,
+    "phrase_end": 19.15,
+    "word_cut_offset": 0.2
+  },
+  "computer": {
+    "track": "u7_elec",
+    "phrase_start": 22.346,
+    "phrase_end": 23.495,
+    "word_cut_offset": 0.2
+  },
+  "grandmother": {
+    "track": "u8_family",
+    "start": 8.369,
+    "end": 9.651
+  },
+  "grandfather": {
+    "track": "u8_family",
+    "start": 13.242,
+    "end": 14.37
+  },
+  "mother": {
+    "track": "u8_family",
+    "start": 18.237,
+    "end": 19.113
+  },
+  "father": {
+    "track": "u8_family",
+    "start": 22.595,
+    "end": 23.393
+  },
+  "sister": {
+    "track": "u8_family",
+    "start": 26.935,
+    "end": 28.084
+  },
+  "brother": {
+    "track": "u8_family",
+    "start": 31.656,
+    "end": 32.485
+  },
+  "baby_sister": {
+    "track": "u8_family",
+    "start": 35.801,
+    "end": 37.086
+  },
+  "baby_brother": {
+    "track": "u8_family",
+    "start": 40.257,
+    "end": 41.414
+  },
+  "tall": {
+    "track": "u8_desc",
+    "start": 8.966,
+    "end": 9.787
+  },
+  "short_person": {
+    "track": "u8_desc",
+    "start": 13.219,
+    "end": 14.178
+  },
+  "young": {
+    "track": "u8_desc",
+    "start": 17.592,
+    "end": 18.434
+  },
+  "old_person": {
+    "track": "u8_desc",
+    "start": 21.726,
+    "end": 22.458
+  },
+  "pretty": {
+    "track": "u8_desc",
+    "start": 25.634,
+    "end": 26.396
+  },
+  "handsome": {
+    "track": "u8_desc",
+    "start": 29.312,
+    "end": 30.408
+  }
+}
