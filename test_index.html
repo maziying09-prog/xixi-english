@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>小夕的魔法世界 · 英语学习工作台 v5.1</title>
+  <title>小夕的魔法世界 · 英语学习工作台 v5.6</title>
   
   <!-- Mobile & PWA App Capabilities -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -18,42 +18,29 @@
 
   <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
   <link rel="manifest" href="manifest.webmanifest" />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Google Fonts for Kids Aesthetic -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            fredoka: ['Fredoka', 'Noto Sans SC', 'sans-serif'],
-            sans: ['Noto Sans SC', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              blue: '#3B82F6',
-              softBlue: '#EFF6FF',
-              lightBg: '#F8FAFC',
-              cardBg: '#FFFFFF',
-              green: '#10B981',
-              orange: '#F59E0B',
-              pink: '#EC4899',
-              purple: '#8B5CF6'
-            }
-          }
-        }
-      }
+  <!-- v5.6: all UI dependencies are local for stable mobile/PWA startup -->
+  <link rel="stylesheet" href="./assets/tailwind.css" />
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+  <style id="mobile-color-compat">
+    /* v5.6: critical home cards no longer depend on Tailwind gradient variables.
+       Use plain sRGB CSS with a solid-color fallback for Safari/older WebViews. */
+    #pwaInstallBanner.home-install-banner {
+      background-color: #f97316 !important;
+      background-image: linear-gradient(90deg, #f59e0b 0%, #f97316 100%) !important;
+      color: #ffffff !important;
     }
-  </script>
+    #homeHeroCard.home-hero-card {
+      background-color: #4f46e5 !important;
+      background-image: linear-gradient(135deg, #6366f1 0%, #4f46e5 52%, #9333ea 100%) !important;
+      color: #ffffff !important;
+    }
+    #pwaInstallBanner.home-install-banner *, #homeHeroCard.home-hero-card * {
+      text-shadow: none;
+    }
+  </style>
 
   <style>
+    .font-fredoka { font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, sans-serif; }
     * {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -294,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.1 离线儿歌 + 字母发音版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.6 Unit 1 试运行版 · Let’s Go 1 · PWA</p>
       </div>
     </aside>
 
@@ -304,7 +291,7 @@
       <div id="viewHome" class="space-y-4">
 
         <!-- HomeScreen Install Action Card (PWA Packaging Feature) -->
-        <div id="pwaInstallBanner" class="soft-card p-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white flex items-center justify-between shadow-lg shadow-amber-500/20">
+        <div id="pwaInstallBanner" style="background-color:#f97316 !important;background-image:linear-gradient(90deg,#f59e0b 0%,#f97316 100%) !important;color:#ffffff !important;" class="soft-card p-4 text-white flex items-center justify-between shadow-lg shadow-amber-500/20 home-install-banner">
           <div class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl shrink-0">
               📱
@@ -320,7 +307,7 @@
         </div>
 
         <!-- Welcome Banner Card -->
-        <div class="soft-card p-5 bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+        <div id="homeHeroCard" style="background-color:#4f46e5 !important;background-image:linear-gradient(135deg,#6366f1 0%,#4f46e5 52%,#9333ea 100%) !important;color:#ffffff !important;" class="soft-card p-5 text-white relative overflow-hidden home-hero-card">
           <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
           <div class="relative z-10 flex justify-between items-start">
             <div>
@@ -444,7 +431,7 @@
             返回
           </button>
         </div>
-        <!-- v5.1 Offline Nursery-Rhyme Alphabet Song Player -->
+        <!-- v5.6 Offline Nursery-Rhyme Alphabet Song Player -->
         <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
           <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
           <div class="flex items-center gap-3 relative z-10">
@@ -475,7 +462,7 @@
           <audio id="alphabetSongAudio" preload="metadata" src="./audio/alphabet_song.mp3"></audio>
         </section>
 
-        <p id="alphabetAudioStatus" class="text-[11px] text-indigo-600 font-bold bg-indigo-50 border border-indigo-100 rounded-xl px-3 py-2">字母卡可点击播放标准美式字母名；顶部为本地离线 ABC 儿歌，全部音频均可离线使用。</p>
+        <p id="alphabetAudioStatus" class="text-[11px] text-indigo-600 font-bold bg-indigo-50 border border-indigo-100 rounded-xl px-3 py-2">正在检查离线字母音频包…首次联网会自动缓存 A–Z，完成后可断网使用。</p>
         <div id="alphabetGrid" class="grid grid-cols-3 gap-3">
           <!-- Dynamically generated via JS -->
         </div>
@@ -522,7 +509,7 @@
         <div class="flex items-center justify-between">
           <div>
             <h2 class="text-xl font-bold text-slate-800">我的单词果实树</h2>
-            <p class="text-xs text-slate-400">小学新课标 60+ 基础核心词汇库</p>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · Things for School</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -537,14 +524,8 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
-            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (62)</button>
-            <button onclick="selectCategory('animals')" id="catBtn-animals" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐱 动物</button>
-            <button onclick="selectCategory('food')" id="catBtn-food" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🍎 食物水果</button>
-            <button onclick="selectCategory('body_family')" id="catBtn-body_family" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">👨‍👩‍👧 身体家庭</button>
-            <button onclick="selectCategory('school')" id="catBtn-school" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">✏️ 校园文具</button>
-            <button onclick="selectCategory('colors_numbers')" id="catBtn-colors_numbers" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎨 颜色数字</button>
-            <button onclick="selectCategory('nature')" id="catBtn-nature" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">☀️ 自然天气</button>
-            <button onclick="selectCategory('travel_clothes')" id="catBtn-travel_clothes" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🚗 交通服饰</button>
+            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (16)</button>
+            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 · Things for School</button>
           </div>
         </div>
 
@@ -771,71 +752,25 @@
     ];
 
     const WORD_BANK = [
-      { id: 1, category: 'animals', word: 'Dog', translation: '小狗', icon: '🐶', phonetic: '/dɔːɡ/', sentenceEN: 'My dog can run fast.', sentenceCN: '我的小狗跑得很快。' },
-      { id: 2, category: 'animals', word: 'Cat', translation: '小猫', icon: '🐱', phonetic: '/kæt/', sentenceEN: 'The cute cat is sleeping.', sentenceCN: '这只可爱的小猫正在睡觉。' },
-      { id: 3, category: 'animals', word: 'Duck', translation: '鸭子', icon: '🦆', phonetic: '/dʌk/', sentenceEN: 'The yellow duck can swim.', sentenceCN: '这只黄色的鸭子会游泳。' },
-      { id: 4, category: 'animals', word: 'Fish', translation: '小鱼', icon: '🐟', phonetic: '/fɪʃ/', sentenceEN: 'Fish live in the water.', sentenceCN: '小鱼生活在水里。' },
-      { id: 5, category: 'animals', word: 'Bird', translation: '小鸟', icon: '🐦', phonetic: '/bɜːrd/', sentenceEN: 'The little bird is singing.', sentenceCN: '小鸟正在唱歌。' },
-      { id: 6, category: 'animals', word: 'Bear', translation: '大熊', icon: '🐻', phonetic: '/beər/', sentenceEN: 'The brown bear likes honey.', sentenceCN: '棕熊喜欢吃蜂蜜。' },
-      { id: 7, category: 'animals', word: 'Rabbit', translation: '兔子', icon: '🐰', phonetic: '/ˈræbɪt/', sentenceEN: 'The rabbit has long ears.', sentenceCN: '兔子长着长长的耳朵。' },
-      { id: 8, category: 'animals', word: 'Lion', translation: '狮子', icon: '🦁', phonetic: '/ˈlaɪən/', sentenceEN: 'The lion is strong.', sentenceCN: '狮子非常强壮。' },
-      { id: 9, category: 'animals', word: 'Monkey', translation: '猴子', icon: '🐵', phonetic: '/ˈmʌŋki/', sentenceEN: 'The monkey loves bananas.', sentenceCN: '猴子最爱吃香蕉。' },
-      { id: 10, category: 'animals', word: 'Elephant', translation: '大象', icon: '🐘', phonetic: '/ˈelɪfənt/', sentenceEN: 'An elephant has a long nose.', sentenceCN: '大象有一条长鼻子。' },
-      { id: 11, category: 'animals', word: 'Panda', translation: '熊猫', icon: '🐼', phonetic: '/ˈpændə/', sentenceEN: 'Pandas like bamboo.', sentenceCN: '熊猫喜欢吃竹子。' },
-      { id: 12, category: 'animals', word: 'Tiger', translation: '老虎', icon: '🐯', phonetic: '/ˈtaɪɡər/', sentenceEN: 'Look at the big tiger.', sentenceCN: '看那只大老虎。' },
-      { id: 13, category: 'food', word: 'Apple', translation: '苹果', icon: '🍎', phonetic: '/ˈæpl/', sentenceEN: 'I see a sweet red apple.', sentenceCN: '我看到一个甜甜的红苹果。' },
-      { id: 14, category: 'food', word: 'Banana', translation: '香蕉', icon: '🍌', phonetic: '/bəˈnænə/', sentenceEN: 'This yellow banana is yummy.', sentenceCN: '这个黄色的香蕉很好吃。' },
-      { id: 15, category: 'food', word: 'Orange', translation: '桔子', icon: '🍊', phonetic: '/ˈɔːrɪndʒ/', sentenceEN: 'I want a fresh orange.', sentenceCN: '我想吃一个新鲜的桔子。' },
-      { id: 16, category: 'food', word: 'Pear', translation: '鸭梨', icon: '🍐', phonetic: '/peər/', sentenceEN: 'The green pear is juicy.', sentenceCN: '这个绿色的梨水分很多。' },
-      { id: 17, category: 'food', word: 'Milk', translation: '牛奶', icon: '🥛', phonetic: '/mɪlk/', sentenceEN: 'Drink milk every day.', sentenceCN: '每天都要喝牛奶哦。' },
-      { id: 18, category: 'food', word: 'Bread', translation: '面包', icon: '🍞', phonetic: '/bred/', sentenceEN: 'Soft bread for breakfast.', sentenceCN: '早餐吃软软的面包。' },
-      { id: 19, category: 'food', word: 'Water', translation: '水', icon: '💧', phonetic: '/ˈwɔːtər/', sentenceEN: 'Drink fresh water.', sentenceCN: '多喝新鲜的纯净水。' },
-      { id: 20, category: 'food', word: 'Cake', translation: '蛋糕', icon: '🎂', phonetic: '/keɪk/', sentenceEN: 'Happy Birthday cake!', sentenceCN: '生日快乐的大蛋糕！' },
-      { id: 21, category: 'food', word: 'Egg', translation: '鸡蛋', icon: '🥚', phonetic: '/eɡ/', sentenceEN: 'An egg a day is healthy.', sentenceCN: '每天吃一个鸡蛋很健康。' },
-      { id: 22, category: 'food', word: 'Rice', translation: '米饭', icon: '🍚', phonetic: '/raɪs/', sentenceEN: 'We eat rice for dinner.', sentenceCN: '我们晚餐吃香喷喷的米饭。' },
-      { id: 23, category: 'food', word: 'Juice', translation: '果汁', icon: '🧃', phonetic: '/dʒuːs/', sentenceEN: 'Sweet apple juice.', sentenceCN: '甜甜的苹果汁。' },
-      { id: 24, category: 'food', word: 'Ice cream', translation: '冰淇淋', icon: '🍦', phonetic: '/ˌaɪs ˈkriːm/', sentenceEN: 'Cool ice cream in summer.', sentenceCN: '夏天吃冰凉的冰淇淋。' },
-      { id: 25, category: 'body_family', word: 'Eye', translation: '眼睛', icon: '👁️', phonetic: '/aɪ/', sentenceEN: 'Open your bright eyes.', sentenceCN: '睁开你明亮的小眼睛。' },
-      { id: 26, category: 'body_family', word: 'Nose', translation: '鼻子', icon: '👃', phonetic: '/noʊz/', sentenceEN: 'Touch your small nose.', sentenceCN: '摸摸你小小的鼻子。' },
-      { id: 27, category: 'body_family', word: 'Mouth', translation: '嘴巴', icon: '👄', phonetic: '/maʊθ/', sentenceEN: 'Smile with your mouth.', sentenceCN: '用你的小嘴巴微笑。' },
-      { id: 28, category: 'body_family', word: 'Hand', translation: '手', icon: '✋', phonetic: '/hænd/', sentenceEN: 'Clap your hands!', sentenceCN: '拍拍你的双手！' },
-      { id: 29, category: 'body_family', word: 'Foot', translation: '脚', icon: '🦶', phonetic: '/fʊt/', sentenceEN: 'Stamp your foot.', sentenceCN: '跺跺你的小脚丫。' },
-      { id: 30, category: 'body_family', word: 'Head', translation: '头部', icon: '🗣️', phonetic: '/hed/', sentenceEN: 'Nod your head.', sentenceCN: '点点头。' },
-      { id: 31, category: 'body_family', word: 'Dad', translation: '爸爸', icon: '👨', phonetic: '/dæd/', sentenceEN: 'I love my superhero Dad.', sentenceCN: '我爱我的超级英雄爸爸。' },
-      { id: 32, category: 'body_family', word: 'Mom', translation: '妈妈', icon: '👩', phonetic: '/mɑːm/', sentenceEN: 'Mom gives me a hug.', sentenceCN: '妈妈给了我一个拥抱。' },
-      { id: 33, category: 'body_family', word: 'Brother', translation: '兄弟', icon: '👦', phonetic: '/ˈbrʌðər/', sentenceEN: 'My brother plays with me.', sentenceCN: '我的哥哥/弟弟和我一起玩。' },
-      { id: 34, category: 'body_family', word: 'Sister', translation: '姐妹', icon: '👧', phonetic: '/ˈsɪstər/', sentenceEN: 'My sister is smart.', sentenceCN: '我的姐姐/妹妹很聪明。' },
-      { id: 35, category: 'school', word: 'Book', translation: '书本', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'Read a fun storybook.', sentenceCN: '读一本有趣的故事书。' },
-      { id: 36, category: 'school', word: 'Pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'Write with a blue pen.', sentenceCN: '用蓝色的笔写字。' },
-      { id: 37, category: 'school', word: 'Pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensl/', sentenceEN: 'Draw with a long pencil.', sentenceCN: '用长铅笔画画。' },
-      { id: 38, category: 'school', word: 'Ruler', translation: '直尺', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'Use a ruler for straight lines.', sentenceCN: '用直尺画直线。' },
-      { id: 39, category: 'school', word: 'Bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'Put books in your bag.', sentenceCN: '把书本装进书包里。' },
-      { id: 40, category: 'school', word: 'Desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'Clean your tidy desk.', sentenceCN: '整理好你干净的课桌。' },
-      { id: 41, category: 'school', word: 'Chair', translation: '椅子', icon: '🪑', phonetic: '/tʃeər/', sentenceEN: 'Sit down on the chair.', sentenceCN: '坐在椅子上。' },
-      { id: 42, category: 'school', word: 'Teacher', translation: '老师', icon: '🧑‍🏫', phonetic: '/ˈtiːtʃər/', sentenceEN: 'Say good morning to teacher.', sentenceCN: '向老师问早安。' },
-      { id: 43, category: 'colors_numbers', word: 'Red', translation: '红色', icon: '🔴', phonetic: '/red/', sentenceEN: 'Red like a sweet apple.', sentenceCN: '像红苹果一样的红色。' },
-      { id: 44, category: 'colors_numbers', word: 'Blue', translation: '蓝色', icon: '🔵', phonetic: '/bluː/', sentenceEN: 'The sky is deep blue.', sentenceCN: '天空是蔚蓝色的。' },
-      { id: 45, category: 'colors_numbers', word: 'Yellow', translation: '黄色', icon: '💛', phonetic: '/ˈjeloʊ/', sentenceEN: 'A shiny yellow star.', sentenceCN: '闪闪发光的黄星星。' },
-      { id: 46, category: 'colors_numbers', word: 'Green', translation: '绿色', icon: '🟢', phonetic: '/ɡriːn/', sentenceEN: 'Green grass in spring.', sentenceCN: '春天绿油油的草地。' },
-      { id: 47, category: 'colors_numbers', word: 'One', translation: '数字 1', icon: '1️⃣', phonetic: '/wʌn/', sentenceEN: 'One cute puppy.', sentenceCN: '一只可爱的小狗。' },
-      { id: 48, category: 'colors_numbers', word: 'Two', translation: '数字 2', icon: '2️⃣', phonetic: '/tuː/', sentenceEN: 'Two flying birds.', sentenceCN: '两只飞翔的小鸟。' },
-      { id: 49, category: 'colors_numbers', word: 'Three', translation: '数字 3', icon: '3️⃣', phonetic: '/θriː/', sentenceEN: 'Three red apples.', sentenceCN: '三个红苹果。' },
-      { id: 50, category: 'colors_numbers', word: 'Four', translation: '数字 4', icon: '4️⃣', phonetic: '/fɔːr/', sentenceEN: 'Four green trees.', sentenceCN: '四棵大树。' },
-      { id: 51, category: 'colors_numbers', word: 'Five', translation: '数字 5', icon: '5️⃣', phonetic: '/faɪv/', sentenceEN: 'Give me five!', sentenceCN: '击掌加油！' },
-      { id: 52, category: 'nature', word: 'Sun', translation: '太阳', icon: '☀️', phonetic: '/sʌn/', sentenceEN: 'The sun is big and bright.', sentenceCN: '太阳又大又明亮。' },
-      { id: 53, category: 'nature', word: 'Moon', translation: '月亮', icon: '🌙', phonetic: '/muːn/', sentenceEN: 'The moon shines at night.', sentenceCN: '月亮在夜晚闪耀。' },
-      { id: 54, category: 'nature', word: 'Star', translation: '星星', icon: '🌟', phonetic: '/stɑːr/', sentenceEN: 'Twinkle twinkle little star.', sentenceCN: '一闪一闪小星星。' },
-      { id: 55, category: 'nature', word: 'Rain', translation: '雨水', icon: '🌧️', phonetic: '/reɪn/', sentenceEN: 'Rain falling from clouds.', sentenceCN: '从云朵落下的雨水。' },
-      { id: 56, category: 'nature', word: 'Tree', translation: '大树', icon: '🌳', phonetic: '/triː/', sentenceEN: 'Birds live in the tall tree.', sentenceCN: '小鸟住在高大的树上。' },
-      { id: 57, category: 'nature', word: 'Flower', translation: '鲜花', icon: '🌸', phonetic: '/ˈflaʊər/', sentenceEN: 'Smell the pretty flower.', sentenceCN: '闻闻美丽的花朵。' },
-      { id: 58, category: 'travel_clothes', word: 'Car', translation: '汽车', icon: '🚗', phonetic: '/kɑːr/', sentenceEN: 'The red car goes fast.', sentenceCN: '红色的汽车开得很快。' },
-      { id: 59, category: 'travel_clothes', word: 'Bus', translation: '公交车', icon: '🚌', phonetic: '/bʌs/', sentenceEN: 'Take a school bus.', sentenceCN: '乘坐校车去上学。' },
-      { id: 60, category: 'travel_clothes', word: 'Bike', translation: '自行车', icon: '🚲', phonetic: '/baɪk/', sentenceEN: 'Ride a small bike.', sentenceCN: '骑一辆小自行车。' },
-      { id: 61, category: 'travel_clothes', word: 'Hat', translation: '帽子', icon: '🎩', phonetic: '/hæt/', sentenceEN: 'Wear a warm hat.', sentenceCN: '戴上一顶温暖的帽子。' },
-      { id: 62, category: 'travel_clothes', word: 'Shoes', translation: '鞋子', icon: '👟', phonetic: '/ʃuːz/', sentenceEN: 'Put on your new shoes.', sentenceCN: '穿上你的新鞋子。' }
+      { id: 1, unit: 1, category: 'unit1', word: 'Pencil', displayWord: 'a pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensəl/', sentenceEN: 'It is a pencil.', sentenceCN: '这是一支铅笔。' },
+      { id: 2, unit: 1, category: 'unit1', word: 'Pen', displayWord: 'a pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'It is a pen.', sentenceCN: '这是一支钢笔。' },
+      { id: 3, unit: 1, category: 'unit1', word: 'Bag', displayWord: 'a bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'It is a bag.', sentenceCN: '这是一个书包。' },
+      { id: 4, unit: 1, category: 'unit1', word: 'Book', displayWord: 'a book', translation: '书', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'It is a book.', sentenceCN: '这是一本书。' },
+      { id: 5, unit: 1, category: 'unit1', word: 'Desk', displayWord: 'a desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'It is a desk.', sentenceCN: '这是一张课桌。' },
+      { id: 6, unit: 1, category: 'unit1', word: 'Chair', displayWord: 'a chair', translation: '椅子', icon: '🪑', phonetic: '/tʃer/', sentenceEN: 'It is a chair.', sentenceCN: '这是一把椅子。' },
+      { id: 7, unit: 1, category: 'unit1', word: 'Ruler', displayWord: 'a ruler', translation: '尺子', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'It is a ruler.', sentenceCN: '这是一把尺子。' },
+      { id: 8, unit: 1, category: 'unit1', word: 'Eraser', displayWord: 'an eraser', translation: '橡皮', icon: '🧽', phonetic: '/ɪˈreɪsər/', sentenceEN: 'It is an eraser.', sentenceCN: '这是一块橡皮。' },
+      { id: 9, unit: 1, category: 'unit1', word: 'Map', displayWord: 'a map', translation: '地图', icon: '🗺️', phonetic: '/mæp/', sentenceEN: 'This is a map.', sentenceCN: '这是一张地图。' },
+      { id: 10, unit: 1, category: 'unit1', word: 'Marker', displayWord: 'a marker', translation: '记号笔', icon: '🖊️', phonetic: '/ˈmɑːrkər/', sentenceEN: 'This is a marker.', sentenceCN: '这是一支记号笔。' },
+      { id: 11, unit: 1, category: 'unit1', word: 'Globe', displayWord: 'a globe', translation: '地球仪', icon: '🌍', phonetic: '/ɡloʊb/', sentenceEN: 'This is a globe.', sentenceCN: '这是一个地球仪。' },
+      { id: 12, unit: 1, category: 'unit1', word: 'Table', displayWord: 'a table', translation: '桌子', icon: '🛋️', phonetic: '/ˈteɪbəl/', sentenceEN: 'This is a table.', sentenceCN: '这是一张桌子。' },
+      { id: 13, unit: 1, category: 'unit1', word: 'Board', displayWord: 'a board', translation: '黑板', icon: '📋', phonetic: '/bɔːrd/', sentenceEN: 'This is a board.', sentenceCN: '这是一块黑板。' },
+      { id: 14, unit: 1, category: 'unit1', word: 'Wastebasket', displayWord: 'a wastebasket', translation: '废纸篓', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'This is a wastebasket.', sentenceCN: '这是一个废纸篓。' },
+      { id: 15, unit: 1, category: 'unit1', word: 'Poster', displayWord: 'a poster', translation: '海报', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'This is a poster.', sentenceCN: '这是一张海报。' },
+      { id: 16, unit: 1, category: 'unit1', word: 'Crayon', displayWord: 'a crayon', translation: '蜡笔', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'This is a crayon.', sentenceCN: '这是一支蜡笔。' }
     ];
 
-    const STORAGE_KEY = 'xiaoxiEnglishV4State';
+    const STORAGE_KEY = 'xiaoxiEnglishV56Unit1State';
     const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
 
     function todayKey() {
@@ -917,9 +852,12 @@
       saveAppState();
     }
 
-    // Recognition state
-    let activeRecognition = null;
-    let isRecognizing = false;
+    // v5.6 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    let activeMediaRecorder = null;
+    let activeMicStream = null;
+    let voiceChunks = [];
+    let lastVoiceBlobUrl = null;
+    let isVoiceRecording = false;
 
     function getAudioContext() {
       if (!audioCtx) {
@@ -1041,12 +979,70 @@
       return waitSpeech(settleMs, runId);
     }
 
+    const WORD_AUDIO_VERSION = 'v5.6.0';
+
+    function slugifyWordAudio(text) {
+      return String(text || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+    }
+
+    function findLocalWord(text) {
+      const key = String(text || '').trim().toLowerCase();
+      if (!key) return null;
+      return WORD_BANK.find(item => String(item.word).toLowerCase() === key) || null;
+    }
+
+    function playLocalWordAudio(text) {
+      const item = findLocalWord(text);
+      if (!item) return null;
+      stopAllAudio();
+
+      // v5.6: reuse one real <audio> element. Android Chrome/PWA is more
+      // reliable with a persistent media element than with a new Audio()
+      // object created for every tap.
+      const audio = document.getElementById('wordAudioPlayer');
+      if (!audio) return Promise.resolve(false);
+      const base = new URL(`audio/words/${slugifyWordAudio(item.word)}.mp3`, document.baseURI);
+      base.searchParams.set('v', WORD_AUDIO_VERSION);
+      audio.src = base.href;
+      audio.preload = 'auto';
+      audio.currentTime = 0;
+      currentPlayingAudio = audio;
+      audio.onended = () => {
+        if (currentPlayingAudio === audio) currentPlayingAudio = null;
+      };
+      audio.onerror = () => {
+        if (currentPlayingAudio === audio) currentPlayingAudio = null;
+        console.warn('[word-audio] failed:', audio.currentSrc || audio.src, audio.error);
+      };
+      try { audio.load(); } catch (e) {}
+      return audio.play().then(() => true).catch(err => {
+        console.warn('[word-audio] play rejected:', base.href, err);
+        return false;
+      });
+    }
+
     async function speakWord(text, lang = 'en-US', rate = 0.82) {
       if (!text) return false;
+
+      // v5.6: Daily Challenge vocabulary is always local-first.
+      // IMPORTANT: call audio.play() in the same user-gesture turn on Android/PWA.
+      // Do not insert cancel -> timeout -> speak between the tap and playback.
+      const localItem = findLocalWord(text);
+      if (localItem) {
+        const ok = await playLocalWordAudio(localItem.word);
+        if (ok) return true;
+        // Only fall back to system TTS if the local file cannot be played.
+      }
+
       stopAllAudio();
-      playSfx('click');
       const runId = speechRunId;
-      if (!await startFreshSpeech(runId, 110)) return false;
+      if (!('speechSynthesis' in window)) return false;
+      try { window.speechSynthesis.resume(); } catch (e) {}
+      // Android/standalone PWA is more reliable when speak() is issued immediately.
       return speakLocalEnglish(text, rate, runId, 'word');
     }
 
@@ -1132,6 +1128,43 @@
       try { await audio.play(); } catch (e) {}
     }
 
+    // --- v5.6 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.6.0';
+    const LETTER_AUDIO_VERSION = 'v5.6.0';
+    let alphabetPackPromise = null;
+
+    async function ensureAlphabetPack() {
+      if (alphabetPackPromise) return alphabetPackPromise;
+      const status = document.getElementById('alphabetAudioStatus');
+      alphabetPackPromise = (async () => {
+        if (!('caches' in window)) {
+          if (status) status.textContent = '⚠️ 当前浏览器不支持离线缓存；联网时仍可点击字母发音。';
+          return false;
+        }
+        const cache = await caches.open(ALPHABET_PACK_CACHE);
+        let ok = 0;
+        for (let i = 0; i < 26; i++) {
+          const letter = String.fromCharCode(65 + i);
+          const url = `./audio/letters/${letter}.mp3?${LETTER_AUDIO_VERSION}`;
+          try {
+            let hit = await cache.match(url);
+            if (!hit) {
+              const res = await fetch(url, { cache: 'no-store' });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              await cache.put(url, res.clone());
+            }
+            ok++;
+            if (status) status.textContent = `📦 正在准备离线字母包：${ok}/26`;
+          } catch (e) {
+            if (status) status.textContent = `⚠️ 离线字母包暂未完整：${ok}/26。保持联网后重新进入字母营即可补齐。`;
+          }
+        }
+        if (ok === 26 && status) status.textContent = '✅ 离线字母包已完整：26/26。现在断网也可以点击 A–Z 发音。';
+        return ok === 26;
+      })().finally(() => { alphabetPackPromise = null; });
+      return alphabetPackPromise;
+    }
+
     // --- Offline A-Z letter-name audio engine (v4.6) ---
     // Each card uses a pre-generated local MP3. No network request and no runtime TTS.
     const letterAudioCache = {};
@@ -1142,8 +1175,8 @@
       const key = String(letter || '').toUpperCase();
       if (!/^[A-Z]$/.test(key)) return null;
       if (!letterAudioCache[key]) {
-        const audio = new Audio(`./audio/letters/${key}.mp3`);
-        audio.preload = 'auto';
+        const audio = new Audio(`./audio/letters/${key}.mp3?${LETTER_AUDIO_VERSION}`);
+        audio.preload = 'metadata';
         letterAudioCache[key] = audio;
       }
       return letterAudioCache[key];
@@ -1301,6 +1334,7 @@
 
     function switchTab(tabName) {
       closeDrawer();
+      stopVoiceRecord(true);
       stopAllAudio();
       playSfx('click');
 
@@ -1320,6 +1354,7 @@
         document.getElementById('viewAlphabet').classList.remove('hidden');
         document.getElementById('navAlphabet').classList.add('text-indigo-600', 'font-bold');
         renderAlphabetGrid();
+        ensureAlphabetPack();
       } else if (tabName === 'quest') {
         document.getElementById('viewQuest').classList.remove('hidden');
         document.getElementById('navQuest').classList.add('text-indigo-600', 'font-bold');
@@ -1359,7 +1394,7 @@
 
       const targetWord = WORD_BANK[appState.currentWordIndex] || WORD_BANK[0];
       document.getElementById('previewWordIcon').innerText = targetWord.icon;
-      document.getElementById('previewWordText').innerText = targetWord.word;
+      document.getElementById('previewWordText').innerText = targetWord.displayWord || targetWord.word;
       document.getElementById('previewWordPhonetic').innerText = targetWord.phonetic;
       document.getElementById('previewWordTrans').innerText = targetWord.translation;
       const learned = Object.values(appState.wordProgress || {}).filter(p => p.learnedCount > 0).length;
@@ -1390,7 +1425,7 @@
         el.onclick = () => speakWord(item.word);
         el.innerHTML = `
           <span class="text-2xl block mb-1">${item.icon}</span>
-          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.word}</span>
+          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.displayWord || item.word}</span>
           <span class="text-[9px] text-slate-400 block">${isMastered ? '已掌握' : '待解锁'}</span>
         `;
         container.appendChild(el);
@@ -1436,7 +1471,7 @@
       const stepIndex = appState.currentStepIndex;
 
       document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
-      document.getElementById('questWordTargetText').innerText = word.word;
+      document.getElementById('questWordTargetText').innerText = word.displayWord || word.word;
 
       const dots = document.getElementById('stepDotsContainer').children;
       for (let i = 0; i < 4; i++) {
@@ -1518,11 +1553,12 @@
 
     function renderStep2Speak(container, word) {
       stopAllAudio();
+      stopVoiceRecord(true);
       appState.voiceAttempts = 0;
       container.innerHTML = `
         <div class="my-auto space-y-4">
           <div class="inline-block bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
-            第二步：喊一喊 · 真实语音跟读测试
+            第二步：喊一喊 · 本地录音跟读
           </div>
 
           <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center text-4xl mx-auto shadow-inner">
@@ -1530,28 +1566,33 @@
           </div>
 
           <div>
-            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.word}</h2>
+            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.displayWord || word.word}</h2>
             <p class="text-xs text-indigo-500 font-mono mt-0.5">${word.phonetic}</p>
             <p class="text-xs text-slate-400 mt-0.5">${word.translation}</p>
           </div>
 
           <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100 text-amber-800 text-xs font-bold text-left flex items-start gap-2">
             <span class="text-xl">🦊</span>
-            <p id="petPromptText">笨笨：“点击麦克风，大声念出 <b class="text-amber-900 font-fredoka">${word.word}</b>！读准了才能通关哦！”</p>
+            <p id="petPromptText">笨笨：“先听示范，再点麦克风录下 <b class="text-amber-900 font-fredoka">${word.word}</b>。录完可以回放自己的声音！”</p>
           </div>
 
-          <button onclick="startVoiceRecord('${word.word}')" id="micRecordBtn" class="w-20 h-20 rounded-full bg-amber-500 text-white text-3xl flex items-center justify-center mx-auto shadow-lg shadow-amber-200 bounce-interactive">
-            <i class="fa-solid fa-microphone"></i>
-          </button>
+          <div class="flex items-center justify-center gap-3">
+            <button onclick="startVoiceRecord('${word.word}')" id="micRecordBtn" class="w-20 h-20 rounded-full bg-amber-500 text-white text-3xl flex items-center justify-center shadow-lg shadow-amber-200 bounce-interactive" aria-label="开始或停止录音">
+              <i id="micRecordIcon" class="fa-solid fa-microphone"></i>
+            </button>
+            <button onclick="playLastVoiceRecording()" id="playVoiceBtn" class="w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 text-xl flex items-center justify-center shadow-sm bounce-interactive opacity-40" disabled aria-label="播放刚才的录音">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
 
           <div class="space-y-1">
-            <p id="speechHeardText" class="text-xs text-slate-500 font-medium min-h-[16px] font-mono"></p>
-            <p id="speechStatusText" class="text-xs text-slate-400 font-bold min-h-[18px]">点击麦克风开始录音跟读...</p>
+            <p id="speechHeardText" class="text-xs text-slate-500 font-medium min-h-[16px]">本模式不使用 Safari Web Speech API，避免麦克风卡死。</p>
+            <p id="speechStatusText" class="text-xs text-slate-400 font-bold min-h-[18px]">点击麦克风开始录音，再点一次结束。</p>
           </div>
 
-          <div id="assistPassContainer" class="hidden pt-2">
+          <div id="assistPassContainer" class="pt-2">
             <button onclick="passWithPetAssist('${word.word}')" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold rounded-xl shadow-md bounce-interactive w-full flex items-center justify-center gap-2">
-              <span>🦊 笨笨听到了！点击直接给小夕盖章通关</span>
+              <span>🦊 完成跟读，盖章进入下一步</span>
               <i class="fa-solid fa-check"></i>
             </button>
           </div>
@@ -1561,129 +1602,120 @@
       setTimeout(() => speakWord(word.word), 300);
     }
 
-    function stopVoiceRecord() {
-      if (activeRecognition) {
-        try {
-          activeRecognition.abort();
-        } catch (e) {}
-        activeRecognition = null;
-      }
-      isRecognizing = false;
-      const micBtn = document.getElementById('micRecordBtn');
-      if (micBtn) {
-        micBtn.classList.remove('mic-pulse', 'bg-rose-500');
-        micBtn.classList.add('bg-amber-500');
+    function releaseMicStream() {
+      if (activeMicStream) {
+        try { activeMicStream.getTracks().forEach(t => t.stop()); } catch (e) {}
+        activeMicStream = null;
       }
     }
 
-    function startVoiceRecord(targetWord) {
-      if (isRecognizing) {
-        stopVoiceRecord();
-        const statusText = document.getElementById('speechStatusText');
-        if (statusText) {
-          statusText.innerText = "已重置录音，请再次点击麦克风重新朗读 🎙️";
-          statusText.className = "text-xs text-amber-600 font-bold";
-        }
+    function updateRecorderUI(recording, message) {
+      const micBtn = document.getElementById('micRecordBtn');
+      const icon = document.getElementById('micRecordIcon');
+      const statusText = document.getElementById('speechStatusText');
+      if (micBtn) {
+        micBtn.classList.toggle('mic-pulse', recording);
+        micBtn.classList.toggle('bg-rose-500', recording);
+        micBtn.classList.toggle('bg-amber-500', !recording);
+      }
+      if (icon) icon.className = recording ? 'fa-solid fa-stop' : 'fa-solid fa-microphone';
+      if (statusText && message) {
+        statusText.innerText = message;
+        statusText.className = recording ? 'text-xs text-rose-600 font-bold animate-pulse' : 'text-xs text-slate-500 font-bold';
+      }
+    }
+
+    function stopVoiceRecord(silent = false) {
+      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+        try { activeMediaRecorder.stop(); } catch (e) {}
+      }
+      isVoiceRecording = false;
+      releaseMicStream();
+      if (!silent) updateRecorderUI(false, '录音已停止，麦克风已释放。');
+      else updateRecorderUI(false, '');
+    }
+
+    async function startVoiceRecord(targetWord) {
+      if (isVoiceRecording) {
+        stopVoiceRecord(false);
         return;
       }
 
-      stopVoiceRecord();
-
       const statusText = document.getElementById('speechStatusText');
-      const micBtn = document.getElementById('micRecordBtn');
       const heardText = document.getElementById('speechHeardText');
-
       if (heardText) heardText.innerText = '';
 
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-      if (!SpeechRecognition) {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
         if (statusText) {
-          statusText.innerText = "⚠️ 当前浏览器不支持语音识别，请点击下方小狐狸盖章通关";
-          statusText.className = "text-xs text-rose-500 font-bold";
+          statusText.innerText = '⚠️ 当前浏览器不支持本地录音，可直接点击下方“完成跟读”继续。';
+          statusText.className = 'text-xs text-rose-500 font-bold';
         }
-        const assistContainer = document.getElementById('assistPassContainer');
-        if (assistContainer) assistContainer.classList.remove('hidden');
         return;
       }
 
       try {
-        const recognition = new SpeechRecognition();
-        activeRecognition = recognition;
-        isRecognizing = true;
+        stopAllAudio();
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        activeMicStream = stream;
+        voiceChunks = [];
+        const recorder = new MediaRecorder(stream);
+        activeMediaRecorder = recorder;
+        isVoiceRecording = true;
 
-        recognition.lang = 'en-US';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 3;
-
-        let hasHandled = false;
-
-        if (statusText) {
-          statusText.innerText = "正在倾听中... 👂 请大声读出 \"" + targetWord + "\"";
-          statusText.className = "text-xs text-amber-600 font-bold animate-pulse";
-        }
-        if (micBtn) {
-          micBtn.classList.add('mic-pulse', 'bg-rose-500');
-          micBtn.classList.remove('bg-amber-500');
-        }
-
-        playSfx('click');
-
-        recognition.onresult = function(event) {
-          if (hasHandled) return;
-          hasHandled = true;
-          isRecognizing = false;
-          stopVoiceRecord();
-
-          let recognizedAlternatives = [];
-          for (let i = 0; i < event.results[0].length; i++) {
-            recognizedAlternatives.push(event.results[0][i].transcript);
-          }
-
-          const primaryText = event.results[0][0].transcript.trim();
-
-          const isCorrect = recognizedAlternatives.some(altText => 
-            isFuzzyMatch(altText, targetWord)
-          );
-
-          verifySpokenResult(isCorrect, targetWord, primaryText);
+        recorder.ondataavailable = (event) => {
+          if (event.data && event.data.size > 0) voiceChunks.push(event.data);
         };
-
-        recognition.onerror = function(event) {
-          if (hasHandled) return;
-          hasHandled = true;
-          isRecognizing = false;
-          stopVoiceRecord();
-
-          let msg = "未听清发音，请点击麦克风重新朗读！";
-          if (event.error === 'not-allowed') {
-            msg = "麦克风权限未开启，请在浏览器中允许权限！";
-          } else if (event.error === 'no-speech') {
-            msg = "未检测到说话声，请点击麦克风重新大声朗读！";
-          }
-          
-          verifySpokenResult(false, targetWord, null, msg);
+        recorder.onerror = () => {
+          isVoiceRecording = false;
+          releaseMicStream();
+          updateRecorderUI(false, '录音出现错误，麦克风已释放，请重试。');
         };
-
-        recognition.onend = function() {
-          if (!hasHandled) {
-            hasHandled = true;
-            isRecognizing = false;
-            stopVoiceRecord();
-            verifySpokenResult(false, targetWord, null, "录音结束，未检测到发音，请点击麦克风重试！");
+        recorder.onstop = () => {
+          isVoiceRecording = false;
+          releaseMicStream();
+          if (lastVoiceBlobUrl) {
+            try { URL.revokeObjectURL(lastVoiceBlobUrl); } catch (e) {}
+            lastVoiceBlobUrl = null;
+          }
+          if (voiceChunks.length) {
+            const mime = recorder.mimeType || 'audio/webm';
+            const blob = new Blob(voiceChunks, { type: mime });
+            lastVoiceBlobUrl = URL.createObjectURL(blob);
+            const playBtn = document.getElementById('playVoiceBtn');
+            if (playBtn) {
+              playBtn.disabled = false;
+              playBtn.classList.remove('opacity-40');
+            }
+            if (heardText) heardText.innerText = `✅ 已录下 ${targetWord}，可点击 ▶ 回放自己的声音。`;
+            updateRecorderUI(false, '录音完成；麦克风已关闭。');
+          } else {
+            updateRecorderUI(false, '没有录到声音，麦克风已关闭，请重试。');
           }
         };
 
-        recognition.start();
-
+        recorder.start(200);
+        updateRecorderUI(true, `正在录音…请读出 “${targetWord}”，再点一次停止。`);
       } catch (e) {
-        isRecognizing = false;
-        stopVoiceRecord();
+        isVoiceRecording = false;
+        releaseMicStream();
         if (statusText) {
-          statusText.innerText = "麦克风启动失败，请点击麦克风重试";
-          statusText.className = "text-xs text-rose-500 font-bold";
+          const denied = e && (e.name === 'NotAllowedError' || e.name === 'SecurityError');
+          statusText.innerText = denied ? '麦克风权限未开启，请在 Safari/系统设置中允许后重试。' : '麦克风启动失败，已安全释放，请重试。';
+          statusText.className = 'text-xs text-rose-500 font-bold';
         }
       }
+    }
+
+    function playLastVoiceRecording() {
+      if (!lastVoiceBlobUrl) return;
+      stopAllAudio();
+      const audio = new Audio(lastVoiceBlobUrl);
+      currentPlayingAudio = audio;
+      audio.onended = () => { if (currentPlayingAudio === audio) currentPlayingAudio = null; };
+      audio.play().catch(() => {
+        const statusText = document.getElementById('speechStatusText');
+        if (statusText) statusText.innerText = '录音回放失败，请重新录一次。';
+      });
     }
 
     function verifySpokenResult(success, targetWord, recognizedText, customErrMsg) {
@@ -1932,7 +1964,7 @@
       if (appState.currentWordIndex < WORD_BANK.length - 1 && appState.completedWordsCount < appState.dailyLimit) {
         showCustomModal(
           `🎉 太棒了，小夕！`,
-          `你完成了单词 "${word.word}" 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
+          `你完成了 “${word.displayWord || word.word}” 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
           () => {
             appState.currentWordIndex += 1;
             appState.currentStepIndex = 0;
@@ -2009,7 +2041,8 @@
       const filtered = WORD_BANK.filter(item => {
         const matchesCat = (selectedCat === 'all') || (item.category === selectedCat);
         const matchesSearch = !searchVal || 
-          item.word.toLowerCase().includes(searchVal) || 
+          item.word.toLowerCase().includes(searchVal) ||
+          (item.displayWord || '').toLowerCase().includes(searchVal) ||
           item.translation.includes(searchVal);
 
         return matchesCat && matchesSearch;
@@ -2038,11 +2071,11 @@
       items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'soft-card p-3.5 text-center border border-slate-100 bounce-interactive cursor-pointer hover:border-indigo-300 relative overflow-hidden';
-        card.onclick = () => speakWord(`${item.word}. ${item.translation}`);
+        card.onclick = () => speakWord(item.word);
         
         card.innerHTML = `
           <span class="text-3xl block mb-1.5">${item.icon}</span>
-          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.word}</h3>
+          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.displayWord || item.word}</h3>
           <p class="text-[11px] text-indigo-500 font-mono">${item.phonetic}</p>
           <p class="text-xs text-slate-500 mt-0.5 font-medium">${item.translation}</p>
           <div class="mt-2 flex items-center justify-center gap-1 text-[10px] text-indigo-600 font-bold bg-indigo-50 rounded-lg py-1 px-2">
@@ -2063,9 +2096,11 @@
       check('全部字母有例词数据', ALPHABET.every(x => x.word));
       check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
       check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
-      check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
-      check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','saveState','loadState'].every(n => typeof window[n] === 'function'));
+      check('Unit 1 共16词', WORD_BANK.length === 16 && WORD_BANK.every(x => x.unit === 1));
+      check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
+      check('v5.6 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);
       try {
@@ -2103,5 +2138,6 @@
       setTimeout(preloadAllAppAudio, 300);
     };
   </script>
+  <audio id="wordAudioPlayer" preload="auto" playsinline></audio>
 </body>
 </html>

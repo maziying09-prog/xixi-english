@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>小夕的魔法世界 · 英语学习工作台 v5.5</title>
+  <title>小夕的魔法世界 · 英语学习工作台 v5.6</title>
   
   <!-- Mobile & PWA App Capabilities -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -18,11 +18,11 @@
 
   <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <!-- v5.5: all UI dependencies are local for stable mobile/PWA startup -->
+  <!-- v5.6: all UI dependencies are local for stable mobile/PWA startup -->
   <link rel="stylesheet" href="./assets/tailwind.css" />
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
   <style id="mobile-color-compat">
-    /* v5.5: critical home cards no longer depend on Tailwind gradient variables.
+    /* v5.6: critical home cards no longer depend on Tailwind gradient variables.
        Use plain sRGB CSS with a solid-color fallback for Safari/older WebViews. */
     #pwaInstallBanner.home-install-banner {
       background-color: #f97316 !important;
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.5 离线儿歌 + 字母/单词本地发音版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.6 Unit 1 试运行版 · Let’s Go 1 · PWA</p>
       </div>
     </aside>
 
@@ -431,7 +431,7 @@
             返回
           </button>
         </div>
-        <!-- v5.5 Offline Nursery-Rhyme Alphabet Song Player -->
+        <!-- v5.6 Offline Nursery-Rhyme Alphabet Song Player -->
         <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
           <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
           <div class="flex items-center gap-3 relative z-10">
@@ -509,7 +509,7 @@
         <div class="flex items-center justify-between">
           <div>
             <h2 class="text-xl font-bold text-slate-800">我的单词果实树</h2>
-            <p class="text-xs text-slate-400">小学新课标 60+ 基础核心词汇库</p>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · Things for School</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -524,14 +524,8 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
-            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (62)</button>
-            <button onclick="selectCategory('animals')" id="catBtn-animals" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐱 动物</button>
-            <button onclick="selectCategory('food')" id="catBtn-food" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🍎 食物水果</button>
-            <button onclick="selectCategory('body_family')" id="catBtn-body_family" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">👨‍👩‍👧 身体家庭</button>
-            <button onclick="selectCategory('school')" id="catBtn-school" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">✏️ 校园文具</button>
-            <button onclick="selectCategory('colors_numbers')" id="catBtn-colors_numbers" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎨 颜色数字</button>
-            <button onclick="selectCategory('nature')" id="catBtn-nature" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">☀️ 自然天气</button>
-            <button onclick="selectCategory('travel_clothes')" id="catBtn-travel_clothes" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🚗 交通服饰</button>
+            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (16)</button>
+            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 · Things for School</button>
           </div>
         </div>
 
@@ -758,71 +752,25 @@
     ];
 
     const WORD_BANK = [
-      { id: 1, category: 'animals', word: 'Dog', translation: '小狗', icon: '🐶', phonetic: '/dɔːɡ/', sentenceEN: 'My dog can run fast.', sentenceCN: '我的小狗跑得很快。' },
-      { id: 2, category: 'animals', word: 'Cat', translation: '小猫', icon: '🐱', phonetic: '/kæt/', sentenceEN: 'The cute cat is sleeping.', sentenceCN: '这只可爱的小猫正在睡觉。' },
-      { id: 3, category: 'animals', word: 'Duck', translation: '鸭子', icon: '🦆', phonetic: '/dʌk/', sentenceEN: 'The yellow duck can swim.', sentenceCN: '这只黄色的鸭子会游泳。' },
-      { id: 4, category: 'animals', word: 'Fish', translation: '小鱼', icon: '🐟', phonetic: '/fɪʃ/', sentenceEN: 'Fish live in the water.', sentenceCN: '小鱼生活在水里。' },
-      { id: 5, category: 'animals', word: 'Bird', translation: '小鸟', icon: '🐦', phonetic: '/bɜːrd/', sentenceEN: 'The little bird is singing.', sentenceCN: '小鸟正在唱歌。' },
-      { id: 6, category: 'animals', word: 'Bear', translation: '大熊', icon: '🐻', phonetic: '/beər/', sentenceEN: 'The brown bear likes honey.', sentenceCN: '棕熊喜欢吃蜂蜜。' },
-      { id: 7, category: 'animals', word: 'Rabbit', translation: '兔子', icon: '🐰', phonetic: '/ˈræbɪt/', sentenceEN: 'The rabbit has long ears.', sentenceCN: '兔子长着长长的耳朵。' },
-      { id: 8, category: 'animals', word: 'Lion', translation: '狮子', icon: '🦁', phonetic: '/ˈlaɪən/', sentenceEN: 'The lion is strong.', sentenceCN: '狮子非常强壮。' },
-      { id: 9, category: 'animals', word: 'Monkey', translation: '猴子', icon: '🐵', phonetic: '/ˈmʌŋki/', sentenceEN: 'The monkey loves bananas.', sentenceCN: '猴子最爱吃香蕉。' },
-      { id: 10, category: 'animals', word: 'Elephant', translation: '大象', icon: '🐘', phonetic: '/ˈelɪfənt/', sentenceEN: 'An elephant has a long nose.', sentenceCN: '大象有一条长鼻子。' },
-      { id: 11, category: 'animals', word: 'Panda', translation: '熊猫', icon: '🐼', phonetic: '/ˈpændə/', sentenceEN: 'Pandas like bamboo.', sentenceCN: '熊猫喜欢吃竹子。' },
-      { id: 12, category: 'animals', word: 'Tiger', translation: '老虎', icon: '🐯', phonetic: '/ˈtaɪɡər/', sentenceEN: 'Look at the big tiger.', sentenceCN: '看那只大老虎。' },
-      { id: 13, category: 'food', word: 'Apple', translation: '苹果', icon: '🍎', phonetic: '/ˈæpl/', sentenceEN: 'I see a sweet red apple.', sentenceCN: '我看到一个甜甜的红苹果。' },
-      { id: 14, category: 'food', word: 'Banana', translation: '香蕉', icon: '🍌', phonetic: '/bəˈnænə/', sentenceEN: 'This yellow banana is yummy.', sentenceCN: '这个黄色的香蕉很好吃。' },
-      { id: 15, category: 'food', word: 'Orange', translation: '桔子', icon: '🍊', phonetic: '/ˈɔːrɪndʒ/', sentenceEN: 'I want a fresh orange.', sentenceCN: '我想吃一个新鲜的桔子。' },
-      { id: 16, category: 'food', word: 'Pear', translation: '鸭梨', icon: '🍐', phonetic: '/peər/', sentenceEN: 'The green pear is juicy.', sentenceCN: '这个绿色的梨水分很多。' },
-      { id: 17, category: 'food', word: 'Milk', translation: '牛奶', icon: '🥛', phonetic: '/mɪlk/', sentenceEN: 'Drink milk every day.', sentenceCN: '每天都要喝牛奶哦。' },
-      { id: 18, category: 'food', word: 'Bread', translation: '面包', icon: '🍞', phonetic: '/bred/', sentenceEN: 'Soft bread for breakfast.', sentenceCN: '早餐吃软软的面包。' },
-      { id: 19, category: 'food', word: 'Water', translation: '水', icon: '💧', phonetic: '/ˈwɔːtər/', sentenceEN: 'Drink fresh water.', sentenceCN: '多喝新鲜的纯净水。' },
-      { id: 20, category: 'food', word: 'Cake', translation: '蛋糕', icon: '🎂', phonetic: '/keɪk/', sentenceEN: 'Happy Birthday cake!', sentenceCN: '生日快乐的大蛋糕！' },
-      { id: 21, category: 'food', word: 'Egg', translation: '鸡蛋', icon: '🥚', phonetic: '/eɡ/', sentenceEN: 'An egg a day is healthy.', sentenceCN: '每天吃一个鸡蛋很健康。' },
-      { id: 22, category: 'food', word: 'Rice', translation: '米饭', icon: '🍚', phonetic: '/raɪs/', sentenceEN: 'We eat rice for dinner.', sentenceCN: '我们晚餐吃香喷喷的米饭。' },
-      { id: 23, category: 'food', word: 'Juice', translation: '果汁', icon: '🧃', phonetic: '/dʒuːs/', sentenceEN: 'Sweet apple juice.', sentenceCN: '甜甜的苹果汁。' },
-      { id: 24, category: 'food', word: 'Ice cream', translation: '冰淇淋', icon: '🍦', phonetic: '/ˌaɪs ˈkriːm/', sentenceEN: 'Cool ice cream in summer.', sentenceCN: '夏天吃冰凉的冰淇淋。' },
-      { id: 25, category: 'body_family', word: 'Eye', translation: '眼睛', icon: '👁️', phonetic: '/aɪ/', sentenceEN: 'Open your bright eyes.', sentenceCN: '睁开你明亮的小眼睛。' },
-      { id: 26, category: 'body_family', word: 'Nose', translation: '鼻子', icon: '👃', phonetic: '/noʊz/', sentenceEN: 'Touch your small nose.', sentenceCN: '摸摸你小小的鼻子。' },
-      { id: 27, category: 'body_family', word: 'Mouth', translation: '嘴巴', icon: '👄', phonetic: '/maʊθ/', sentenceEN: 'Smile with your mouth.', sentenceCN: '用你的小嘴巴微笑。' },
-      { id: 28, category: 'body_family', word: 'Hand', translation: '手', icon: '✋', phonetic: '/hænd/', sentenceEN: 'Clap your hands!', sentenceCN: '拍拍你的双手！' },
-      { id: 29, category: 'body_family', word: 'Foot', translation: '脚', icon: '🦶', phonetic: '/fʊt/', sentenceEN: 'Stamp your foot.', sentenceCN: '跺跺你的小脚丫。' },
-      { id: 30, category: 'body_family', word: 'Head', translation: '头部', icon: '🗣️', phonetic: '/hed/', sentenceEN: 'Nod your head.', sentenceCN: '点点头。' },
-      { id: 31, category: 'body_family', word: 'Dad', translation: '爸爸', icon: '👨', phonetic: '/dæd/', sentenceEN: 'I love my superhero Dad.', sentenceCN: '我爱我的超级英雄爸爸。' },
-      { id: 32, category: 'body_family', word: 'Mom', translation: '妈妈', icon: '👩', phonetic: '/mɑːm/', sentenceEN: 'Mom gives me a hug.', sentenceCN: '妈妈给了我一个拥抱。' },
-      { id: 33, category: 'body_family', word: 'Brother', translation: '兄弟', icon: '👦', phonetic: '/ˈbrʌðər/', sentenceEN: 'My brother plays with me.', sentenceCN: '我的哥哥/弟弟和我一起玩。' },
-      { id: 34, category: 'body_family', word: 'Sister', translation: '姐妹', icon: '👧', phonetic: '/ˈsɪstər/', sentenceEN: 'My sister is smart.', sentenceCN: '我的姐姐/妹妹很聪明。' },
-      { id: 35, category: 'school', word: 'Book', translation: '书本', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'Read a fun storybook.', sentenceCN: '读一本有趣的故事书。' },
-      { id: 36, category: 'school', word: 'Pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'Write with a blue pen.', sentenceCN: '用蓝色的笔写字。' },
-      { id: 37, category: 'school', word: 'Pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensl/', sentenceEN: 'Draw with a long pencil.', sentenceCN: '用长铅笔画画。' },
-      { id: 38, category: 'school', word: 'Ruler', translation: '直尺', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'Use a ruler for straight lines.', sentenceCN: '用直尺画直线。' },
-      { id: 39, category: 'school', word: 'Bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'Put books in your bag.', sentenceCN: '把书本装进书包里。' },
-      { id: 40, category: 'school', word: 'Desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'Clean your tidy desk.', sentenceCN: '整理好你干净的课桌。' },
-      { id: 41, category: 'school', word: 'Chair', translation: '椅子', icon: '🪑', phonetic: '/tʃeər/', sentenceEN: 'Sit down on the chair.', sentenceCN: '坐在椅子上。' },
-      { id: 42, category: 'school', word: 'Teacher', translation: '老师', icon: '🧑‍🏫', phonetic: '/ˈtiːtʃər/', sentenceEN: 'Say good morning to teacher.', sentenceCN: '向老师问早安。' },
-      { id: 43, category: 'colors_numbers', word: 'Red', translation: '红色', icon: '🔴', phonetic: '/red/', sentenceEN: 'Red like a sweet apple.', sentenceCN: '像红苹果一样的红色。' },
-      { id: 44, category: 'colors_numbers', word: 'Blue', translation: '蓝色', icon: '🔵', phonetic: '/bluː/', sentenceEN: 'The sky is deep blue.', sentenceCN: '天空是蔚蓝色的。' },
-      { id: 45, category: 'colors_numbers', word: 'Yellow', translation: '黄色', icon: '💛', phonetic: '/ˈjeloʊ/', sentenceEN: 'A shiny yellow star.', sentenceCN: '闪闪发光的黄星星。' },
-      { id: 46, category: 'colors_numbers', word: 'Green', translation: '绿色', icon: '🟢', phonetic: '/ɡriːn/', sentenceEN: 'Green grass in spring.', sentenceCN: '春天绿油油的草地。' },
-      { id: 47, category: 'colors_numbers', word: 'One', translation: '数字 1', icon: '1️⃣', phonetic: '/wʌn/', sentenceEN: 'One cute puppy.', sentenceCN: '一只可爱的小狗。' },
-      { id: 48, category: 'colors_numbers', word: 'Two', translation: '数字 2', icon: '2️⃣', phonetic: '/tuː/', sentenceEN: 'Two flying birds.', sentenceCN: '两只飞翔的小鸟。' },
-      { id: 49, category: 'colors_numbers', word: 'Three', translation: '数字 3', icon: '3️⃣', phonetic: '/θriː/', sentenceEN: 'Three red apples.', sentenceCN: '三个红苹果。' },
-      { id: 50, category: 'colors_numbers', word: 'Four', translation: '数字 4', icon: '4️⃣', phonetic: '/fɔːr/', sentenceEN: 'Four green trees.', sentenceCN: '四棵大树。' },
-      { id: 51, category: 'colors_numbers', word: 'Five', translation: '数字 5', icon: '5️⃣', phonetic: '/faɪv/', sentenceEN: 'Give me five!', sentenceCN: '击掌加油！' },
-      { id: 52, category: 'nature', word: 'Sun', translation: '太阳', icon: '☀️', phonetic: '/sʌn/', sentenceEN: 'The sun is big and bright.', sentenceCN: '太阳又大又明亮。' },
-      { id: 53, category: 'nature', word: 'Moon', translation: '月亮', icon: '🌙', phonetic: '/muːn/', sentenceEN: 'The moon shines at night.', sentenceCN: '月亮在夜晚闪耀。' },
-      { id: 54, category: 'nature', word: 'Star', translation: '星星', icon: '🌟', phonetic: '/stɑːr/', sentenceEN: 'Twinkle twinkle little star.', sentenceCN: '一闪一闪小星星。' },
-      { id: 55, category: 'nature', word: 'Rain', translation: '雨水', icon: '🌧️', phonetic: '/reɪn/', sentenceEN: 'Rain falling from clouds.', sentenceCN: '从云朵落下的雨水。' },
-      { id: 56, category: 'nature', word: 'Tree', translation: '大树', icon: '🌳', phonetic: '/triː/', sentenceEN: 'Birds live in the tall tree.', sentenceCN: '小鸟住在高大的树上。' },
-      { id: 57, category: 'nature', word: 'Flower', translation: '鲜花', icon: '🌸', phonetic: '/ˈflaʊər/', sentenceEN: 'Smell the pretty flower.', sentenceCN: '闻闻美丽的花朵。' },
-      { id: 58, category: 'travel_clothes', word: 'Car', translation: '汽车', icon: '🚗', phonetic: '/kɑːr/', sentenceEN: 'The red car goes fast.', sentenceCN: '红色的汽车开得很快。' },
-      { id: 59, category: 'travel_clothes', word: 'Bus', translation: '公交车', icon: '🚌', phonetic: '/bʌs/', sentenceEN: 'Take a school bus.', sentenceCN: '乘坐校车去上学。' },
-      { id: 60, category: 'travel_clothes', word: 'Bike', translation: '自行车', icon: '🚲', phonetic: '/baɪk/', sentenceEN: 'Ride a small bike.', sentenceCN: '骑一辆小自行车。' },
-      { id: 61, category: 'travel_clothes', word: 'Hat', translation: '帽子', icon: '🎩', phonetic: '/hæt/', sentenceEN: 'Wear a warm hat.', sentenceCN: '戴上一顶温暖的帽子。' },
-      { id: 62, category: 'travel_clothes', word: 'Shoes', translation: '鞋子', icon: '👟', phonetic: '/ʃuːz/', sentenceEN: 'Put on your new shoes.', sentenceCN: '穿上你的新鞋子。' }
+      { id: 1, unit: 1, category: 'unit1', word: 'Pencil', displayWord: 'a pencil', translation: '铅笔', icon: '✏️', phonetic: '/ˈpensəl/', sentenceEN: 'It is a pencil.', sentenceCN: '这是一支铅笔。' },
+      { id: 2, unit: 1, category: 'unit1', word: 'Pen', displayWord: 'a pen', translation: '钢笔', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'It is a pen.', sentenceCN: '这是一支钢笔。' },
+      { id: 3, unit: 1, category: 'unit1', word: 'Bag', displayWord: 'a bag', translation: '书包', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'It is a bag.', sentenceCN: '这是一个书包。' },
+      { id: 4, unit: 1, category: 'unit1', word: 'Book', displayWord: 'a book', translation: '书', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'It is a book.', sentenceCN: '这是一本书。' },
+      { id: 5, unit: 1, category: 'unit1', word: 'Desk', displayWord: 'a desk', translation: '课桌', icon: '🪵', phonetic: '/desk/', sentenceEN: 'It is a desk.', sentenceCN: '这是一张课桌。' },
+      { id: 6, unit: 1, category: 'unit1', word: 'Chair', displayWord: 'a chair', translation: '椅子', icon: '🪑', phonetic: '/tʃer/', sentenceEN: 'It is a chair.', sentenceCN: '这是一把椅子。' },
+      { id: 7, unit: 1, category: 'unit1', word: 'Ruler', displayWord: 'a ruler', translation: '尺子', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'It is a ruler.', sentenceCN: '这是一把尺子。' },
+      { id: 8, unit: 1, category: 'unit1', word: 'Eraser', displayWord: 'an eraser', translation: '橡皮', icon: '🧽', phonetic: '/ɪˈreɪsər/', sentenceEN: 'It is an eraser.', sentenceCN: '这是一块橡皮。' },
+      { id: 9, unit: 1, category: 'unit1', word: 'Map', displayWord: 'a map', translation: '地图', icon: '🗺️', phonetic: '/mæp/', sentenceEN: 'This is a map.', sentenceCN: '这是一张地图。' },
+      { id: 10, unit: 1, category: 'unit1', word: 'Marker', displayWord: 'a marker', translation: '记号笔', icon: '🖊️', phonetic: '/ˈmɑːrkər/', sentenceEN: 'This is a marker.', sentenceCN: '这是一支记号笔。' },
+      { id: 11, unit: 1, category: 'unit1', word: 'Globe', displayWord: 'a globe', translation: '地球仪', icon: '🌍', phonetic: '/ɡloʊb/', sentenceEN: 'This is a globe.', sentenceCN: '这是一个地球仪。' },
+      { id: 12, unit: 1, category: 'unit1', word: 'Table', displayWord: 'a table', translation: '桌子', icon: '🛋️', phonetic: '/ˈteɪbəl/', sentenceEN: 'This is a table.', sentenceCN: '这是一张桌子。' },
+      { id: 13, unit: 1, category: 'unit1', word: 'Board', displayWord: 'a board', translation: '黑板', icon: '📋', phonetic: '/bɔːrd/', sentenceEN: 'This is a board.', sentenceCN: '这是一块黑板。' },
+      { id: 14, unit: 1, category: 'unit1', word: 'Wastebasket', displayWord: 'a wastebasket', translation: '废纸篓', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'This is a wastebasket.', sentenceCN: '这是一个废纸篓。' },
+      { id: 15, unit: 1, category: 'unit1', word: 'Poster', displayWord: 'a poster', translation: '海报', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'This is a poster.', sentenceCN: '这是一张海报。' },
+      { id: 16, unit: 1, category: 'unit1', word: 'Crayon', displayWord: 'a crayon', translation: '蜡笔', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'This is a crayon.', sentenceCN: '这是一支蜡笔。' }
     ];
 
-    const STORAGE_KEY = 'xiaoxiEnglishV4State';
+    const STORAGE_KEY = 'xiaoxiEnglishV56Unit1State';
     const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
 
     function todayKey() {
@@ -904,7 +852,7 @@
       saveAppState();
     }
 
-    // v5.5 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    // v5.6 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
     let activeMediaRecorder = null;
     let activeMicStream = null;
     let voiceChunks = [];
@@ -1031,7 +979,7 @@
       return waitSpeech(settleMs, runId);
     }
 
-    const WORD_AUDIO_VERSION = 'v5.5.0';
+    const WORD_AUDIO_VERSION = 'v5.6.0';
 
     function slugifyWordAudio(text) {
       return String(text || '')
@@ -1052,7 +1000,7 @@
       if (!item) return null;
       stopAllAudio();
 
-      // v5.5: reuse one real <audio> element. Android Chrome/PWA is more
+      // v5.6: reuse one real <audio> element. Android Chrome/PWA is more
       // reliable with a persistent media element than with a new Audio()
       // object created for every tap.
       const audio = document.getElementById('wordAudioPlayer');
@@ -1080,7 +1028,7 @@
     async function speakWord(text, lang = 'en-US', rate = 0.82) {
       if (!text) return false;
 
-      // v5.5: Daily Challenge vocabulary is always local-first.
+      // v5.6: Daily Challenge vocabulary is always local-first.
       // IMPORTANT: call audio.play() in the same user-gesture turn on Android/PWA.
       // Do not insert cancel -> timeout -> speak between the tap and playback.
       const localItem = findLocalWord(text);
@@ -1180,9 +1128,9 @@
       try { await audio.play(); } catch (e) {}
     }
 
-    // --- v5.5 verified offline alphabet pack ---
-    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.5.0';
-    const LETTER_AUDIO_VERSION = 'v5.5.0';
+    // --- v5.6 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.6.0';
+    const LETTER_AUDIO_VERSION = 'v5.6.0';
     let alphabetPackPromise = null;
 
     async function ensureAlphabetPack() {
@@ -1446,7 +1394,7 @@
 
       const targetWord = WORD_BANK[appState.currentWordIndex] || WORD_BANK[0];
       document.getElementById('previewWordIcon').innerText = targetWord.icon;
-      document.getElementById('previewWordText').innerText = targetWord.word;
+      document.getElementById('previewWordText').innerText = targetWord.displayWord || targetWord.word;
       document.getElementById('previewWordPhonetic').innerText = targetWord.phonetic;
       document.getElementById('previewWordTrans').innerText = targetWord.translation;
       const learned = Object.values(appState.wordProgress || {}).filter(p => p.learnedCount > 0).length;
@@ -1477,7 +1425,7 @@
         el.onclick = () => speakWord(item.word);
         el.innerHTML = `
           <span class="text-2xl block mb-1">${item.icon}</span>
-          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.word}</span>
+          <span class="font-fredoka font-bold text-xs text-slate-800 block truncate">${item.displayWord || item.word}</span>
           <span class="text-[9px] text-slate-400 block">${isMastered ? '已掌握' : '待解锁'}</span>
         `;
         container.appendChild(el);
@@ -1523,7 +1471,7 @@
       const stepIndex = appState.currentStepIndex;
 
       document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
-      document.getElementById('questWordTargetText').innerText = word.word;
+      document.getElementById('questWordTargetText').innerText = word.displayWord || word.word;
 
       const dots = document.getElementById('stepDotsContainer').children;
       for (let i = 0; i < 4; i++) {
@@ -1618,7 +1566,7 @@
           </div>
 
           <div>
-            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.word}</h2>
+            <h2 class="font-fredoka font-bold text-3xl text-slate-800">${word.displayWord || word.word}</h2>
             <p class="text-xs text-indigo-500 font-mono mt-0.5">${word.phonetic}</p>
             <p class="text-xs text-slate-400 mt-0.5">${word.translation}</p>
           </div>
@@ -2016,7 +1964,7 @@
       if (appState.currentWordIndex < WORD_BANK.length - 1 && appState.completedWordsCount < appState.dailyLimit) {
         showCustomModal(
           `🎉 太棒了，小夕！`,
-          `你完成了单词 "${word.word}" 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
+          `你完成了 “${word.displayWord || word.word}” 的听辨、跟读、读句、拼写全部关卡！继续挑战下一个单词吧！`,
           () => {
             appState.currentWordIndex += 1;
             appState.currentStepIndex = 0;
@@ -2093,7 +2041,8 @@
       const filtered = WORD_BANK.filter(item => {
         const matchesCat = (selectedCat === 'all') || (item.category === selectedCat);
         const matchesSearch = !searchVal || 
-          item.word.toLowerCase().includes(searchVal) || 
+          item.word.toLowerCase().includes(searchVal) ||
+          (item.displayWord || '').toLowerCase().includes(searchVal) ||
           item.translation.includes(searchVal);
 
         return matchesCat && matchesSearch;
@@ -2122,11 +2071,11 @@
       items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'soft-card p-3.5 text-center border border-slate-100 bounce-interactive cursor-pointer hover:border-indigo-300 relative overflow-hidden';
-        card.onclick = () => speakWord(`${item.word}. ${item.translation}`);
+        card.onclick = () => speakWord(item.word);
         
         card.innerHTML = `
           <span class="text-3xl block mb-1.5">${item.icon}</span>
-          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.word}</h3>
+          <h3 class="font-fredoka font-bold text-base text-slate-800">${item.displayWord || item.word}</h3>
           <p class="text-[11px] text-indigo-500 font-mono">${item.phonetic}</p>
           <p class="text-xs text-slate-500 mt-0.5 font-medium">${item.translation}</p>
           <div class="mt-2 flex items-center justify-center gap-1 text-[10px] text-indigo-600 font-bold bg-indigo-50 rounded-lg py-1 px-2">
@@ -2147,10 +2096,10 @@
       check('全部字母有例词数据', ALPHABET.every(x => x.word));
       check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
       check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
-      check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
+      check('Unit 1 共16词', WORD_BANK.length === 16 && WORD_BANK.every(x => x.unit === 1));
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.5 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.6 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);
