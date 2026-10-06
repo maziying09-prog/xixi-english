@@ -1,6 +1,6 @@
-const APP_CACHE = 'xiaoxi-app-v5.8.0';
-const AUDIO_CACHE = 'xiaoxi-audio-runtime-v5.8.0';
-const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.8.0';
+const APP_CACHE = 'xiaoxi-app-v6.0.0';
+const AUDIO_CACHE = 'xiaoxi-audio-runtime-v6.0.0';
+const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v6.0.0';
 
 const APP_SHELL = [
   './',

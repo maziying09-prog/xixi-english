@@ -250,7 +250,7 @@
             <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
               <i class="fa-solid fa-apple-whole text-xs"></i>
             </div>
-            <span>Unit 1–2 单词本</span>
+            <span>Unit 1–8 单词本</span>
             <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
           </button>
 
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.8 Unit 1–2 · 单词 + a/an + 复数分层学习版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v6.0 Unit 1–8 · Let’s Go 分层词汇版 · PWA</p>
       </div>
     </aside>
 
@@ -510,8 +510,8 @@
       <div id="viewWords" class="space-y-4 hidden">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-bold text-slate-800">Unit 1–2 单词本</h2>
-            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1–2 · 单词本只记单词本体</p>
+            <h2 class="text-xl font-bold text-slate-800">Unit 1–8 单词本</h2>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1–8 · 单词本只记单词本体</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -526,9 +526,15 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
-            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (26)</button>
-            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 校园用品</button>
-            <button onclick="selectCategory('unit2')" id="catBtn-unit2" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐾 Unit 2 Animals</button>
+            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (108)</button>
+            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 U1 School</button>
+            <button onclick="selectCategory('unit2')" id="catBtn-unit2" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐾 U2 Animals</button>
+            <button onclick="selectCategory('unit3')" id="catBtn-unit3" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎨 U3 Colors & Shapes</button>
+            <button onclick="selectCategory('unit4')" id="catBtn-unit4" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🍎 U4 Food</button>
+            <button onclick="selectCategory('unit5')" id="catBtn-unit5" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎂 U5 Happy Birthday</button>
+            <button onclick="selectCategory('unit6')" id="catBtn-unit6" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🌳 U6 Outdoors</button>
+            <button onclick="selectCategory('unit7')" id="catBtn-unit7" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🛍️ U7 At the Store</button>
+            <button onclick="selectCategory('unit8')" id="catBtn-unit8" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">👨‍👩‍👧 U8 Family</button>
           </div>
         </div>
 
@@ -755,35 +761,128 @@
     ];
 
     const WORD_BANK = [
-      { id: 1, category: 'unit1', word: 'Pencil', translation: '铅笔', phrase: 'a pencil', phraseTranslation: '一支铅笔', article: 'a', icon: '✏️', phonetic: '/ˈpensəl/', sentenceEN: 'a pencil', sentenceCN: '一支铅笔' },
-      { id: 2, category: 'unit1', word: 'Pen', translation: '钢笔', phrase: 'a pen', phraseTranslation: '一支钢笔', article: 'a', icon: '🖊️', phonetic: '/pen/', sentenceEN: 'a pen', sentenceCN: '一支钢笔' },
-      { id: 3, category: 'unit1', word: 'Bag', translation: '书包', phrase: 'a bag', phraseTranslation: '一个书包', article: 'a', icon: '🎒', phonetic: '/bæɡ/', sentenceEN: 'a bag', sentenceCN: '一个书包' },
-      { id: 4, category: 'unit1', word: 'Book', translation: '书', phrase: 'a book', phraseTranslation: '一本书', article: 'a', icon: '📖', phonetic: '/bʊk/', sentenceEN: 'a book', sentenceCN: '一本书' },
-      { id: 5, category: 'unit1', word: 'Desk', translation: '课桌', phrase: 'a desk', phraseTranslation: '一张课桌', article: 'a', icon: '🪵', phonetic: '/desk/', sentenceEN: 'a desk', sentenceCN: '一张课桌' },
-      { id: 6, category: 'unit1', word: 'Chair', translation: '椅子', phrase: 'a chair', phraseTranslation: '一把椅子', article: 'a', icon: '🪑', phonetic: '/tʃer/', sentenceEN: 'a chair', sentenceCN: '一把椅子' },
-      { id: 7, category: 'unit1', word: 'Ruler', translation: '尺子', phrase: 'a ruler', phraseTranslation: '一把尺子', article: 'a', icon: '📏', phonetic: '/ˈruːlər/', sentenceEN: 'a ruler', sentenceCN: '一把尺子' },
-      { id: 8, category: 'unit1', word: 'Eraser', translation: '橡皮', phrase: 'an eraser', phraseTranslation: '一块橡皮', article: 'an', icon: '🧽', phonetic: '/ɪˈreɪsər/', sentenceEN: 'an eraser', sentenceCN: '一块橡皮' },
-      { id: 9, category: 'unit1', word: 'Map', translation: '地图', phrase: 'a map', phraseTranslation: '一张地图', article: 'a', icon: '🗺️', phonetic: '/mæp/', sentenceEN: 'a map', sentenceCN: '一张地图' },
-      { id: 10, category: 'unit1', word: 'Marker', translation: '马克笔', phrase: 'a marker', phraseTranslation: '一支马克笔', article: 'a', icon: '🖍️', phonetic: '/ˈmɑːrkər/', sentenceEN: 'a marker', sentenceCN: '一支马克笔' },
-      { id: 11, category: 'unit1', word: 'Globe', translation: '地球仪', phrase: 'a globe', phraseTranslation: '一个地球仪', article: 'a', icon: '🌍', phonetic: '/ɡloʊb/', sentenceEN: 'a globe', sentenceCN: '一个地球仪' },
-      { id: 12, category: 'unit1', word: 'Table', translation: '桌子', phrase: 'a table', phraseTranslation: '一张桌子', article: 'a', icon: '🪑', phonetic: '/ˈteɪbəl/', sentenceEN: 'a table', sentenceCN: '一张桌子' },
-      { id: 13, category: 'unit1', word: 'Board', translation: '黑板', phrase: 'a board', phraseTranslation: '一块黑板', article: 'a', icon: '⬛', phonetic: '/bɔːrd/', sentenceEN: 'a board', sentenceCN: '一块黑板' },
-      { id: 14, category: 'unit1', word: 'Wastebasket', translation: '废纸篓', phrase: 'a wastebasket', phraseTranslation: '一个废纸篓', article: 'a', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'a wastebasket', sentenceCN: '一个废纸篓' },
-      { id: 15, category: 'unit1', word: 'Poster', translation: '海报', phrase: 'a poster', phraseTranslation: '一张海报', article: 'a', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'a poster', sentenceCN: '一张海报' },
-      { id: 16, category: 'unit1', word: 'Crayon', translation: '蜡笔', phrase: 'a crayon', phraseTranslation: '一支蜡笔', article: 'a', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'a crayon', sentenceCN: '一支蜡笔' },
-      { id: 17, category: 'unit2', word: 'Cat', translation: '猫', phrase: 'a cat', phraseTranslation: '一只猫', article: 'a', plural: 'cats', pluralTranslation: '多只猫', icon: '🐱', phonetic: '/kæt/', sentenceEN: 'a cat', sentenceCN: '一只猫' },
-      { id: 18, category: 'unit2', word: 'Dog', translation: '狗', phrase: 'a dog', phraseTranslation: '一只狗', article: 'a', plural: 'dogs', pluralTranslation: '多只狗', icon: '🐶', phonetic: '/dɔːɡ/', sentenceEN: 'a dog', sentenceCN: '一只狗' },
-      { id: 19, category: 'unit2', word: 'Bird', translation: '鸟', phrase: 'a bird', phraseTranslation: '一只鸟', article: 'a', plural: 'birds', pluralTranslation: '多只鸟', icon: '🐦', phonetic: '/bɜːrd/', sentenceEN: 'a bird', sentenceCN: '一只鸟' },
-      { id: 20, category: 'unit2', word: 'Rabbit', translation: '兔子', phrase: 'a rabbit', phraseTranslation: '一只兔子', article: 'a', plural: 'rabbits', pluralTranslation: '多只兔子', icon: '🐰', phonetic: '/ˈræbɪt/', sentenceEN: 'a rabbit', sentenceCN: '一只兔子' },
-      { id: 21, category: 'unit2', word: 'Frog', translation: '青蛙', phrase: 'a frog', phraseTranslation: '一只青蛙', article: 'a', plural: 'frogs', pluralTranslation: '多只青蛙', icon: '🐸', phonetic: '/frɔːɡ/', sentenceEN: 'a frog', sentenceCN: '一只青蛙' },
-      { id: 22, category: 'unit2', word: 'Monkey', translation: '猴子', phrase: 'a monkey', phraseTranslation: '一只猴子', article: 'a', plural: 'monkeys', pluralTranslation: '多只猴子', icon: '🐵', phonetic: '/ˈmʌŋki/', sentenceEN: 'a monkey', sentenceCN: '一只猴子' },
-      { id: 23, category: 'unit2', word: 'Lion', translation: '狮子', phrase: 'a lion', phraseTranslation: '一只狮子', article: 'a', plural: 'lions', pluralTranslation: '多只狮子', icon: '🦁', phonetic: '/ˈlaɪən/', sentenceEN: 'a lion', sentenceCN: '一只狮子' },
-      { id: 24, category: 'unit2', word: 'Bear', translation: '熊', phrase: 'a bear', phraseTranslation: '一只熊', article: 'a', plural: 'bears', pluralTranslation: '多只熊', icon: '🐻', phonetic: '/ber/', sentenceEN: 'a bear', sentenceCN: '一只熊' },
-      { id: 25, category: 'unit2', word: 'Giraffe', translation: '长颈鹿', phrase: 'a giraffe', phraseTranslation: '一只长颈鹿', article: 'a', plural: 'giraffes', pluralTranslation: '多只长颈鹿', icon: '🦒', phonetic: '/dʒəˈræf/', sentenceEN: 'a giraffe', sentenceCN: '一只长颈鹿' },
-      { id: 26, category: 'unit2', word: 'Elephant', translation: '大象', phrase: 'an elephant', phraseTranslation: '一只大象', article: 'an', plural: 'elephants', pluralTranslation: '多只大象', icon: '🐘', phonetic: '/ˈelɪfənt/', sentenceEN: 'an elephant', sentenceCN: '一只大象' }
+      { id: 1, category: "unit1", word: "Pencil", translation: "铅笔", phrase: "a pencil", phraseTranslation: "一支铅笔", article: "a", icon: "✏️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a pencil", sentenceCN: "一支铅笔" },
+      { id: 2, category: "unit1", word: "Pen", translation: "钢笔", phrase: "a pen", phraseTranslation: "一支钢笔", article: "a", icon: "🖊️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a pen", sentenceCN: "一支钢笔" },
+      { id: 3, category: "unit1", word: "Bag", translation: "书包", phrase: "a bag", phraseTranslation: "一个书包", article: "a", icon: "🎒", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a bag", sentenceCN: "一个书包" },
+      { id: 4, category: "unit1", word: "Book", translation: "书", phrase: "a book", phraseTranslation: "一本书", article: "a", icon: "📖", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a book", sentenceCN: "一本书" },
+      { id: 5, category: "unit1", word: "Desk", translation: "课桌", phrase: "a desk", phraseTranslation: "一张课桌", article: "a", icon: "🪵", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a desk", sentenceCN: "一张课桌" },
+      { id: 6, category: "unit1", word: "Chair", translation: "椅子", phrase: "a chair", phraseTranslation: "一把椅子", article: "a", icon: "🪑", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a chair", sentenceCN: "一把椅子" },
+      { id: 7, category: "unit1", word: "Ruler", translation: "尺子", phrase: "a ruler", phraseTranslation: "一把尺子", article: "a", icon: "📏", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a ruler", sentenceCN: "一把尺子" },
+      { id: 8, category: "unit1", word: "Eraser", translation: "橡皮", phrase: "an eraser", phraseTranslation: "一块橡皮", article: "an", icon: "🧽", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "an eraser", sentenceCN: "一块橡皮" },
+      { id: 9, category: "unit1", word: "Map", translation: "地图", phrase: "a map", phraseTranslation: "一张地图", article: "a", icon: "🗺️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a map", sentenceCN: "一张地图" },
+      { id: 10, category: "unit1", word: "Marker", translation: "马克笔", phrase: "a marker", phraseTranslation: "一支马克笔", article: "a", icon: "🖍️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a marker", sentenceCN: "一支马克笔" },
+      { id: 11, category: "unit1", word: "Globe", translation: "地球仪", phrase: "a globe", phraseTranslation: "一个地球仪", article: "a", icon: "🌍", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a globe", sentenceCN: "一个地球仪" },
+      { id: 12, category: "unit1", word: "Table", translation: "桌子", phrase: "a table", phraseTranslation: "一张桌子", article: "a", icon: "🪑", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a table", sentenceCN: "一张桌子" },
+      { id: 13, category: "unit1", word: "Board", translation: "黑板", phrase: "a board", phraseTranslation: "一块黑板", article: "a", icon: "⬛", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a board", sentenceCN: "一块黑板" },
+      { id: 14, category: "unit1", word: "Wastebasket", translation: "废纸篓", phrase: "a wastebasket", phraseTranslation: "一个废纸篓", article: "a", icon: "🗑️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a wastebasket", sentenceCN: "一个废纸篓" },
+      { id: 15, category: "unit1", word: "Poster", translation: "海报", phrase: "a poster", phraseTranslation: "一张海报", article: "a", icon: "🖼️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a poster", sentenceCN: "一张海报" },
+      { id: 16, category: "unit1", word: "Crayon", translation: "蜡笔", phrase: "a crayon", phraseTranslation: "一支蜡笔", article: "a", icon: "🖍️", phonetic: "", learningTip: "先记住单词本体，再学 a/an 表示“一个/一只/一支/一张”。", sentenceEN: "a crayon", sentenceCN: "一支蜡笔" },
+      { id: 17, category: "unit2", word: "Cat", translation: "猫", phrase: "a cat", phraseTranslation: "一只猫", article: "a", plural: "cats", pluralTranslation: "多只猫", icon: "🐱", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a cat", sentenceCN: "一只猫" },
+      { id: 18, category: "unit2", word: "Dog", translation: "狗", phrase: "a dog", phraseTranslation: "一只狗", article: "a", plural: "dogs", pluralTranslation: "多只狗", icon: "🐶", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a dog", sentenceCN: "一只狗" },
+      { id: 19, category: "unit2", word: "Bird", translation: "鸟", phrase: "a bird", phraseTranslation: "一只鸟", article: "a", plural: "birds", pluralTranslation: "多只鸟", icon: "🐦", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a bird", sentenceCN: "一只鸟" },
+      { id: 20, category: "unit2", word: "Rabbit", translation: "兔子", phrase: "a rabbit", phraseTranslation: "一只兔子", article: "a", plural: "rabbits", pluralTranslation: "多只兔子", icon: "🐰", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a rabbit", sentenceCN: "一只兔子" },
+      { id: 21, category: "unit2", word: "Frog", translation: "青蛙", phrase: "a frog", phraseTranslation: "一只青蛙", article: "a", plural: "frogs", pluralTranslation: "多只青蛙", icon: "🐸", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a frog", sentenceCN: "一只青蛙" },
+      { id: 22, category: "unit2", word: "Monkey", translation: "猴子", phrase: "a monkey", phraseTranslation: "一只猴子", article: "a", plural: "monkeys", pluralTranslation: "多只猴子", icon: "🐵", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a monkey", sentenceCN: "一只猴子" },
+      { id: 23, category: "unit2", word: "Lion", translation: "狮子", phrase: "a lion", phraseTranslation: "一只狮子", article: "a", plural: "lions", pluralTranslation: "多只狮子", icon: "🦁", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a lion", sentenceCN: "一只狮子" },
+      { id: 24, category: "unit2", word: "Bear", translation: "熊", phrase: "a bear", phraseTranslation: "一只熊", article: "a", plural: "bears", pluralTranslation: "多只熊", icon: "🐻", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a bear", sentenceCN: "一只熊" },
+      { id: 25, category: "unit2", word: "Giraffe", translation: "长颈鹿", phrase: "a giraffe", phraseTranslation: "一只长颈鹿", article: "a", plural: "giraffes", pluralTranslation: "多只长颈鹿", icon: "🦒", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "a giraffe", sentenceCN: "一只长颈鹿" },
+      { id: 26, category: "unit2", word: "Elephant", translation: "大象", phrase: "an elephant", phraseTranslation: "一只大象", article: "an", plural: "elephants", pluralTranslation: "多只大象", icon: "🐘", phonetic: "", learningTip: "一个动物用 a/an；两个或更多时学习复数形式。", sentenceEN: "an elephant", sentenceCN: "一只大象" },
+      { id: 27, category: "unit3", word: "Black", translation: "黑色", icon: "⚫", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "black", sentenceCN: "黑色" },
+      { id: 28, category: "unit3", word: "Blue", translation: "蓝色", icon: "🔵", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "blue", sentenceCN: "蓝色" },
+      { id: 29, category: "unit3", word: "Brown", translation: "棕色", icon: "🟤", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "brown", sentenceCN: "棕色" },
+      { id: 30, category: "unit3", word: "Green", translation: "绿色", icon: "🟢", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "green", sentenceCN: "绿色" },
+      { id: 31, category: "unit3", word: "Orange", translation: "橙色", icon: "🟠", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "orange", sentenceCN: "橙色" },
+      { id: 32, category: "unit3", word: "Pink", translation: "粉色", icon: "🩷", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "pink", sentenceCN: "粉色" },
+      { id: 33, category: "unit3", word: "Purple", translation: "紫色", icon: "🟣", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "purple", sentenceCN: "紫色" },
+      { id: 34, category: "unit3", word: "Red", translation: "红色", icon: "🔴", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "red", sentenceCN: "红色" },
+      { id: 35, category: "unit3", word: "White", translation: "白色", icon: "⚪", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "white", sentenceCN: "白色" },
+      { id: 36, category: "unit3", word: "Yellow", translation: "黄色", icon: "🟡", phonetic: "", learningTip: "这是颜色词，直接记单词本体，不需要在前面加 a/an。", sentenceEN: "yellow", sentenceCN: "黄色" },
+      { id: 37, category: "unit3", word: "Circle", translation: "圆形", phrase: "a circle", phraseTranslation: "一个圆形", article: "a", icon: "⭕", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a circle", sentenceCN: "一个圆形" },
+      { id: 38, category: "unit3", word: "Diamond", translation: "菱形", phrase: "a diamond", phraseTranslation: "一个菱形", article: "a", icon: "🔷", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a diamond", sentenceCN: "一个菱形" },
+      { id: 39, category: "unit3", word: "Heart", translation: "心形", phrase: "a heart", phraseTranslation: "一个心形", article: "a", icon: "❤️", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a heart", sentenceCN: "一个心形" },
+      { id: 40, category: "unit3", word: "Rectangle", translation: "长方形", phrase: "a rectangle", phraseTranslation: "一个长方形", article: "a", icon: "▭", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a rectangle", sentenceCN: "一个长方形" },
+      { id: 41, category: "unit3", word: "Square", translation: "正方形", phrase: "a square", phraseTranslation: "一个正方形", article: "a", icon: "⬜", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a square", sentenceCN: "一个正方形" },
+      { id: 42, category: "unit3", word: "Star", translation: "星形", phrase: "a star", phraseTranslation: "一个星形", article: "a", icon: "⭐", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a star", sentenceCN: "一个星形" },
+      { id: 43, category: "unit3", word: "Triangle", translation: "三角形", phrase: "a triangle", phraseTranslation: "一个三角形", article: "a", icon: "🔺", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "a triangle", sentenceCN: "一个三角形" },
+      { id: 44, category: "unit3", word: "Oval", translation: "椭圆形", phrase: "an oval", phraseTranslation: "一个椭圆形", article: "an", icon: "🥚", phonetic: "", learningTip: "形状是“一个东西”时，可以在前面加 a/an。", sentenceEN: "an oval", sentenceCN: "一个椭圆形" },
+      { id: 45, category: "unit4", word: "Banana", translation: "香蕉", phrase: "a banana", phraseTranslation: "一根香蕉", article: "a", icon: "🍌", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a banana", sentenceCN: "一根香蕉" },
+      { id: 46, category: "unit4", word: "Cookie", translation: "饼干", phrase: "a cookie", phraseTranslation: "一块饼干", article: "a", icon: "🍪", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a cookie", sentenceCN: "一块饼干" },
+      { id: 47, category: "unit4", word: "Milkshake", translation: "奶昔", phrase: "a milkshake", phraseTranslation: "一杯奶昔", article: "a", icon: "🥤", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a milkshake", sentenceCN: "一杯奶昔" },
+      { id: 48, category: "unit4", word: "Salad", translation: "沙拉", phrase: "a salad", phraseTranslation: "一份沙拉", article: "a", icon: "🥗", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a salad", sentenceCN: "一份沙拉" },
+      { id: 49, category: "unit4", word: "Sandwich", translation: "三明治", phrase: "a sandwich", phraseTranslation: "一个三明治", article: "a", icon: "🥪", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a sandwich", sentenceCN: "一个三明治" },
+      { id: 50, category: "unit4", word: "Soda", translation: "汽水", phrase: "a soda", phraseTranslation: "一杯汽水", article: "a", icon: "🥤", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "a soda", sentenceCN: "一杯汽水" },
+      { id: 51, category: "unit4", word: "Egg", translation: "鸡蛋", phrase: "an egg", phraseTranslation: "一个鸡蛋", article: "an", icon: "🥚", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "an egg", sentenceCN: "一个鸡蛋" },
+      { id: 52, category: "unit4", word: "Orange", translation: "橙子", phrase: "an orange", phraseTranslation: "一个橙子", article: "an", icon: "🍊", phonetic: "", learningTip: "这些食物可以一个一个数，所以可以用 a/an 表示“一份/一个”。", sentenceEN: "an orange", sentenceCN: "一个橙子" },
+      { id: 53, category: "unit4", word: "Bread", translation: "面包", icon: "🍞", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "bread", sentenceCN: "面包" },
+      { id: 54, category: "unit4", word: "Cake", translation: "蛋糕", icon: "🎂", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "cake", sentenceCN: "蛋糕" },
+      { id: 55, category: "unit4", word: "Chicken", translation: "鸡肉", icon: "🍗", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "chicken", sentenceCN: "鸡肉" },
+      { id: 56, category: "unit4", word: "Fish", translation: "鱼/鱼肉", icon: "🐟", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "fish", sentenceCN: "鱼/鱼肉" },
+      { id: 57, category: "unit4", word: "Ice Cream", translation: "冰淇淋", icon: "🍨", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "ice cream", sentenceCN: "冰淇淋" },
+      { id: 58, category: "unit4", word: "Milk", translation: "牛奶", icon: "🥛", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "milk", sentenceCN: "牛奶" },
+      { id: 59, category: "unit4", word: "Pizza", translation: "披萨", icon: "🍕", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "pizza", sentenceCN: "披萨" },
+      { id: 60, category: "unit4", word: "Rice", translation: "米饭", icon: "🍚", phonetic: "", learningTip: "这里按教材把它当作食物整体来学，前面不加 a/an。", sentenceEN: "rice", sentenceCN: "米饭" },
+      { id: 61, category: "unit5", word: "Baseball", translation: "棒球", phrase: "a baseball", phraseTranslation: "一个棒球", article: "a", icon: "⚾", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a baseball", sentenceCN: "一个棒球" },
+      { id: 62, category: "unit5", word: "Bat", translation: "球棒", phrase: "a bat", phraseTranslation: "一根球棒", article: "a", icon: "🏏", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a bat", sentenceCN: "一根球棒" },
+      { id: 63, category: "unit5", word: "Bicycle", translation: "自行车", phrase: "a bicycle", phraseTranslation: "一辆自行车", article: "a", icon: "🚲", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a bicycle", sentenceCN: "一辆自行车" },
+      { id: 64, category: "unit5", word: "Car", translation: "汽车", phrase: "a car", phraseTranslation: "一辆汽车", article: "a", icon: "🚗", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a car", sentenceCN: "一辆汽车" },
+      { id: 65, category: "unit5", word: "Doll", translation: "玩偶", phrase: "a doll", phraseTranslation: "一个玩偶", article: "a", icon: "🪆", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a doll", sentenceCN: "一个玩偶" },
+      { id: 66, category: "unit5", word: "Jump Rope", translation: "跳绳", phrase: "a jump rope", phraseTranslation: "一根跳绳", article: "a", icon: "🪢", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a jump rope", sentenceCN: "一根跳绳" },
+      { id: 67, category: "unit5", word: "Kite", translation: "风筝", phrase: "a kite", phraseTranslation: "一个风筝", article: "a", icon: "🪁", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a kite", sentenceCN: "一个风筝" },
+      { id: 68, category: "unit5", word: "Puzzle", translation: "拼图", phrase: "a puzzle", phraseTranslation: "一副拼图", article: "a", icon: "🧩", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a puzzle", sentenceCN: "一副拼图" },
+      { id: 69, category: "unit5", word: "Robot", translation: "机器人", phrase: "a robot", phraseTranslation: "一个机器人", article: "a", icon: "🤖", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a robot", sentenceCN: "一个机器人" },
+      { id: 70, category: "unit5", word: "Yo-yo", translation: "悠悠球", phrase: "a yo-yo", phraseTranslation: "一个悠悠球", article: "a", icon: "🪀", phonetic: "", learningTip: "先记玩具名称，再学习 a + 玩具，表示“一个/一件”。", sentenceEN: "a yo-yo", sentenceCN: "一个悠悠球" },
+      { id: 71, category: "unit5", word: "Big", translation: "大的", icon: "🐘", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s big.”。", sentenceEN: "big", sentenceCN: "大的" },
+      { id: 72, category: "unit5", word: "Little", translation: "小的", icon: "🐭", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s little.”。", sentenceEN: "little", sentenceCN: "小的" },
+      { id: 73, category: "unit5", word: "Long", translation: "长的", icon: "📏", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s long.”。", sentenceEN: "long", sentenceCN: "长的" },
+      { id: 74, category: "unit5", word: "New", translation: "新的", icon: "✨", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s new.”。", sentenceEN: "new", sentenceCN: "新的" },
+      { id: 75, category: "unit5", word: "Old", translation: "旧的", icon: "📦", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s old.”。", sentenceEN: "old", sentenceCN: "旧的" },
+      { id: 76, category: "unit5", word: "Round", translation: "圆的", icon: "⚪", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s round.”。", sentenceEN: "round", sentenceCN: "圆的" },
+      { id: 77, category: "unit5", word: "Short", translation: "短的", icon: "📐", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s short.”。", sentenceEN: "short", sentenceCN: "短的" },
+      { id: 78, category: "unit5", word: "Square", translation: "方形的", icon: "⬜", phonetic: "", learningTip: "这是描述东西样子的词，可以说 “It’s square.”。", sentenceEN: "square", sentenceCN: "方形的" },
+      { id: 79, category: "unit6", word: "Cloud", translation: "云", phrase: "a cloud", phraseTranslation: "一朵云", article: "a", plural: "clouds", pluralTranslation: "多朵云", icon: "☁️", phonetic: "", learningTip: "一个自然物用 a；多个时学习复数。", sentenceEN: "a cloud", sentenceCN: "一朵云" },
+      { id: 80, category: "unit6", word: "Flower", translation: "花", phrase: "a flower", phraseTranslation: "一朵花", article: "a", plural: "flowers", pluralTranslation: "多朵花", icon: "🌸", phonetic: "", learningTip: "一个自然物用 a；多个时学习复数。", sentenceEN: "a flower", sentenceCN: "一朵花" },
+      { id: 81, category: "unit6", word: "Puddle", translation: "水坑", phrase: "a puddle", phraseTranslation: "一个水坑", article: "a", plural: "puddles", pluralTranslation: "多个水坑", icon: "💧", phonetic: "", learningTip: "一个自然物用 a；多个时学习复数。", sentenceEN: "a puddle", sentenceCN: "一个水坑" },
+      { id: 82, category: "unit6", word: "Tree", translation: "树", phrase: "a tree", phraseTranslation: "一棵树", article: "a", plural: "trees", pluralTranslation: "多棵树", icon: "🌳", phonetic: "", learningTip: "一个自然物用 a；多个时学习复数。", sentenceEN: "a tree", sentenceCN: "一棵树" },
+      { id: 83, category: "unit6", word: "By", translation: "在……旁边", icon: "↔️", phonetic: "", learningTip: "这是位置词，用来告诉我们东西在哪里，不需要加 a/an。", sentenceEN: "by", sentenceCN: "在……旁边" },
+      { id: 84, category: "unit6", word: "In", translation: "在……里面", icon: "📥", phonetic: "", learningTip: "这是位置词，用来告诉我们东西在哪里，不需要加 a/an。", sentenceEN: "in", sentenceCN: "在……里面" },
+      { id: 85, category: "unit6", word: "On", translation: "在……上面", icon: "⬆️", phonetic: "", learningTip: "这是位置词，用来告诉我们东西在哪里，不需要加 a/an。", sentenceEN: "on", sentenceCN: "在……上面" },
+      { id: 86, category: "unit6", word: "Under", translation: "在……下面", icon: "⬇️", phonetic: "", learningTip: "这是位置词，用来告诉我们东西在哪里，不需要加 a/an。", sentenceEN: "under", sentenceCN: "在……下面" },
+      { id: 87, category: "unit7", word: "CD", translation: "光盘", phrase: "a cd", phraseTranslation: "一张光盘", article: "a", plural: "CDs", pluralTranslation: "多张光盘", icon: "💿", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a cd", sentenceCN: "一张光盘" },
+      { id: 88, category: "unit7", word: "Cell Phone", translation: "手机", phrase: "a cell phone", phraseTranslation: "一部手机", article: "a", plural: "cell phones", pluralTranslation: "多部手机", icon: "📱", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a cell phone", sentenceCN: "一部手机" },
+      { id: 89, category: "unit7", word: "Computer", translation: "电脑", phrase: "a computer", phraseTranslation: "一台电脑", article: "a", plural: "computers", pluralTranslation: "多台电脑", icon: "💻", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a computer", sentenceCN: "一台电脑" },
+      { id: 90, category: "unit7", word: "Crayon", translation: "蜡笔", phrase: "a crayon", phraseTranslation: "一支蜡笔", article: "a", plural: "crayons", pluralTranslation: "多支蜡笔", icon: "🖍️", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a crayon", sentenceCN: "一支蜡笔" },
+      { id: 91, category: "unit7", word: "Marker", translation: "马克笔", phrase: "a marker", phraseTranslation: "一支马克笔", article: "a", plural: "markers", pluralTranslation: "多支马克笔", icon: "🖊️", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a marker", sentenceCN: "一支马克笔" },
+      { id: 92, category: "unit7", word: "Notebook", translation: "笔记本", phrase: "a notebook", phraseTranslation: "一本笔记本", article: "a", plural: "notebooks", pluralTranslation: "多本笔记本", icon: "📓", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a notebook", sentenceCN: "一本笔记本" },
+      { id: 93, category: "unit7", word: "Pencil Case", translation: "铅笔盒", phrase: "a pencil case", phraseTranslation: "一个铅笔盒", article: "a", plural: "pencil cases", pluralTranslation: "多个铅笔盒", icon: "👝", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a pencil case", sentenceCN: "一个铅笔盒" },
+      { id: 94, category: "unit7", word: "Video Game", translation: "电子游戏", phrase: "a video game", phraseTranslation: "一个电子游戏", article: "a", plural: "video games", pluralTranslation: "多个电子游戏", icon: "🎮", phonetic: "", learningTip: "商店里的一个物品用 a；多个物品学习复数形式。", sentenceEN: "a video game", sentenceCN: "一个电子游戏" },
+      { id: 95, category: "unit8", word: "Baby Brother", translation: "小弟弟", icon: "👶", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "baby brother", sentenceCN: "小弟弟" },
+      { id: 96, category: "unit8", word: "Baby Sister", translation: "小妹妹", icon: "👶", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "baby sister", sentenceCN: "小妹妹" },
+      { id: 97, category: "unit8", word: "Brother", translation: "哥哥/弟弟", icon: "👦", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "brother", sentenceCN: "哥哥/弟弟" },
+      { id: 98, category: "unit8", word: "Father", translation: "爸爸", icon: "👨", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "father", sentenceCN: "爸爸" },
+      { id: 99, category: "unit8", word: "Grandfather", translation: "爷爷/外公", icon: "👴", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "grandfather", sentenceCN: "爷爷/外公" },
+      { id: 100, category: "unit8", word: "Grandmother", translation: "奶奶/外婆", icon: "👵", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "grandmother", sentenceCN: "奶奶/外婆" },
+      { id: 101, category: "unit8", word: "Mother", translation: "妈妈", icon: "👩", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "mother", sentenceCN: "妈妈" },
+      { id: 102, category: "unit8", word: "Sister", translation: "姐姐/妹妹", icon: "👧", phonetic: "", learningTip: "这是家人称呼，先直接记单词本体；以后可以和 my 连用，比如 my mother。", sentenceEN: "sister", sentenceCN: "姐姐/妹妹" },
+      { id: 103, category: "unit8", word: "Handsome", translation: "帅气的", icon: "😎", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "handsome", sentenceCN: "帅气的" },
+      { id: 104, category: "unit8", word: "Old", translation: "年老的", icon: "👴", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "old", sentenceCN: "年老的" },
+      { id: 105, category: "unit8", word: "Pretty", translation: "漂亮的", icon: "🌷", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "pretty", sentenceCN: "漂亮的" },
+      { id: 106, category: "unit8", word: "Short", translation: "矮的", icon: "📏", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "short", sentenceCN: "矮的" },
+      { id: 107, category: "unit8", word: "Tall", translation: "高的", icon: "🦒", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "tall", sentenceCN: "高的" },
+      { id: 108, category: "unit8", word: "Young", translation: "年轻的", icon: "🧒", phonetic: "", learningTip: "这是描述人的词，可以和家人称呼一起使用。", sentenceEN: "young", sentenceCN: "年轻的" }
     ];
 
-    const STORAGE_KEY = 'xiaoxiEnglishV58Unit12State';
+    const UNIT_META = {
+      unit1: { label: 'Unit 1 · Things for School', short: 'Unit 1', icon: '🎒' },
+      unit2: { label: 'Unit 2 · Animals', short: 'Unit 2', icon: '🐾' },
+      unit3: { label: 'Unit 3 · Colors and Shapes', short: 'Unit 3', icon: '🎨' },
+      unit4: { label: 'Unit 4 · Food', short: 'Unit 4', icon: '🍎' },
+      unit5: { label: 'Unit 5 · Happy Birthday', short: 'Unit 5', icon: '🎂' },
+      unit6: { label: 'Unit 6 · Outdoors', short: 'Unit 6', icon: '🌳' },
+      unit7: { label: 'Unit 7 · At the Store', short: 'Unit 7', icon: '🛍️' },
+      unit8: { label: 'Unit 8 · Family', short: 'Unit 8', icon: '👨‍👩‍👧' }
+    };
+
+    const STORAGE_KEY = 'xiaoxiEnglishV60AllUnitsState';
     const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
 
     function todayKey() {
@@ -992,7 +1091,7 @@
       return waitSpeech(settleMs, runId);
     }
 
-    const WORD_AUDIO_VERSION = 'v5.8.0';
+    const WORD_AUDIO_VERSION = 'v6.0.0';
 
     function slugifyWordAudio(text) {
       return String(text || '')
@@ -1514,7 +1613,7 @@
       document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
       document.getElementById('questWordTargetText').innerText = word.word;
       const questUnit = document.getElementById('questUnitText');
-      if (questUnit) questUnit.innerText = word.category === 'unit2' ? 'Unit 2 Animals' : 'Unit 1';
+      if (questUnit) questUnit.innerText = (UNIT_META[word.category] || {}).label || word.category;
 
       const dots = document.getElementById('stepDotsContainer').children;
       for (let i = 0; i < 4; i++) {
@@ -1594,6 +1693,36 @@
       }
     }
 
+
+    function renderLearningLayers(word, compact = false) {
+      const blocks = [];
+      if (word.phrase) {
+        blocks.push(`
+          <button onclick="speakWord('${word.phrase}')" class="w-full ${compact ? 'px-3 py-2' : 'p-4'} rounded-2xl bg-emerald-50 border border-emerald-100 bounce-interactive flex items-center justify-between text-left">
+            <div>
+              <p class="text-[10px] text-emerald-500 font-bold">一个这个怎么说？</p>
+              <p class="font-fredoka font-bold ${compact ? 'text-xl' : 'text-2xl'} text-emerald-900">${word.phrase}</p>
+              <p class="text-xs text-emerald-700 font-bold">${word.phraseTranslation || ''}</p>
+            </div>
+            <span class="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
+          </button>`);
+      }
+      if (word.plural) {
+        blocks.push(`
+          <button onclick="speakWord('${word.plural}')" class="w-full ${compact ? 'px-3 py-2' : 'p-4'} rounded-2xl bg-violet-50 border border-violet-100 bounce-interactive flex items-center justify-between text-left">
+            <div>
+              <p class="text-[10px] text-violet-500 font-bold">多个怎么说？</p>
+              <p class="font-fredoka font-bold ${compact ? 'text-xl' : 'text-2xl'} text-violet-900">${word.plural}</p>
+              <p class="text-xs text-violet-700 font-bold">${word.pluralTranslation || ''}</p>
+            </div>
+            <span class="w-11 h-11 rounded-full bg-violet-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
+          </button>`);
+      }
+      const tip = word.learningTip || (word.article ? `${word.article} 可以先理解成“一个/一只/一件”。` : '先把这个单词本体记牢。');
+      blocks.push(`<div class="p-3 rounded-2xl bg-amber-50 border border-amber-100 text-left text-[11px] text-amber-800 leading-relaxed">🌟 <b>小提示：</b>${tip}</div>`);
+      return blocks.join('');
+    }
+
     function renderStep2Speak(container, word) {
       stopAllAudio();
       stopVoiceRecord(true);
@@ -1617,20 +1746,7 @@
             </button>
           </div>
 
-          <div class="rounded-2xl border border-sky-100 bg-sky-50 p-3 text-left space-y-2">
-            <div class="flex items-center justify-between gap-2">
-              <div>
-                <p class="text-[10px] font-bold text-sky-500">再加上一个数量</p>
-                <p class="font-fredoka text-xl font-bold text-sky-900">${word.phrase}</p>
-                <p class="text-xs text-sky-700 font-bold">${word.phraseTranslation}</p>
-              </div>
-              <button onclick="speakWord('${word.phrase}')" class="w-11 h-11 rounded-full bg-sky-500 text-white shadow-sm bounce-interactive" aria-label="播放短语">
-                <i class="fa-solid fa-volume-high"></i>
-              </button>
-            </div>
-            <p class="text-[11px] text-sky-700 leading-relaxed">💡 <b>${word.article}</b> 放在一个东西前面，可以先理解成“一个 / 一只 / 一支 / 一张”。${word.article === 'an' ? `这里用 <b>an</b>，因为 ${word.word.toLowerCase()} 开头听起来是元音。` : ''}</p>
-            ${word.plural ? `<button onclick="speakWord('${word.plural}')" class="mt-2 w-full px-3 py-2 rounded-xl bg-white/80 border border-sky-100 text-left bounce-interactive"><span class="text-[10px] text-sky-500 font-bold">多只怎么说？</span><span class="block font-fredoka font-bold text-sky-900">${word.plural}</span><span class="text-[10px] text-sky-700">${word.pluralTranslation} · 点击听复数</span></button>` : ''}
-          </div>
+          <div class="space-y-2">${renderLearningLayers(word, true)}</div>
 
           <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100 text-amber-800 text-xs font-bold text-left flex items-start gap-2">
             <span class="text-xl">🦊</span>
@@ -1867,20 +1983,7 @@
               <span class="w-11 h-11 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
             </button>
 
-            <button onclick="speakWord('${word.phrase}')" class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100 bounce-interactive flex items-center justify-between">
-              <div>
-                <p class="text-[10px] text-emerald-500 font-bold">一个这个东西怎么说？</p>
-                <p class="font-fredoka font-bold text-2xl text-emerald-900">${word.phrase}</p>
-                <p class="text-sm text-emerald-700 font-bold">${word.phraseTranslation}</p>
-              </div>
-              <span class="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
-            </button>
-            ${word.plural ? `<button onclick="speakWord('${word.plural}')" class="p-4 rounded-2xl bg-violet-50 border border-violet-100 bounce-interactive flex items-center justify-between"><div><p class="text-[10px] text-violet-500 font-bold">不止一只呢？</p><p class="font-fredoka font-bold text-2xl text-violet-900">${word.plural}</p><p class="text-sm text-violet-700 font-bold">${word.pluralTranslation}</p></div><span class="w-11 h-11 rounded-full bg-violet-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span></button>` : ''}
-          </div>
-
-          <div class="p-3 rounded-2xl bg-amber-50 border border-amber-100 text-left text-[11px] text-amber-800 leading-relaxed">
-            🌟 <b>a / an 小魔法：</b>${word.article === 'an' ? `<b>an</b> 也表示“一个/一只”，所以 ${word.phrase} 就是“${word.phraseTranslation}”。` : `<b>a</b> 可以先理解成“一个 / 一只 / 一支 / 一张”，所以 ${word.phrase} 就是“${word.phraseTranslation}”。`}${word.plural ? ` <b>${word.plural}</b> 表示不止一只。` : ''}
-          </div>
+            <div class="space-y-3">${renderLearningLayers(word, false)}</div>
 
           <button onclick="finishStep3()" class="w-full py-3 bg-emerald-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow-md shadow-emerald-200 bounce-interactive">
             我明白啦，去拼写！🚀
@@ -2169,12 +2272,19 @@
       check('全部字母有例词数据', ALPHABET.every(x => x.word));
       check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
       check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
+      check('课程共有8个单元', new Set(WORD_BANK.map(x => x.category)).size === 8);
+      check('总核心词条为108', WORD_BANK.length === 108, `实际 ${WORD_BANK.length}`);
       check('Unit 1 为16词', WORD_BANK.filter(x => x.category === 'unit1').length === 16);
-      check('Unit 2 Animals 为10个核心动物词', WORD_BANK.filter(x => x.category === 'unit2').length === 10);
-      check('Unit 2 均有单数短语和复数', WORD_BANK.filter(x => x.category === 'unit2').every(x => x.phrase && x.plural));
+      check('Unit 2 为10词', WORD_BANK.filter(x => x.category === 'unit2').length === 10);
+      check('Unit 3 为18词', WORD_BANK.filter(x => x.category === 'unit3').length === 18);
+      check('Unit 4 为16词', WORD_BANK.filter(x => x.category === 'unit4').length === 16);
+      check('Unit 5 为18词', WORD_BANK.filter(x => x.category === 'unit5').length === 18);
+      check('Unit 6 为8词', WORD_BANK.filter(x => x.category === 'unit6').length === 8);
+      check('Unit 7 为8词', WORD_BANK.filter(x => x.category === 'unit7').length === 8);
+      check('Unit 8 为14词', WORD_BANK.filter(x => x.category === 'unit8').length === 14);
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.8 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v6.0 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);

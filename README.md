@@ -1,38 +1,50 @@
-# 小夕英语 v5.8 · Unit 1 + Unit 2 Animals
+# 小夕英语 v6.0 · Let’s Go 1 Unit 1–8 全课程版
 
 ## 课程结构
 
-### Unit 1 · Things for School（16词）
-pencil, pen, bag, book, desk, chair, ruler, eraser, map, marker, globe, table, board, wastebasket, poster, crayon
+本版本沿用 v5.8 的分层学习结构，并按用户截图扩展到 Unit 1–8。
 
-### Unit 2 · Animals（10个核心动物概念）
-cat, dog, bird, rabbit, frog, monkey, lion, bear, giraffe, elephant
+- Unit 1 · Things for School：16 个核心词
+- Unit 2 · Animals：10 个核心动物词 + 对应复数
+- Unit 3 · Colors and Shapes：10 个颜色 + 8 个形状
+- Unit 4 · Food：8 个可数食物 + 8 个教材中按整体学习的食物
+- Unit 5 · Happy Birthday：10 个玩具 + 8 个描述词
+- Unit 6 · Outdoors：4 个自然物 + 4 个位置词；自然物保留复数
+- Unit 7 · At the Store：8 个商店物品 + 对应复数
+- Unit 8 · Family：8 个家庭成员 + 6 个描述人物的词
 
-截图中同时包含这 10 个词的复数形式，因此本版本不把复数重复做成 10 个新的单词本条目，而是在同一词条中增加 plural 字段：
-- cat → a cat → cats
-- dog → a dog → dogs
-- ...
-- elephant → an elephant → elephants
+总核心词条：108。
 
-## 音频结构
-Unit 2 全部来自用户提供的 Let’s Go 1 Class Audio CD2：
-- CD2 Track 57：a cat, a dog, a bird, a rabbit, a frog + plurals
-- CD2 Track 63：a monkey, a lion, a bear, a giraffe, an elephant + plurals
+## 学习规则
 
-目录：
-- `audio/words/`：词本体，例如 `cat`
-- `audio/phrases/`：单数 a/an 短语，例如 `a cat` / `an elephant`
-- `audio/plurals/`：复数，例如 `cats` / `elephants`
+- 单词本只显示词本体，例如 `pencil = 铅笔`、`cat = 猫`。
+- 有 a/an 的名词在每日闯关中额外显示短语层，例如 `pencil → a pencil`。
+- 教材同时教授复数的词，在同一词条中显示 plural 层，例如 `cat → a cat → cats`。
+- 颜色、形容词、方位词、家庭称呼等不会被强行添加 a/an；每日闯关会显示对应儿童化提示。
+- Android Range/206 音频兼容逻辑继续保留。
 
-Unit 1 继续沿用 v5.7 的 Oxford 音频。
+## 教材音频来源映射（来自用户上传的 Let’s Go 1 Audio CD）
 
-## 学习逻辑
-- 单词本：只显示词本体，不把 a/an 或复数当成独立单词。
-- 每日闯关：先学 `cat = 猫`，再学 `a cat = 一只猫`；Unit 2 额外显示 `cats = 多只猫`。
-- `an elephant` 单独使用 an。
-- Android Range/206 音频处理保留。
+- Unit 1：沿用此前已验证的 Unit 1 切片
+- Unit 2 Animals：CD2 Track 57 / Track 63
+- Unit 3 Colors and Shapes：CD1 Track 25 / Track 31
+- Unit 4 Food：CD2 Track 38 / Track 44
+- Unit 5 Happy Birthday：CD2 Track 05 / Track 09
+- Unit 6 Outdoors：CD2 Track 21 / Track 25
+- Unit 7 At the Store：CD1 Track 43 / Track 49
+- Unit 8 Family：CD1 Track 60 / Track 65
+
+音频目录：
+- `audio/words/`：词本体
+- `audio/phrases/`：a/an + 名词短语
+- `audio/plurals/`：教材提供的复数形式
 
 ## 部署
-整包覆盖 GitHub Pages 仓库根目录，至少更新：
-`index.html`、`sw.js`、`audio/words/`、`audio/phrases/`、`audio/plurals/`。
-Service Worker/音频版本已升级到 v5.8.0。
+
+建议把解压后的整个目录覆盖 GitHub Pages 仓库根目录，至少更新：
+
+`index.html`、`sw.js`、`audio/words/`、`audio/phrases/`、`audio/plurals/`、`assets/`、`icons/`。
+
+Service Worker 与音频版本已升级到 `v6.0.0`。
+
+> 版权提示：教材音频来自用户提供的 Oxford/Let’s Go 配套资源。用于个人/家庭学习与公开网络再分发是不同使用场景；公开部署前请确认相应授权。
