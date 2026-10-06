@@ -1,9 +1,12 @@
-# 小夕英语 v6.1 · Unit 1–8 音频修复版
+# 小夕英语 v6.2
 
-基于 v6.0，保留 Unit 1–8 的全部课程结构，仅针对用户实际试听发现有问题的音频重新从原始 Let’s Go CD 音轨切分。
+Android 短音频兼容修复版。
 
-本次修复：`yo-yo`、`long`、`milkshake`、`milk`、`mother`、`young`。
+本版不改变 Unit 1–8 课程内容，只统一重编码全部教学短音频并升级缓存版本，重点解决部分 Android 手机/平板上“电脑能播、移动端静音”的问题。
 
-其中 `yo-yo` 与 `milkshake` 同时更新 word 与 phrase；其余词在每日闯关和单词本共用修复后的 word 音频。
+部署 GitHub Pages 时建议整包覆盖，至少覆盖：
+- index.html
+- sw.js
+- audio/
 
-音频缓存版本提升到 `v6.1.0`，部署 GitHub Pages 时请覆盖 `index.html`、`sw.js` 以及整个 `audio/` 目录。
+首次验证请使用浏览器直接打开网页，确认页面底部为 v6.2 后再安装 PWA。

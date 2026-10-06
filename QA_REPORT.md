@@ -1,28 +1,25 @@
-# v6.1 音频修复 QA
+# 小夕英语 v6.2 Android 音频兼容 QA
 
-## 本次针对用户反馈重切
-- yo-yo：重新从 CD2 Track 05 提取 phrase，并重新裁出 word-only 版本
-- long：重新从 CD2 Track 09 第 3 个描述词提取，增加首尾余量
-- milkshake：重新从 CD2 Track 38 提取 phrase，并重新裁出 word-only 版本
-- milk：重新从 CD2 Track 44 第 6 个词提取，增加首尾余量
-- mother：重新从 CD1 Track 60 第 7 个家庭词提取，增加首尾余量
-- young：重新从 CD1 Track 65 第 6 个描述词提取，增加首尾余量
+## 本次问题
+电脑端可播放，但部分 Android 手机/平板点击 `yo-yo / long / milkshake / milk / mother / young` 无声音。
 
-## 同步范围
-- 单词本：使用 `audio/words/`，上述 6 个词均已更新
-- 每日闯关：同一 word 文件同步更新；yo-yo / milkshake 的 `audio/phrases/` 也同步重切
-- Service Worker / 音频查询版本更新到 `v6.1.0`，避免命中 v6.0 旧缓存
+## 修复
+- 将 `audio/words/`、`audio/phrases/`、`audio/plurals/` 下全部 189 个教学 MP3 统一重新编码。
+- 统一参数：MP3 / libmp3lame / 44.1 kHz / mono / CBR 128 kbps。
+- 移除原始 CD 继承的 ID3 title/date/track 元数据。
+- 每段增加约 80 ms 前置静音和 120 ms 尾部静音，降低短音频在移动解码器上的起止裁切风险。
+- WORD_AUDIO_VERSION 升级为 `v6.2.0`。
+- Service Worker APP/AUDIO/Alphabet cache 版本升级为 `v6.2.0`。
+- Android Range/206 处理逻辑保留。
 
-## 静态检查
-- PASS：修复音频均可由 ffprobe 解码
-- PASS：主 inline JavaScript 通过 `node --check`
-- PASS：`sw.js` 通过 `node --check`
-- PASS：manifest JSON 可解析
+## 自动检查
+- 189/189 教学 MP3 均可被 ffprobe 解析。
+- 所有重编码文件首部直接以 MP3 frame sync 开始，不再含 ID3 标签。
+- 主页面 JavaScript `node --check` 通过。
+- `sw.js` `node --check` 通过。
+- 问题词及正常对照词均为 44.1 kHz / mono / 128 kbps。
 
-## 真机建议重点试听
-- yo-yo / a yo-yo
-- milkshake / a milkshake
-- long
-- milk
-- mother
-- young
+## 重点真机复验
+请在 Android Chrome（先不要用旧桌面 PWA）试听：
+`yo-yo, long, milkshake, milk, mother, young`。
+若网页端正常，再重新添加到桌面。
