@@ -1,25 +1,34 @@
-# v5.7 Unit 1 QA Report
+# v5.8 Unit 1 + Unit 2 QA Report
 
-## 自动检查
-- PASS：Unit 1 词表 16 个
-- PASS：`audio/words/` 16/16 个词本体 MP3 存在并可由 ffprobe 解析
-- PASS：`audio/phrases/` 16/16 个 a/an 短语 MP3 存在并可由 ffprobe 解析
-- PASS：word 与 phrase 使用独立目录和独立播放路径
-- PASS：单词本点击调用 `speakWord(item.word)`，不会拼接中文或 a/an
-- PASS：每日闯关包含 word + phrase 两层显示及两个独立播放按钮
-- PASS：`an eraser` 单独处理
-- PASS：主 JavaScript `node --check` 通过
-- PASS：Service Worker `node --check` 通过
+## 数据
+- PASS：Unit 1 = 16 个词
+- PASS：Unit 2 Animals = 10 个核心动物词
+- PASS：总词条 = 26
+- PASS：Unit 2 每个词都有 `word / phrase / plural`
+- PASS：elephant 使用 `an elephant`
+
+## Unit 2 音频
+- PASS：10/10 `audio/words/*.mp3` 存在且 ffprobe 可解析
+- PASS：10/10 `audio/phrases/*.mp3` 存在且 ffprobe 可解析
+- PASS：10/10 `audio/plurals/*.mp3` 存在且 ffprobe 可解析
+- PASS：统一转换为 MP3 / 44.1 kHz / mono
+- PASS：词本体、a/an 短语、复数使用三套独立文件
+- PASS：CD2 Track 57 / Track 63 源时间信息写入 `UNIT2_SOURCE.json`
+
+## Web/PWA
+- PASS：主 JavaScript `node --check`
+- PASS：Service Worker `node --check`
 - PASS：manifest JSON 可解析
+- PASS：Service Worker 缓存升级为 v5.8.0
 - PASS：保留 Android Range/206 音频处理
-- PASS：缓存版本升级为 v5.7.0
+- PASS：单词本新增 Unit 2 分类筛选
+- PASS：单词本点击仍只播放词本体
+- PASS：每日闯关 Unit 2 会显示 word → a/an phrase → plural 三层
 
-## 需要真人复听
-word 音频由 Oxford `a/an + noun` 原始片段按波形边界去掉冠词。请重点复听：
-- pencil / a pencil
-- ruler / a ruler
-- eraser / an eraser
-- marker / a marker
-- wastebasket / a wastebasket
+## 建议人工复听
+重点检查以下三组边界是否自然：
+- cat / a cat / cats
+- giraffe / a giraffe / giraffes
+- elephant / an elephant / elephants
 
-确认 word 版没有残留明显 a/an，同时没有切掉名词首辅音。
+word 音频由 Oxford 的 a/an + noun 原始片段去除冠词后得到，真人复听仍是最终确认标准。

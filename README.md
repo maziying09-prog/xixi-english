@@ -1,21 +1,38 @@
-# 小夕英语 v5.7 Unit 1
+# 小夕英语 v5.8 · Unit 1 + Unit 2 Animals
 
-本版本把 Let’s Go 1 Unit 1 拆成“单词本体”和“a/an 数量短语”两层学习。
+## 课程结构
 
-## Unit 1 词表
+### Unit 1 · Things for School（16词）
 pencil, pen, bag, book, desk, chair, ruler, eraser, map, marker, globe, table, board, wastebasket, poster, crayon
 
-## 两套音频
-- `audio/words/`：词本体，用于单词本、听词、跟读、拼写，例如 `pencil`
-- `audio/phrases/`：Oxford 原始名词短语，用于 a/an 教学，例如 `a pencil` / `an eraser`
+### Unit 2 · Animals（10个核心动物概念）
+cat, dog, bird, rabbit, frog, monkey, lion, bear, giraffe, elephant
 
-短语音频来自用户提供的 Let’s Go 1 CD1 Track 08 / Track 14；word 音频在同一原始片段上重新裁切，去掉开头冠词，并保留短前后静音。
+截图中同时包含这 10 个词的复数形式，因此本版本不把复数重复做成 10 个新的单词本条目，而是在同一词条中增加 plural 字段：
+- cat → a cat → cats
+- dog → a dog → dogs
+- ...
+- elephant → an elephant → elephants
+
+## 音频结构
+Unit 2 全部来自用户提供的 Let’s Go 1 Class Audio CD2：
+- CD2 Track 57：a cat, a dog, a bird, a rabbit, a frog + plurals
+- CD2 Track 63：a monkey, a lion, a bear, a giraffe, an elephant + plurals
+
+目录：
+- `audio/words/`：词本体，例如 `cat`
+- `audio/phrases/`：单数 a/an 短语，例如 `a cat` / `an elephant`
+- `audio/plurals/`：复数，例如 `cats` / `elephants`
+
+Unit 1 继续沿用 v5.7 的 Oxford 音频。
 
 ## 学习逻辑
-- 单词本：只显示 `pencil / 铅笔`，点击只播放 `pencil`
-- 每日闯关：先学 `pencil / 铅笔`，再学 `a pencil / 一支铅笔`
-- `a/an` 用儿童化解释：可先理解成“一个 / 一只 / 一支 / 一张 / 一块”，不要求孩子记“不定冠词”术语
-- `eraser` 使用 `an eraser`
+- 单词本：只显示词本体，不把 a/an 或复数当成独立单词。
+- 每日闯关：先学 `cat = 猫`，再学 `a cat = 一只猫`；Unit 2 额外显示 `cats = 多只猫`。
+- `an elephant` 单独使用 an。
+- Android Range/206 音频处理保留。
 
 ## 部署
-保持项目根目录结构，整包覆盖 GitHub Pages 仓库后重新部署。Service Worker 缓存版本已升级到 v5.7.0。
+整包覆盖 GitHub Pages 仓库根目录，至少更新：
+`index.html`、`sw.js`、`audio/words/`、`audio/phrases/`、`audio/plurals/`。
+Service Worker/音频版本已升级到 v5.8.0。

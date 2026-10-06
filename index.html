@@ -250,7 +250,7 @@
             <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
               <i class="fa-solid fa-apple-whole text-xs"></i>
             </div>
-            <span>Unit 1 单词本</span>
+            <span>Unit 1–2 单词本</span>
             <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
           </button>
 
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.7 Unit 1 · 单词 + a/an 短语双层学习版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.8 Unit 1–2 · 单词 + a/an + 复数分层学习版 · PWA</p>
       </div>
     </aside>
 
@@ -479,7 +479,9 @@
           
           <div class="text-center">
             <div class="flex items-center justify-center gap-1.5 text-xs font-bold text-slate-700">
-              <span>单词 <span id="questWordIndexText" class="text-indigo-600">1</span>/3</span>
+              <span id="questUnitText" class="text-emerald-600">Unit 1</span>
+              <span class="text-slate-300">•</span>
+              <span>单词 <span id="questWordIndexText" class="text-indigo-600">1</span></span>
               <span class="text-slate-300">•</span>
               <span id="questWordTargetText" class="font-fredoka text-indigo-600">Apple</span>
             </div>
@@ -508,8 +510,8 @@
       <div id="viewWords" class="space-y-4 hidden">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-bold text-slate-800">Unit 1 单词本</h2>
-            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · 单词本只记单词本体</p>
+            <h2 class="text-xl font-bold text-slate-800">Unit 1–2 单词本</h2>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1–2 · 单词本只记单词本体</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -524,8 +526,9 @@
           </div>
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
-            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (16)</button>
+            <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (26)</button>
             <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 校园用品</button>
+            <button onclick="selectCategory('unit2')" id="catBtn-unit2" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🐾 Unit 2 Animals</button>
           </div>
         </div>
 
@@ -767,10 +770,20 @@
       { id: 13, category: 'unit1', word: 'Board', translation: '黑板', phrase: 'a board', phraseTranslation: '一块黑板', article: 'a', icon: '⬛', phonetic: '/bɔːrd/', sentenceEN: 'a board', sentenceCN: '一块黑板' },
       { id: 14, category: 'unit1', word: 'Wastebasket', translation: '废纸篓', phrase: 'a wastebasket', phraseTranslation: '一个废纸篓', article: 'a', icon: '🗑️', phonetic: '/ˈweɪstˌbæskɪt/', sentenceEN: 'a wastebasket', sentenceCN: '一个废纸篓' },
       { id: 15, category: 'unit1', word: 'Poster', translation: '海报', phrase: 'a poster', phraseTranslation: '一张海报', article: 'a', icon: '🖼️', phonetic: '/ˈpoʊstər/', sentenceEN: 'a poster', sentenceCN: '一张海报' },
-      { id: 16, category: 'unit1', word: 'Crayon', translation: '蜡笔', phrase: 'a crayon', phraseTranslation: '一支蜡笔', article: 'a', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'a crayon', sentenceCN: '一支蜡笔' }
+      { id: 16, category: 'unit1', word: 'Crayon', translation: '蜡笔', phrase: 'a crayon', phraseTranslation: '一支蜡笔', article: 'a', icon: '🖍️', phonetic: '/ˈkreɪɑːn/', sentenceEN: 'a crayon', sentenceCN: '一支蜡笔' },
+      { id: 17, category: 'unit2', word: 'Cat', translation: '猫', phrase: 'a cat', phraseTranslation: '一只猫', article: 'a', plural: 'cats', pluralTranslation: '多只猫', icon: '🐱', phonetic: '/kæt/', sentenceEN: 'a cat', sentenceCN: '一只猫' },
+      { id: 18, category: 'unit2', word: 'Dog', translation: '狗', phrase: 'a dog', phraseTranslation: '一只狗', article: 'a', plural: 'dogs', pluralTranslation: '多只狗', icon: '🐶', phonetic: '/dɔːɡ/', sentenceEN: 'a dog', sentenceCN: '一只狗' },
+      { id: 19, category: 'unit2', word: 'Bird', translation: '鸟', phrase: 'a bird', phraseTranslation: '一只鸟', article: 'a', plural: 'birds', pluralTranslation: '多只鸟', icon: '🐦', phonetic: '/bɜːrd/', sentenceEN: 'a bird', sentenceCN: '一只鸟' },
+      { id: 20, category: 'unit2', word: 'Rabbit', translation: '兔子', phrase: 'a rabbit', phraseTranslation: '一只兔子', article: 'a', plural: 'rabbits', pluralTranslation: '多只兔子', icon: '🐰', phonetic: '/ˈræbɪt/', sentenceEN: 'a rabbit', sentenceCN: '一只兔子' },
+      { id: 21, category: 'unit2', word: 'Frog', translation: '青蛙', phrase: 'a frog', phraseTranslation: '一只青蛙', article: 'a', plural: 'frogs', pluralTranslation: '多只青蛙', icon: '🐸', phonetic: '/frɔːɡ/', sentenceEN: 'a frog', sentenceCN: '一只青蛙' },
+      { id: 22, category: 'unit2', word: 'Monkey', translation: '猴子', phrase: 'a monkey', phraseTranslation: '一只猴子', article: 'a', plural: 'monkeys', pluralTranslation: '多只猴子', icon: '🐵', phonetic: '/ˈmʌŋki/', sentenceEN: 'a monkey', sentenceCN: '一只猴子' },
+      { id: 23, category: 'unit2', word: 'Lion', translation: '狮子', phrase: 'a lion', phraseTranslation: '一只狮子', article: 'a', plural: 'lions', pluralTranslation: '多只狮子', icon: '🦁', phonetic: '/ˈlaɪən/', sentenceEN: 'a lion', sentenceCN: '一只狮子' },
+      { id: 24, category: 'unit2', word: 'Bear', translation: '熊', phrase: 'a bear', phraseTranslation: '一只熊', article: 'a', plural: 'bears', pluralTranslation: '多只熊', icon: '🐻', phonetic: '/ber/', sentenceEN: 'a bear', sentenceCN: '一只熊' },
+      { id: 25, category: 'unit2', word: 'Giraffe', translation: '长颈鹿', phrase: 'a giraffe', phraseTranslation: '一只长颈鹿', article: 'a', plural: 'giraffes', pluralTranslation: '多只长颈鹿', icon: '🦒', phonetic: '/dʒəˈræf/', sentenceEN: 'a giraffe', sentenceCN: '一只长颈鹿' },
+      { id: 26, category: 'unit2', word: 'Elephant', translation: '大象', phrase: 'an elephant', phraseTranslation: '一只大象', article: 'an', plural: 'elephants', pluralTranslation: '多只大象', icon: '🐘', phonetic: '/ˈelɪfənt/', sentenceEN: 'an elephant', sentenceCN: '一只大象' }
     ];
 
-    const STORAGE_KEY = 'xiaoxiEnglishV57Unit1State';
+    const STORAGE_KEY = 'xiaoxiEnglishV58Unit12State';
     const REVIEW_INTERVALS_DAYS = [1, 2, 4, 8, 16];
 
     function todayKey() {
@@ -979,7 +992,7 @@
       return waitSpeech(settleMs, runId);
     }
 
-    const WORD_AUDIO_VERSION = 'v5.7.0';
+    const WORD_AUDIO_VERSION = 'v5.8.0';
 
     function slugifyWordAudio(text) {
       return String(text || '')
@@ -1001,13 +1014,20 @@
       return WORD_BANK.find(item => String(item.phrase || '').toLowerCase() === key) || null;
     }
 
+    function findLocalPlural(text) {
+      const key = String(text || '').trim().toLowerCase();
+      if (!key) return null;
+      return WORD_BANK.find(item => String(item.plural || '').toLowerCase() === key) || null;
+    }
+
     function playLocalUnitAudio(item, kind = 'word') {
       if (!item) return Promise.resolve(false);
       stopAllAudio();
       const audio = document.getElementById('wordAudioPlayer');
       if (!audio) return Promise.resolve(false);
-      const folder = kind === 'phrase' ? 'phrases' : 'words';
-      const base = new URL(`audio/${folder}/${slugifyWordAudio(item.word)}.mp3`, document.baseURI);
+      const folder = kind === 'phrase' ? 'phrases' : (kind === 'plural' ? 'plurals' : 'words');
+      const sourceText = kind === 'plural' ? item.plural : item.word;
+      const base = new URL(`audio/${folder}/${slugifyWordAudio(sourceText)}.mp3`, document.baseURI);
       base.searchParams.set('v', WORD_AUDIO_VERSION);
       audio.src = base.href;
       audio.preload = 'auto';
@@ -1033,6 +1053,10 @@
       return playLocalUnitAudio(findLocalPhrase(text), 'phrase');
     }
 
+    function playLocalPluralAudio(text) {
+      return playLocalUnitAudio(findLocalPlural(text), 'plural');
+    }
+
     async function speakWord(text, lang = 'en-US', rate = 0.82) {
       if (!text) return false;
 
@@ -1047,6 +1071,11 @@
       const localItem = findLocalWord(text);
       if (localItem) {
         const ok = await playLocalWordAudio(localItem.word);
+        if (ok) return true;
+      }
+      const pluralItem = findLocalPlural(text);
+      if (pluralItem) {
+        const ok = await playLocalPluralAudio(pluralItem.plural);
         if (ok) return true;
       }
 
@@ -1484,6 +1513,8 @@
 
       document.getElementById('questWordIndexText').innerText = appState.currentWordIndex + 1;
       document.getElementById('questWordTargetText').innerText = word.word;
+      const questUnit = document.getElementById('questUnitText');
+      if (questUnit) questUnit.innerText = word.category === 'unit2' ? 'Unit 2 Animals' : 'Unit 1';
 
       const dots = document.getElementById('stepDotsContainer').children;
       for (let i = 0; i < 4; i++) {
@@ -1597,7 +1628,8 @@
                 <i class="fa-solid fa-volume-high"></i>
               </button>
             </div>
-            <p class="text-[11px] text-sky-700 leading-relaxed">💡 <b>${word.article}</b> 放在一个东西前面，可以先理解成“一个 / 一只 / 一支 / 一张”。${word.article === 'an' ? '这里用 <b>an</b>，因为 eraser 开头听起来是元音。' : ''}</p>
+            <p class="text-[11px] text-sky-700 leading-relaxed">💡 <b>${word.article}</b> 放在一个东西前面，可以先理解成“一个 / 一只 / 一支 / 一张”。${word.article === 'an' ? `这里用 <b>an</b>，因为 ${word.word.toLowerCase()} 开头听起来是元音。` : ''}</p>
+            ${word.plural ? `<button onclick="speakWord('${word.plural}')" class="mt-2 w-full px-3 py-2 rounded-xl bg-white/80 border border-sky-100 text-left bounce-interactive"><span class="text-[10px] text-sky-500 font-bold">多只怎么说？</span><span class="block font-fredoka font-bold text-sky-900">${word.plural}</span><span class="text-[10px] text-sky-700">${word.pluralTranslation} · 点击听复数</span></button>` : ''}
           </div>
 
           <div class="bg-amber-50 p-3 rounded-2xl border border-amber-100 text-amber-800 text-xs font-bold text-left flex items-start gap-2">
@@ -1843,10 +1875,11 @@
               </div>
               <span class="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span>
             </button>
+            ${word.plural ? `<button onclick="speakWord('${word.plural}')" class="p-4 rounded-2xl bg-violet-50 border border-violet-100 bounce-interactive flex items-center justify-between"><div><p class="text-[10px] text-violet-500 font-bold">不止一只呢？</p><p class="font-fredoka font-bold text-2xl text-violet-900">${word.plural}</p><p class="text-sm text-violet-700 font-bold">${word.pluralTranslation}</p></div><span class="w-11 h-11 rounded-full bg-violet-500 text-white flex items-center justify-center"><i class="fa-solid fa-volume-high"></i></span></button>` : ''}
           </div>
 
           <div class="p-3 rounded-2xl bg-amber-50 border border-amber-100 text-left text-[11px] text-amber-800 leading-relaxed">
-            🌟 <b>a / an 小魔法：</b>${word.article === 'an' ? '<b>an</b> 也表示“一个”，eraser 前面说 <b>an eraser</b>。' : '<b>a</b> 可以先理解成“一个 / 一只 / 一支 / 一张”，所以 ' + word.phrase + ' 就是“' + word.phraseTranslation + '”。'}
+            🌟 <b>a / an 小魔法：</b>${word.article === 'an' ? `<b>an</b> 也表示“一个/一只”，所以 ${word.phrase} 就是“${word.phraseTranslation}”。` : `<b>a</b> 可以先理解成“一个 / 一只 / 一支 / 一张”，所以 ${word.phrase} 就是“${word.phraseTranslation}”。`}${word.plural ? ` <b>${word.plural}</b> 表示不止一只。` : ''}
           </div>
 
           <button onclick="finishStep3()" class="w-full py-3 bg-emerald-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow-md shadow-emerald-200 bounce-interactive">
@@ -2136,10 +2169,12 @@
       check('全部字母有例词数据', ALPHABET.every(x => x.word));
       check('单词ID唯一', new Set(WORD_BANK.map(x => x.id)).size === WORD_BANK.length);
       check('全部单词有音标/释义/例句', WORD_BANK.every(x => x.word && x.translation && /^\/.+\/$/.test(x.phonetic) && x.sentenceEN));
-      check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
+      check('Unit 1 为16词', WORD_BANK.filter(x => x.category === 'unit1').length === 16);
+      check('Unit 2 Animals 为10个核心动物词', WORD_BANK.filter(x => x.category === 'unit2').length === 10);
+      check('Unit 2 均有单数短语和复数', WORD_BANK.filter(x => x.category === 'unit2').every(x => x.phrase && x.plural));
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.7 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.8 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);

@@ -250,7 +250,7 @@
             <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
               <i class="fa-solid fa-apple-whole text-xs"></i>
             </div>
-            <span>Unit 1 单词本</span>
+            <span>Unit 1–2 单词本</span>
             <i class="fa-solid fa-chevron-right ml-auto text-xs opacity-40"></i>
           </button>
 
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.7 Unit 1 · 单词 + a/an 短语双层学习版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.8 Unit 1–2 · 单词 + a/an 短语双层学习版 · PWA</p>
       </div>
     </aside>
 
@@ -508,8 +508,8 @@
       <div id="viewWords" class="space-y-4 hidden">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-bold text-slate-800">Unit 1 单词本</h2>
-            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1 · 单词本只记单词本体</p>
+            <h2 class="text-xl font-bold text-slate-800">Unit 1–2 单词本</h2>
+            <p class="text-xs text-slate-400">Let’s Go 1 · Unit 1–2 · 单词本只记单词本体</p>
           </div>
           <button onclick="switchTab('home')" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full bounce-interactive">
             返回
@@ -525,7 +525,7 @@
 
           <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryFilterBar">
             <button onclick="selectCategory('all')" id="catBtn-all" class="cat-pill-btn active px-3 py-1.5 rounded-xl font-bold shrink-0 bg-indigo-600 text-white shadow-xs">全部 (16)</button>
-            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1 校园用品</button>
+            <button onclick="selectCategory('unit1')" id="catBtn-unit1" class="cat-pill-btn px-3 py-1.5 rounded-xl font-bold shrink-0 bg-white text-slate-600 border border-slate-200">🎒 Unit 1–2 校园用品</button>
           </div>
         </div>
 
@@ -979,7 +979,7 @@
       return waitSpeech(settleMs, runId);
     }
 
-    const WORD_AUDIO_VERSION = 'v5.7.0';
+    const WORD_AUDIO_VERSION = 'v5.8.0';
 
     function slugifyWordAudio(text) {
       return String(text || '')
@@ -2139,7 +2139,7 @@
       check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.7 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.8 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);
