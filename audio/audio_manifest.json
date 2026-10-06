@@ -1,0 +1,191 @@
+{
+  "voice": "eSpeak en-us+f3",
+  "locale": "en-US",
+  "speed": 120,
+  "pitch": 52,
+  "amplitude": 170,
+  "items": [
+    {
+      "letter": "A",
+      "tts_input": "A",
+      "espeak_phonemes": "'eI",
+      "duration_s": 1.332,
+      "sha256": "64575dd32378eb7f0016bda13f118fbf225cfb7222a7129470a7ec33199d249f"
+    },
+    {
+      "letter": "B",
+      "tts_input": "B",
+      "espeak_phonemes": "b'i:",
+      "duration_s": 1.358,
+      "sha256": "c99a85c7dff6a1824ab3e359ceed0f4ddcfc35092e8c553a97f961f6a393b3db"
+    },
+    {
+      "letter": "C",
+      "tts_input": "C",
+      "espeak_phonemes": "s'i:",
+      "duration_s": 1.358,
+      "sha256": "80e61bd1b246c49fd613e290062756e1140a630bb2c7c4eb7a6b2c000534998f"
+    },
+    {
+      "letter": "D",
+      "tts_input": "D",
+      "espeak_phonemes": "d'i:",
+      "duration_s": 1.306,
+      "sha256": "9cef33cf4edac110407d2761ef9c7827642951aa1054a9cba18c00578e316bbb"
+    },
+    {
+      "letter": "E",
+      "tts_input": "E",
+      "espeak_phonemes": "'i:",
+      "duration_s": 1.254,
+      "sha256": "9ce6d67d11814620b9aa4bd352808d04b7f2f6fd8ce1b4a1a3bf667c2a0c304b"
+    },
+    {
+      "letter": "F",
+      "tts_input": "F",
+      "espeak_phonemes": "'Ef",
+      "duration_s": 1.332,
+      "sha256": "07f90b2d5dafe0ed8f716fc6819c0599f76e5e7155bee257cd90f13a060b981c"
+    },
+    {
+      "letter": "G",
+      "tts_input": "G",
+      "espeak_phonemes": "dZ'i:",
+      "duration_s": 1.332,
+      "sha256": "22cf83dbe8fa582d0ddd4c323d898db55d1c6ce85d5e639a651c1e616caae1c3"
+    },
+    {
+      "letter": "H",
+      "tts_input": "H",
+      "espeak_phonemes": "'eItS",
+      "duration_s": 1.358,
+      "sha256": "aa031aff187d01f0a9f4d24f88aa7658efe8ef37f2c97204e4b0544b2099df40"
+    },
+    {
+      "letter": "I",
+      "tts_input": "I",
+      "espeak_phonemes": "'aI",
+      "duration_s": 1.358,
+      "sha256": "0724ecab030508256a1a213de4dedec21149c298806799ee8af537650d12bbd9"
+    },
+    {
+      "letter": "J",
+      "tts_input": "J",
+      "espeak_phonemes": "dZ'eI",
+      "duration_s": 1.384,
+      "sha256": "b53e9ca8f1eda6abb8e6e5b9d9843c86437a3a665a3598019a78cd11b5d14d45"
+    },
+    {
+      "letter": "K",
+      "tts_input": "K",
+      "espeak_phonemes": "k'eI",
+      "duration_s": 1.437,
+      "sha256": "54cfefff2cbfdfc553bac27dc94814c3866cd916ada9fd58d10d9aad46616fb6"
+    },
+    {
+      "letter": "L",
+      "tts_input": "L",
+      "espeak_phonemes": "'El",
+      "duration_s": 1.332,
+      "sha256": "9d21ae8489da61b06d22c330cb9167b543ce3157d9a72fca6db14a07362e1ab1"
+    },
+    {
+      "letter": "M",
+      "tts_input": "M",
+      "espeak_phonemes": "'Em",
+      "duration_s": 1.384,
+      "sha256": "4248b2ab4abb8eb837446cd1a9b81f12c7b13393715587839c9002e278e574e2"
+    },
+    {
+      "letter": "N",
+      "tts_input": "N",
+      "espeak_phonemes": "'En",
+      "duration_s": 1.358,
+      "sha256": "5a73f8f2ff7c41b945fd15513a7a1db15f53de1defae82d5d90f584af2ce8e9f"
+    },
+    {
+      "letter": "O",
+      "tts_input": "O",
+      "espeak_phonemes": "'oU",
+      "duration_s": 1.332,
+      "sha256": "188d30403b1e2eef38839cf6720a003a2641ed69ab690a8a7de7ccc2fb836152"
+    },
+    {
+      "letter": "P",
+      "tts_input": "P",
+      "espeak_phonemes": "p'i:",
+      "duration_s": 1.358,
+      "sha256": "e7e084d84e815e7187c27bee7041693424806677e04ebf8ffc8518f5c8f04231"
+    },
+    {
+      "letter": "Q",
+      "tts_input": "Q",
+      "espeak_phonemes": "kj'u:",
+      "duration_s": 1.463,
+      "sha256": "d2e5010186620b29c4d9e61752ec529acd7f122c42c7c834d396be378908286a"
+    },
+    {
+      "letter": "R",
+      "tts_input": "R",
+      "espeak_phonemes": "'A@",
+      "duration_s": 1.384,
+      "sha256": "6fcb3e9d474c115f4959db2d7abe579b9b5efc86d10cecc1861b7c48050edf08"
+    },
+    {
+      "letter": "S",
+      "tts_input": "S",
+      "espeak_phonemes": "'Es",
+      "duration_s": 1.332,
+      "sha256": "4411535c3832b825644d26c4d89ddeb470fdfbe80d583516c5f149f473b13a66"
+    },
+    {
+      "letter": "T",
+      "tts_input": "T",
+      "espeak_phonemes": "t'i:",
+      "duration_s": 1.358,
+      "sha256": "95069fe1eccc7d9773c26c7a759af85b78dfbc4babeeef6d44716bdc49ac0ab7"
+    },
+    {
+      "letter": "U",
+      "tts_input": "U",
+      "espeak_phonemes": "j'u:",
+      "duration_s": 1.384,
+      "sha256": "0d454becbc3dc7bd95314c3b99f14d34fb6b8407ca2a02941557497e1672411d"
+    },
+    {
+      "letter": "V",
+      "tts_input": "V",
+      "espeak_phonemes": "v'i:",
+      "duration_s": 1.437,
+      "sha256": "cf832e722934640356b6603ef65f9f7c4f255dc1161ff90312a42a114a6411a7"
+    },
+    {
+      "letter": "W",
+      "tts_input": "W",
+      "espeak_phonemes": "d'Vb@Lj,u:",
+      "duration_s": 1.541,
+      "sha256": "4fbb1c509a7a343789ec80aa30709f699a6d2f11a8d9fdd5563a7b6e01ca11e0"
+    },
+    {
+      "letter": "X",
+      "tts_input": "X",
+      "espeak_phonemes": "'Eks",
+      "duration_s": 1.411,
+      "sha256": "cdae939d47c0d87ecb40c99f3b9030a82be46011593582a8cc2a1063af4e7d98"
+    },
+    {
+      "letter": "Y",
+      "tts_input": "Y",
+      "espeak_phonemes": "w'aI",
+      "duration_s": 1.463,
+      "sha256": "31b3b1dcceb58093abe2b6362a3bcd253b855b8e0254b1c39abf75d85f7dc363"
+    },
+    {
+      "letter": "Z",
+      "tts_input": "Z",
+      "espeak_phonemes": "z'i:",
+      "duration_s": 1.411,
+      "sha256": "f5837a32b5f823e0c24353dce1680f0a0644d52a140d752b0b7e3f67deff7f07"
+    }
+  ]
+}

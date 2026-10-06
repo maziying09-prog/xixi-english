@@ -1,0 +1,98 @@
+{
+  "pencil": {
+    "track": "CD1 Track 08",
+    "phrase_start": 7.848,
+    "phrase_end": 8.976,
+    "word_cut_offset": 0.19
+  },
+  "pen": {
+    "track": "CD1 Track 08",
+    "phrase_start": 12.113,
+    "phrase_end": 13.006,
+    "word_cut_offset": 0.22
+  },
+  "bag": {
+    "track": "CD1 Track 08",
+    "phrase_start": 15.722,
+    "phrase_end": 16.784,
+    "word_cut_offset": 0.27
+  },
+  "book": {
+    "track": "CD1 Track 08",
+    "phrase_start": 19.913,
+    "phrase_end": 20.745,
+    "word_cut_offset": 0.24
+  },
+  "desk": {
+    "track": "CD1 Track 08",
+    "phrase_start": 24.044,
+    "phrase_end": 25.131,
+    "word_cut_offset": 0.25
+  },
+  "chair": {
+    "track": "CD1 Track 08",
+    "phrase_start": 28.076,
+    "phrase_end": 29.013,
+    "word_cut_offset": 0.2
+  },
+  "ruler": {
+    "track": "CD1 Track 08",
+    "phrase_start": 32.362,
+    "phrase_end": 33.389,
+    "word_cut_offset": 0.21
+  },
+  "eraser": {
+    "track": "CD1 Track 08",
+    "phrase_start": 36.464,
+    "phrase_end": 37.517,
+    "word_cut_offset": 0.3
+  },
+  "map": {
+    "track": "CD1 Track 14",
+    "phrase_start": 8.306,
+    "phrase_end": 9.103,
+    "word_cut_offset": 0.18
+  },
+  "marker": {
+    "track": "CD1 Track 14",
+    "phrase_start": 12.031,
+    "phrase_end": 13.117,
+    "word_cut_offset": 0.17
+  },
+  "globe": {
+    "track": "CD1 Track 14",
+    "phrase_start": 16.53,
+    "phrase_end": 17.479,
+    "word_cut_offset": 0.2
+  },
+  "table": {
+    "track": "CD1 Track 14",
+    "phrase_start": 20.198,
+    "phrase_end": 21.273,
+    "word_cut_offset": 0.23
+  },
+  "board": {
+    "track": "CD1 Track 14",
+    "phrase_start": 24.066,
+    "phrase_end": 24.937,
+    "word_cut_offset": 0.26
+  },
+  "wastebasket": {
+    "track": "CD1 Track 14",
+    "phrase_start": 27.815,
+    "phrase_end": 29.304,
+    "word_cut_offset": 0.23
+  },
+  "poster": {
+    "track": "CD1 Track 14",
+    "phrase_start": 32.506,
+    "phrase_end": 33.572,
+    "word_cut_offset": 0.21
+  },
+  "crayon": {
+    "track": "CD1 Track 14",
+    "phrase_start": 36.723,
+    "phrase_end": 37.979,
+    "word_cut_offset": 0.24
+  }
+}
