@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>小夕的魔法世界 · 英语学习工作台 v5.3</title>
+  <title>小夕的魔法世界 · 英语学习工作台 v5.4</title>
   
   <!-- Mobile & PWA App Capabilities -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -18,11 +18,11 @@
 
   <!-- Embedded Web App Manifest for Desktop / Mobile HomeScreen Installation -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <!-- v5.3: all UI dependencies are local for stable mobile/PWA startup -->
+  <!-- v5.4: all UI dependencies are local for stable mobile/PWA startup -->
   <link rel="stylesheet" href="./assets/tailwind.css" />
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
   <style id="mobile-color-compat">
-    /* v5.3: critical home cards no longer depend on Tailwind gradient variables.
+    /* v5.4: critical home cards no longer depend on Tailwind gradient variables.
        Use plain sRGB CSS with a solid-color fallback for Safari/older WebViews. */
     #pwaInstallBanner.home-install-banner {
       background-color: #f97316 !important;
@@ -281,7 +281,7 @@
             <option value="8">8 个词 / 天</option>
           </select>
         </div>
-        <p class="text-[11px] text-slate-400 text-center">v5.3 离线儿歌 + 字母发音版 · PWA</p>
+        <p class="text-[11px] text-slate-400 text-center">v5.4 离线儿歌 + 字母/单词本地发音版 · PWA</p>
       </div>
     </aside>
 
@@ -431,7 +431,7 @@
             返回
           </button>
         </div>
-        <!-- v5.3 Offline Nursery-Rhyme Alphabet Song Player -->
+        <!-- v5.4 Offline Nursery-Rhyme Alphabet Song Player -->
         <section class="soft-card p-4 border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 overflow-hidden relative">
           <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-200/30 blur-2xl pointer-events-none"></div>
           <div class="flex items-center gap-3 relative z-10">
@@ -904,7 +904,7 @@
       saveAppState();
     }
 
-    // v5.3 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
+    // v5.4 stable local recorder state (replaces Web Speech Recognition on mobile/PWA)
     let activeMediaRecorder = null;
     let activeMicStream = null;
     let voiceChunks = [];
@@ -1031,12 +1031,58 @@
       return waitSpeech(settleMs, runId);
     }
 
+    const WORD_AUDIO_VERSION = 'v5.4.0';
+
+    function slugifyWordAudio(text) {
+      return String(text || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+    }
+
+    function findLocalWord(text) {
+      const key = String(text || '').trim().toLowerCase();
+      if (!key) return null;
+      return WORD_BANK.find(item => String(item.word).toLowerCase() === key) || null;
+    }
+
+    function playLocalWordAudio(text) {
+      const item = findLocalWord(text);
+      if (!item) return null;
+      stopAllAudio();
+      const url = `./audio/words/${slugifyWordAudio(item.word)}.mp3?${WORD_AUDIO_VERSION}`;
+      const audio = new Audio(url);
+      audio.preload = 'auto';
+      currentPlayingAudio = audio;
+      audio.onended = () => {
+        if (currentPlayingAudio === audio) currentPlayingAudio = null;
+      };
+      audio.onerror = () => {
+        if (currentPlayingAudio === audio) currentPlayingAudio = null;
+      };
+      return audio.play().then(() => true).catch(() => false);
+    }
+
     async function speakWord(text, lang = 'en-US', rate = 0.82) {
       if (!text) return false;
+
+      // v5.4: Daily Challenge vocabulary is always local-first.
+      // IMPORTANT: call audio.play() in the same user-gesture turn on Android/PWA.
+      // Do not insert cancel -> timeout -> speak between the tap and playback.
+      const localItem = findLocalWord(text);
+      if (localItem) {
+        playSfx('click');
+        const ok = await playLocalWordAudio(localItem.word);
+        if (ok) return true;
+        // Only fall back to system TTS if the local file cannot be played.
+      }
+
       stopAllAudio();
-      playSfx('click');
       const runId = speechRunId;
-      if (!await startFreshSpeech(runId, 110)) return false;
+      if (!('speechSynthesis' in window)) return false;
+      try { window.speechSynthesis.resume(); } catch (e) {}
+      // Android/standalone PWA is more reliable when speak() is issued immediately.
       return speakLocalEnglish(text, rate, runId, 'word');
     }
 
@@ -1122,9 +1168,9 @@
       try { await audio.play(); } catch (e) {}
     }
 
-    // --- v5.3 verified offline alphabet pack ---
-    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.3.0';
-    const LETTER_AUDIO_VERSION = 'v5.3.0';
+    // --- v5.4 verified offline alphabet pack ---
+    const ALPHABET_PACK_CACHE = 'xiaoxi-alphabet-pack-v5.4.0';
+    const LETTER_AUDIO_VERSION = 'v5.4.0';
     let alphabetPackPromise = null;
 
     async function ensureAlphabetPack() {
@@ -2092,7 +2138,7 @@
       check('Rice音标已修正', WORD_BANK.find(x => x.word === 'Rice')?.phonetic === '/raɪs/');
       check('核心函数存在', ['toggleOfflineAlphabetSong','restartOfflineAlphabetSong','speakWord','renderAlphabetGrid','renderQuestStep','ensureAlphabetPack','startVoiceRecord','stopVoiceRecord','playLastVoiceRecording','saveState','loadState'].every(n => typeof window[n] === 'function'));
       check('字母营使用本地离线音频', document.getElementById('alphabetSongAudio')?.getAttribute('src') === './audio/alphabet_song.mp3');
-      check('v5.3 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
+      check('v5.4 不再依赖 Web Speech Recognition', !('activeRecognition' in window));
       check('本地录音函数存在', typeof startVoiceRecord === 'function' && typeof stopVoiceRecord === 'function');
       check('A-Z 字母卡使用本地 MP3 播放函数', typeof window.playLocalLetter === 'function');
       check('字母卡均为可点击按钮', document.querySelectorAll('#alphabetGrid button.alphabet-card').length === 26);

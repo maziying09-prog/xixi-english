@@ -1,23 +1,20 @@
-# v5.3 QA Report
+# v5.4 QA Report
 
-## Audio
-- Source: single uploaded file `English_alphabet.ogg`
-- Source duration: 24.242 s
-- 26/26 letter MP3 files regenerated from that one source
-- All 26 SHA-256 hashes unique: True
-- Export: MP3 128 kbps, 44.1 kHz, mono
-- Segmentation: midpoint between adjacent letter utterance centers; preserves natural tails/silence
-- F duration: 0.89 s
-- L duration: 0.941 s
-- M duration: 0.905 s
-- N duration: 0.914 s
-- X duration: 0.935 s
+- PASS: 62/62 Daily Challenge word MP3 files generated.
+- PASS: all 62 word files have unique SHA-256 hashes.
+- PASS: representative MP3 decode/probe checks passed.
+- PASS: `speakWord()` routes exact WORD_BANK vocabulary to local `./audio/words/*.mp3` first.
+- PASS: Android word playback no longer uses `cancel() -> 110 ms delay -> speechSynthesis.speak()` as the primary path.
+- PASS: system SpeechSynthesis remains only as fallback for sentences/feedback phrases or local-file failure.
+- PASS: Service Worker cache version bumped to v5.4.0.
+- PASS: inline JavaScript and `sw.js` passed `node --check`.
 
-## UI
-- Critical home cards now have direct inline sRGB solid fallback + linear-gradient
-- Version strings/cache keys bumped to v5.3
+## Manual Android checks still required
+1. Open Daily Challenge in Chrome.
+2. Tap the speaker for several words (Dog, Apple, Ice cream, Three, Shoes).
+3. Confirm each tap produces sound.
+4. Install/add to home screen and repeat.
+5. After each tested word has been loaded once, turn off network and verify those cached words still play.
 
-## Remaining manual checks
-- Listen on target iPhone/Android speaker for F/M and L/N distinction
-- Verify home card colors in Safari and installed PWA
-- Verify offline A–Z after cache reaches 26/26
+## Audio-quality note
+The 62 new word files use one fixed local en-US synthesized voice for consistency and Android reliability. They are not mixed-gender and do not depend on the phone TTS engine.

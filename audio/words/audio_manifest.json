@@ -1,0 +1,436 @@
+[
+  {
+    "id": 1,
+    "word": "Dog",
+    "file": "dog.mp3",
+    "duration_s": 1.437,
+    "sha256": "877a1a653868469352f6d3ea2e38208db184d0d7a0a03809584c040d8e02b960"
+  },
+  {
+    "id": 2,
+    "word": "Cat",
+    "file": "cat.mp3",
+    "duration_s": 1.437,
+    "sha256": "6ca634225e471ef3c8a78af5d26c0e0c46be1ee72af90d55b151a60f3d3ab3ff"
+  },
+  {
+    "id": 3,
+    "word": "Duck",
+    "file": "duck.mp3",
+    "duration_s": 1.332,
+    "sha256": "6850d8dc35fa7a20416f65e0204b26bbb6e2b0b177f15d3cc4a2c99ee9a22c19"
+  },
+  {
+    "id": 4,
+    "word": "Fish",
+    "file": "fish.mp3",
+    "duration_s": 1.437,
+    "sha256": "78ef4f62b644ce09382e96516bb17fe09102215a087b98eba02ca24d15b3fc66"
+  },
+  {
+    "id": 5,
+    "word": "Bird",
+    "file": "bird.mp3",
+    "duration_s": 1.437,
+    "sha256": "42b97c037304df8d9b02d057396bf949c5f0969541bb94b1b3c4bd89f510dea2"
+  },
+  {
+    "id": 6,
+    "word": "Bear",
+    "file": "bear.mp3",
+    "duration_s": 1.437,
+    "sha256": "77cc92ffa43742ccc638edf6aa08995973123a88f0df64ed0015f65391d2aa8b"
+  },
+  {
+    "id": 7,
+    "word": "Rabbit",
+    "file": "rabbit.mp3",
+    "duration_s": 1.567,
+    "sha256": "026cfd37c14f344646f3930884b413bc763a6a8d02847ee1faf8f6d2b88448bf"
+  },
+  {
+    "id": 8,
+    "word": "Lion",
+    "file": "lion.mp3",
+    "duration_s": 1.567,
+    "sha256": "95569da71f39dff4df08eb1ed98f696a913d998ae0883e0ceb634f3f309ca20e"
+  },
+  {
+    "id": 9,
+    "word": "Monkey",
+    "file": "monkey.mp3",
+    "duration_s": 1.515,
+    "sha256": "2ae9a9c1cf744f19c5d7c0bdeccaf05d24b6d5a6409b90f03414a11b50fb5080"
+  },
+  {
+    "id": 10,
+    "word": "Elephant",
+    "file": "elephant.mp3",
+    "duration_s": 1.646,
+    "sha256": "983eb891dee40a7860639a04655dbce64a8eadb8cbaea995ce4c1b08b890d53a"
+  },
+  {
+    "id": 11,
+    "word": "Panda",
+    "file": "panda.mp3",
+    "duration_s": 1.567,
+    "sha256": "6a48834c05e0cbd6922ddc9cb960236f6dfb72ebea591b167b9e9ce17e95d6e2"
+  },
+  {
+    "id": 12,
+    "word": "Tiger",
+    "file": "tiger.mp3",
+    "duration_s": 1.593,
+    "sha256": "f4f38eb9be5cf8eb8896915c7056a16c2ca561f90398cfa79e1ab49f5acc1557"
+  },
+  {
+    "id": 13,
+    "word": "Apple",
+    "file": "apple.mp3",
+    "duration_s": 1.411,
+    "sha256": "18b1d0bf72e7cdc4cec9d792da496c6d51fa416c782be31fbfef2129ea96099a"
+  },
+  {
+    "id": 14,
+    "word": "Banana",
+    "file": "banana.mp3",
+    "duration_s": 1.541,
+    "sha256": "e1ccfcaf138c6b4d3ee876ce5be70d8d78873d0aa001db322ba013751b39a3c3"
+  },
+  {
+    "id": 15,
+    "word": "Orange",
+    "file": "orange.mp3",
+    "duration_s": 1.515,
+    "sha256": "6c2240374ac62e2c90dd906e7c16c884a26e874f35814995ac5df3cf0f461b37"
+  },
+  {
+    "id": 16,
+    "word": "Pear",
+    "file": "pear.mp3",
+    "duration_s": 1.463,
+    "sha256": "95caf0514c8844c585ff46a4ca72d10b848d1dd0eecd53b3e33c9fc2e21b757d"
+  },
+  {
+    "id": 17,
+    "word": "Milk",
+    "file": "milk.mp3",
+    "duration_s": 1.515,
+    "sha256": "401777266b5a4266b8ec80c832d617cf23c8decf45875a093d7a56d74a63a292"
+  },
+  {
+    "id": 18,
+    "word": "Bread",
+    "file": "bread.mp3",
+    "duration_s": 1.411,
+    "sha256": "c64710ca40659a2746a6ee7378c22d8f27800836cebcb6b9d5fc3c1fe6ad2c6e"
+  },
+  {
+    "id": 19,
+    "word": "Water",
+    "file": "water.mp3",
+    "duration_s": 1.541,
+    "sha256": "f1c98637424516e52ab4bb26e7d8fa3c591a94be63934069f982630cb787cf0d"
+  },
+  {
+    "id": 20,
+    "word": "Cake",
+    "file": "cake.mp3",
+    "duration_s": 1.463,
+    "sha256": "0b4953b7df64c4d2458a5b11eccd638ac1a92fe4977b4e8bbbc24024b8e252e7"
+  },
+  {
+    "id": 21,
+    "word": "Egg",
+    "file": "egg.mp3",
+    "duration_s": 1.358,
+    "sha256": "53c42bfae1918c48307d1ec443556d84677d76a969fe6520893aa63a5816f9bf"
+  },
+  {
+    "id": 22,
+    "word": "Rice",
+    "file": "rice.mp3",
+    "duration_s": 1.489,
+    "sha256": "b237226837749c7e8997e4e0dc21f1cefab52e166199d94e4e17987bd402d386"
+  },
+  {
+    "id": 23,
+    "word": "Juice",
+    "file": "juice.mp3",
+    "duration_s": 1.411,
+    "sha256": "a09ffce4fd7e33e17f2dbe7f94107e8be63b046d3322f462d0ce7e95aa6aa35f"
+  },
+  {
+    "id": 24,
+    "word": "Ice cream",
+    "file": "ice_cream.mp3",
+    "duration_s": 1.881,
+    "sha256": "178132d85fd963ccdc6498e804ae357cf3869137b07acabe794c2ccb80f37108"
+  },
+  {
+    "id": 25,
+    "word": "Eye",
+    "file": "eye.mp3",
+    "duration_s": 1.358,
+    "sha256": "eb7f1b7b7fd20e674ad0e36daef0908c104cd613d69ddb959600a03ca74dca31"
+  },
+  {
+    "id": 26,
+    "word": "Nose",
+    "file": "nose.mp3",
+    "duration_s": 1.593,
+    "sha256": "ef6cbe1e7343f721da159fe661b452a5f19af8ccc01329acaad64a9683ce80d9"
+  },
+  {
+    "id": 27,
+    "word": "Mouth",
+    "file": "mouth.mp3",
+    "duration_s": 1.489,
+    "sha256": "aed6211211890e74b4d13c9f48c519490dbb6a93c54df7ea6606bf358387f504"
+  },
+  {
+    "id": 28,
+    "word": "Hand",
+    "file": "hand.mp3",
+    "duration_s": 1.541,
+    "sha256": "c84bef71eee9528e54bb684f176dffe0b98a314ca55040180f0dd2cb860fcaa7"
+  },
+  {
+    "id": 29,
+    "word": "Foot",
+    "file": "foot.mp3",
+    "duration_s": 1.358,
+    "sha256": "5a00fc3859f22e4320bc14f6e78b4da9bfc40e9bd5d7fc0a4e2684cc619695f4"
+  },
+  {
+    "id": 30,
+    "word": "Head",
+    "file": "head.mp3",
+    "duration_s": 1.437,
+    "sha256": "9c0a337cf4fb4a776cdf4e740d4a4ec1d3c4588ccd8ece9ffc70eeb7a53b4349"
+  },
+  {
+    "id": 31,
+    "word": "Dad",
+    "file": "dad.mp3",
+    "duration_s": 1.411,
+    "sha256": "6e1369e9da23f73bbbc02c534a61d9c72217f281fa19c78e0ab8c6a86bbe7131"
+  },
+  {
+    "id": 32,
+    "word": "Mom",
+    "file": "mom.mp3",
+    "duration_s": 1.567,
+    "sha256": "c284f4c2e2cd4ae692c3821874fbe2d3bf990051110193d9568080040dc4c53a"
+  },
+  {
+    "id": 33,
+    "word": "Brother",
+    "file": "brother.mp3",
+    "duration_s": 1.489,
+    "sha256": "27fb44a53e346e8894e40d5896aef813ff95b3add51e2620d5c344a07ccec724"
+  },
+  {
+    "id": 34,
+    "word": "Sister",
+    "file": "sister.mp3",
+    "duration_s": 1.567,
+    "sha256": "e4cc5cf45c06b043ca346781196c49212e8126b460f1d48e470cdb6cb779cc81"
+  },
+  {
+    "id": 35,
+    "word": "Book",
+    "file": "book.mp3",
+    "duration_s": 1.332,
+    "sha256": "aba004ff8ee8aa666e795c2fbc3012239dfc01160ac7f0e96e3e380bf191e112"
+  },
+  {
+    "id": 36,
+    "word": "Pen",
+    "file": "pen.mp3",
+    "duration_s": 1.489,
+    "sha256": "e1cac91272c62ea9d63bebaad858da4844c87ca8dd95b458f99a9a0e375319de"
+  },
+  {
+    "id": 37,
+    "word": "Pencil",
+    "file": "pencil.mp3",
+    "duration_s": 1.593,
+    "sha256": "a5a7d6401256c190e6870a834a9ef7e6fdbfc8574389767d5f164ef078d85e30"
+  },
+  {
+    "id": 38,
+    "word": "Ruler",
+    "file": "ruler.mp3",
+    "duration_s": 1.463,
+    "sha256": "d5e0beb93fefec57adc49ed750bc38a066061554a3005e6a0506b46397bbe5cb"
+  },
+  {
+    "id": 39,
+    "word": "Bag",
+    "file": "bag.mp3",
+    "duration_s": 1.463,
+    "sha256": "aa0841f7de36b224ebb859f39e9427725ae18fee72854ab12831f06d7c8a5620"
+  },
+  {
+    "id": 40,
+    "word": "Desk",
+    "file": "desk.mp3",
+    "duration_s": 1.411,
+    "sha256": "e3f51c06687d3b66d44d3ef41f94d90581e06afb890d75c4368ccbb994ca942f"
+  },
+  {
+    "id": 41,
+    "word": "Chair",
+    "file": "chair.mp3",
+    "duration_s": 1.489,
+    "sha256": "f69e0a9cf61a855b82a72391af4254a2c8630030da884038bcf2241ba82ffb95"
+  },
+  {
+    "id": 42,
+    "word": "Teacher",
+    "file": "teacher.mp3",
+    "duration_s": 1.541,
+    "sha256": "705edf814cd01c6660f6551e832cf7a1b03718062e1507829c812ecba27900ad"
+  },
+  {
+    "id": 43,
+    "word": "Red",
+    "file": "red.mp3",
+    "duration_s": 1.489,
+    "sha256": "000bb83082bd3366cff8f03c68133c1f6fb6abf5128ce4a13b2ee942f9e56529"
+  },
+  {
+    "id": 44,
+    "word": "Blue",
+    "file": "blue.mp3",
+    "duration_s": 1.411,
+    "sha256": "de8a05c36876cb4bade4f621ab22c89647e2b55e3446ef4beef54f69fe820acb"
+  },
+  {
+    "id": 45,
+    "word": "Yellow",
+    "file": "yellow.mp3",
+    "duration_s": 1.489,
+    "sha256": "c8632d7c449a8882311525cf5fdb54840aedd465757b7a06d91b4219bf356949"
+  },
+  {
+    "id": 46,
+    "word": "Green",
+    "file": "green.mp3",
+    "duration_s": 1.437,
+    "sha256": "30479fc4a519c7f515da8b1bfe2616c398f9f4fe3bde52836dfc971ddf082975"
+  },
+  {
+    "id": 47,
+    "word": "One",
+    "file": "one.mp3",
+    "duration_s": 1.463,
+    "sha256": "a67b99df5bdcd04056798c071c4b6dc918cf15b0ce2aa8c8109ce21bd33b0abd"
+  },
+  {
+    "id": 48,
+    "word": "Two",
+    "file": "two.mp3",
+    "duration_s": 1.384,
+    "sha256": "e6a86cae32a189008c1af97541154a9456de97726b00d1bcb25a6db39e7138dd"
+  },
+  {
+    "id": 49,
+    "word": "Three",
+    "file": "three.mp3",
+    "duration_s": 1.411,
+    "sha256": "1f8de9ed97e0fc189ffb3f999163c3e07fbdbb9a8f05c0ccc50c26c44ca519ce"
+  },
+  {
+    "id": 50,
+    "word": "Four",
+    "file": "four.mp3",
+    "duration_s": 1.489,
+    "sha256": "94a946633aac0d5f4af8e66c561bc3151eef54ae24365301e46082cfc9ebb650"
+  },
+  {
+    "id": 51,
+    "word": "Five",
+    "file": "five.mp3",
+    "duration_s": 1.567,
+    "sha256": "2b3427abe9a2a4a89b0590bd4d67d0155f01980bb01c3748d0cabc6b7459597f"
+  },
+  {
+    "id": 52,
+    "word": "Sun",
+    "file": "sun.mp3",
+    "duration_s": 1.463,
+    "sha256": "997ddf98205150cb248e70b0f5b9123f07e9f1c8fcdfe58a8345d70ba2c5282c"
+  },
+  {
+    "id": 53,
+    "word": "Moon",
+    "file": "moon.mp3",
+    "duration_s": 1.489,
+    "sha256": "32b8705eeebb6c22430a92887bf39819025b5f760bb97fdca382dbb943887448"
+  },
+  {
+    "id": 54,
+    "word": "Star",
+    "file": "star.mp3",
+    "duration_s": 1.541,
+    "sha256": "3edfeef16833f1272e88c6984143a79739b5c1895944ec7a628d45e69a2e5130"
+  },
+  {
+    "id": 55,
+    "word": "Rain",
+    "file": "rain.mp3",
+    "duration_s": 1.541,
+    "sha256": "06788f37b90175d441cc1a049a44b200bf183fd87728e26fbd74cbe407b0fbc2"
+  },
+  {
+    "id": 56,
+    "word": "Tree",
+    "file": "tree.mp3",
+    "duration_s": 1.463,
+    "sha256": "33ee12c163b7bbac84d564c3bf9dd7b9ad685d3e2338e118cfa70ac1b2697b9d"
+  },
+  {
+    "id": 57,
+    "word": "Flower",
+    "file": "flower.mp3",
+    "duration_s": 1.567,
+    "sha256": "b38b9c9c9c8ea0d9b7e858684439f4562842d304953bf4d84c0a0d7973e6f6fa"
+  },
+  {
+    "id": 58,
+    "word": "Car",
+    "file": "car.mp3",
+    "duration_s": 1.515,
+    "sha256": "56707b3d0f9fb513b999269b8b32e0aa6bfa719734f7de927fd4d0ff70817592"
+  },
+  {
+    "id": 59,
+    "word": "Bus",
+    "file": "bus.mp3",
+    "duration_s": 1.384,
+    "sha256": "ca300fe0044ab4ae43f301f5dfd8b7ecd546a14adc0ced792a9122a96e58830f"
+  },
+  {
+    "id": 60,
+    "word": "Bike",
+    "file": "bike.mp3",
+    "duration_s": 1.437,
+    "sha256": "4e9e537e73a235ca529d1a2cbf7fc64f4b9bb4ad225fb86962f923960892d7a7"
+  },
+  {
+    "id": 61,
+    "word": "Hat",
+    "file": "hat.mp3",
+    "duration_s": 1.437,
+    "sha256": "0351e43954f096e4df025228497405215c357794bf42528f0b42f1c5361f84ce"
+  },
+  {
+    "id": 62,
+    "word": "Shoes",
+    "file": "shoes.mp3",
+    "duration_s": 1.541,
+    "sha256": "6c7fc5b13cdf5b22335b5f58f3cb1a88d6c8a5cd2d929e51eef3699a28ac00c2"
+  }
+]

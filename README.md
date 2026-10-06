@@ -1,20 +1,15 @@
-# 小夕英语 v5.3
+# 小夕英语 v5.4
 
-本版重点：
-- A–Z 26 个字母全部从用户提供的同一份真人连续录音 `English_alphabet.ogg` 切分。
-- 不再混用旧 TTS 或不同声线。
-- 每个字母按相邻字母中心点切分，保留自然前后静音，避免 F /f/、M /m/、N /n/ 等尾音被硬切。
-- 导出统一为 44.1 kHz、mono、128 kbps MP3。
-- 首页“安装到桌面”和“Hello，小夕”卡片增加元素级 inline 背景色/渐变，避免 Safari/PWA 样式链路异常。
-- Service Worker/字母音频版本升级到 v5.3.0，避免命中旧音频缓存。
+## 本版核心修复
+- 修复 Android / Android PWA 中“每日闯关”单词点击无声。
+- 62 个 WORD_BANK 单词新增本地 MP3，统一 en-US 合成声线与参数。
+- 单词按钮改为本地音频优先，系统 speechSynthesis 仅作为兜底。
+- 单词播放不再依赖 `cancel() -> 延时 -> speak()`，避免 Android 丢失用户手势/发音请求。
+- A-Z 真人字母音频和离线字母歌继续保留。
+- Service Worker 缓存版本升级到 v5.4.0。
 
-## 部署
-请用本版完整目录覆盖 GitHub Pages 仓库中的：
-- `audio/`
-- `assets/`
-- `icons/`
-- `index.html`
-- `manifest.webmanifest`
-- `sw.js`
+## GitHub Pages 上传
+请覆盖整个 `audio/words/`、`index.html`、`sw.js`，并保留原有 `audio/letters/`、`assets/`、`icons/`。
 
-部署后建议删除旧桌面 PWA，再用 Safari/Chrome 从网页重新添加到主屏幕。
+## 说明
+本版单词音频的目标是解决 Android 稳定播放与离线能力，使用统一的本地 en-US 合成声线。后续如需教材级真人单词音频，可在不改代码结构的情况下替换 `audio/words/*.mp3`。
