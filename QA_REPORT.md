@@ -1,4 +1,4 @@
-# 小夕英语 v6.2 Android 音频兼容 QA
+# 小夕英语 v6.3 Android 音频兼容 QA
 
 ## 本次问题
 电脑端可播放，但部分 Android 手机/平板点击 `yo-yo / long / milkshake / milk / mother / young` 无声音。
@@ -8,8 +8,8 @@
 - 统一参数：MP3 / libmp3lame / 44.1 kHz / mono / CBR 128 kbps。
 - 移除原始 CD 继承的 ID3 title/date/track 元数据。
 - 每段增加约 80 ms 前置静音和 120 ms 尾部静音，降低短音频在移动解码器上的起止裁切风险。
-- WORD_AUDIO_VERSION 升级为 `v6.2.0`。
-- Service Worker APP/AUDIO/Alphabet cache 版本升级为 `v6.2.0`。
+- WORD_AUDIO_VERSION 升级为 `v6.3.0`。
+- Service Worker APP/AUDIO/Alphabet cache 版本升级为 `v6.3.0`。
 - Android Range/206 处理逻辑保留。
 
 ## 自动检查
