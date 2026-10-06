@@ -1,15 +1,13 @@
-# 小夕英语 v5.4
+# 小夕英语 v5.5 Android 音频 Range 修复版
 
-## 本版核心修复
-- 修复 Android / Android PWA 中“每日闯关”单词点击无声。
-- 62 个 WORD_BANK 单词新增本地 MP3，统一 en-US 合成声线与参数。
-- 单词按钮改为本地音频优先，系统 speechSynthesis 仅作为兜底。
-- 单词播放不再依赖 `cancel() -> 延时 -> speak()`，避免 Android 丢失用户手势/发音请求。
-- A-Z 真人字母音频和离线字母歌继续保留。
-- Service Worker 缓存版本升级到 v5.4.0。
+本版针对 Android Chrome / PWA 中“只有点击声、单词 MP3 无声”的问题修复：
 
-## GitHub Pages 上传
-请覆盖整个 `audio/words/`、`index.html`、`sw.js`，并保留原有 `audio/letters/`、`assets/`、`icons/`。
+- Service Worker 正确支持 MP3 `Range: bytes=...` 请求。
+- 不再尝试将 HTTP 206 Partial Content 写入 Cache API。
+- 首次 Range 请求会先拉取完整 MP3、缓存完整 200 响应，再返回正确的 206 字节区间。
+- 每日闯关使用持久化 `<audio>` 元素播放，不再每次 `new Audio()`。
+- 单词播放时移除点击提示音，避免掩盖真实播放故障。
+- 单词音频继续保持本地优先，TTS 只做失败兜底。
+- 缓存版本升级到 v5.5.0。
 
-## 说明
-本版单词音频的目标是解决 Android 稳定播放与离线能力，使用统一的本地 en-US 合成声线。后续如需教材级真人单词音频，可在不改代码结构的情况下替换 `audio/words/*.mp3`。
+部署 GitHub Pages 时请整体覆盖 `index.html`、`sw.js`、`audio/`、`assets/`、`icons/`。
